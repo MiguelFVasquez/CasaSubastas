@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,4 +9,55 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="855.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="68.0" prefWidth="855.0" style="-fx-background-color: #0697AE;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo%20usuario.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="37.0" layoutY="77.0" text="Información de la cuenta">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="422.0" layoutY="177.0" text="Nombres" />
+      <Label layoutX="423.0" layoutY="212.0" text="Apellidos" />
+      <Label layoutX="414.0" layoutY="283.0" text="Identificación" />
+      <Label layoutX="422.0" layoutY="248.0" text="Edad" />
+      <Label layoutX="421.0" layoutY="319.0" text="Usuario" />
+      <Label layoutX="423.0" layoutY="359.0" text="Correo" />
+      <Label layoutX="417.0" layoutY="392.0" text="Contraseña" />
+      <Label layoutX="48.0" layoutY="359.0" text="Tipo de usuario">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="579.0" layoutY="173.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="579.0" layoutY="208.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="579.0" layoutY="244.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="579.0" layoutY="279.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="579.0" layoutY="315.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="579.0" layoutY="355.0" prefHeight="25.0" prefWidth="230.0" />
+      <PasswordField layoutX="579.0" layoutY="397.0" prefHeight="25.0" prefWidth="230.0" />
+      <Button layoutX="208.0" layoutY="489.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="174.0" layoutY="364.0" prefHeight="25.0" prefWidth="178.0" />
+      <Separator layoutX="47.0" layoutY="464.0" prefHeight="7.0" prefWidth="800.0" />
+      <Button layoutX="422.0" layoutY="489.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="585.0" layoutY="489.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="422.0" layoutY="126.0" text="Puede ver y modificar la información de su cuenta" />
+   </children>
+</AnchorPane>
