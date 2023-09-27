@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="855.0" style="-fx-background-color: white; -fx-background-image: '09;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="62.0" prefWidth="855.0" style="-fx-background-color: #0697AE;">
+         <children>
+            <Label layoutX="364.0" layoutY="-6.0" text="Iniciar sesión" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="27.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <ImageView fitHeight="492.0" fitWidth="488.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Martillo.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="508.0" layoutY="192.0" text="Nombre de usuario" />
+      <TextField layoutX="635.0" layoutY="188.0" />
+      <Label layoutX="508.0" layoutY="251.0" text="Contraseña" />
+      <PasswordField layoutX="635.0" layoutY="247.0" />
+      <Button layoutX="624.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Entrar" textFill="WHITE" />
+      <Button layoutX="714.0" layoutY="290.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Recuperar" textFill="#5900ff" />
+      <Label layoutX="518.0" layoutY="294.0" text="¿Olvido su contraseña? Ingrese aqui:" />
+      <Label layoutX="639.0" layoutY="76.0" text="Bienvenido " />
+      <Label layoutX="572.0" layoutY="109.0" text="Disfrute de la mejor casa de subastas" />
+      <Label layoutX="663.0" layoutY="413.0" text="0" />
+      <Button layoutX="625.0" layoutY="444.0" mnemonicParsing="false" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE" />
+      <Separator layoutX="488.0" layoutY="135.0" prefHeight="0.0" prefWidth="355.0" />
+      <Separator layoutX="502.0" layoutY="329.0" prefHeight="3.0" prefWidth="343.0" />
+      <Separator layoutX="501.0" layoutY="420.0" prefHeight="3.0" prefWidth="154.0" />
+      <Separator layoutX="673.0" layoutY="422.0" prefHeight="3.0" prefWidth="166.0" />
+   </children>
+</AnchorPane>
