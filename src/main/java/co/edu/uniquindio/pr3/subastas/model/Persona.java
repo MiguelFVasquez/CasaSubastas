@@ -2,7 +2,7 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import java.util.Objects;
 
-public class Persona {
+public abstract class Persona {
     private String nombres;
     private String apellidos;
     private String identificacion;
