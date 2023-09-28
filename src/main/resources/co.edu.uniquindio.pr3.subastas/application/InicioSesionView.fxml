@@ -25,19 +25,25 @@
          </image>
       </ImageView>
       <Label layoutX="508.0" layoutY="192.0" text="Nombre de usuario" />
-      <TextField layoutX="635.0" layoutY="188.0" />
+      <TextField fx:id="txtInicioNombre" layoutX="635.0" layoutY="188.0" promptText="Nombre de usuario" />
       <Label layoutX="508.0" layoutY="251.0" text="Contraseña" />
-      <PasswordField layoutX="635.0" layoutY="247.0" />
-      <Button layoutX="624.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Entrar" textFill="WHITE" />
-      <Button layoutX="714.0" layoutY="290.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Recuperar" textFill="#5900ff" />
+      <PasswordField fx:id="txtInicioPassword" layoutX="635.0" layoutY="247.0" promptText="Contraseña" />
+      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Entrar" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnRecuperarCuenta" layoutX="714.0" layoutY="290.0" mnemonicParsing="false" onAction="#recuperarContrasenia" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Recuperar" textFill="#5900ff" />
       <Label layoutX="518.0" layoutY="294.0" text="¿Olvido su contraseña? Ingrese aqui:" />
       <Label layoutX="639.0" layoutY="76.0" text="Bienvenido " />
       <Label layoutX="572.0" layoutY="109.0" text="Disfrute de la mejor casa de subastas" />
-      <Label layoutX="663.0" layoutY="413.0" text="0" />
-      <Button layoutX="625.0" layoutY="444.0" mnemonicParsing="false" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE" />
+      <Label layoutX="672.0" layoutY="412.0" text="0" />
+      <Button fx:id="btnCrearCuenta" layoutX="625.0" layoutY="444.0" mnemonicParsing="false" onAction="#crearCuentaNueva" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
       <Separator layoutX="488.0" layoutY="135.0" prefHeight="0.0" prefWidth="355.0" />
       <Separator layoutX="502.0" layoutY="329.0" prefHeight="3.0" prefWidth="343.0" />
       <Separator layoutX="501.0" layoutY="420.0" prefHeight="3.0" prefWidth="154.0" />
-      <Separator layoutX="673.0" layoutY="422.0" prefHeight="3.0" prefWidth="166.0" />
+      <Separator layoutX="689.0" layoutY="422.0" prefHeight="3.0" prefWidth="154.0" />
    </children>
 </AnchorPane>
