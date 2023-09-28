@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,4 +10,86 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="856.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="6.0" layoutY="6.0" prefHeight="566.0" prefWidth="856.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Información producto">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="64.0" prefWidth="856.0" style="-fx-background-color: #0697AE;">
+                           <children>
+                              <Label layoutX="329.0" layoutY="15.0" text="Información del producto" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label layoutX="48.0" layoutY="94.0" text="Nombre:" />
+                        <Label layoutX="46.0" layoutY="263.0" text="Descripción:" />
+                        <Label layoutX="46.0" layoutY="199.0" text="Valor Inicial:" />
+                        <Label layoutX="46.0" layoutY="141.0" text="Código:" />
+                        <Label layoutX="23.0" layoutY="333.0" />
+                        <Label layoutX="500.0" layoutY="94.0" text="Tipo de producto:" />
+                        <TextField fx:id="txtNombreProducto" layoutX="138.0" layoutY="91.0" prefHeight="25.0" prefWidth="270.0" promptText="Ingrese el nombre del producto" />
+                        <TextField fx:id="txtCodigoProducto" layoutX="138.0" layoutY="137.0" prefHeight="25.0" prefWidth="270.0" promptText="Ingrese el código del producto" />
+                        <TextField fx:id="txtValor" layoutX="138.0" layoutY="195.0" prefHeight="25.0" prefWidth="270.0" promptText="Ingrese el valor inicial" />
+                        <TextArea fx:id="txtDescripcion" layoutX="138.0" layoutY="263.0" prefHeight="121.0" prefWidth="273.0" />
+                        <Label layoutX="500.0" layoutY="141.0" text="Imagen:" />
+                        <ComboBox fx:id="comboBoxTipoProducto" layoutX="629.0" layoutY="91.0" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione el tipo de producto" />
+                        <Button fx:id="btnAniadirImagen" layoutX="629.0" layoutY="137.0" mnemonicParsing="false" onAction="#aniadirImagenProducto" prefHeight="25.0" prefWidth="211.0" style="-fx-background-color: #0697AE;" text="Añadir imagen" textFill="WHITE" />
+                        <Label layoutX="500.0" layoutY="199.0" text="Previsualización" />
+                        <ImageView fx:id="imageViewPrevisualizacion" fitHeight="186.0" fitWidth="257.0" layoutX="642.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Martillo.jpeg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnAniadirProducto" layoutX="308.0" layoutY="453.0" mnemonicParsing="false" onAction="#aniadirProducto" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Añadir" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                        <Separator layoutX="10.0" layoutY="434.0" prefHeight="0.0" prefWidth="820.0" />
+                        <Button fx:id="btnActualizarProducto" layoutX="490.0" layoutY="453.0" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697aec2">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Mis Productos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="64.0" prefWidth="856.0" style="-fx-background-color: #0697AE;">
+                           <children>
+                              <Label layoutX="374.0" layoutY="24.0" />
+                              <Label layoutX="398.0" layoutY="17.0" text="Mis productos" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <TableView fx:id="tableViewProductos" layoutY="64.0" prefHeight="403.0" prefWidth="856.0">
+                          <columns>
+                            <TableColumn fx:id="columNombreProducto" prefWidth="131.0" text="Nombre" />
+                            <TableColumn fx:id="columCodigo" prefWidth="100.0" text="Código" />
+                              <TableColumn fx:id="columPrecio" prefWidth="89.0" text="Precio" />
+                              <TableColumn fx:id="columTipoProducto" prefWidth="151.0" text="Tipo de producto" />
+                              <TableColumn fx:id="columDescripcion" prefWidth="384.0" text="Descripción" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnEliminarProducto" layoutX="396.0" layoutY="481.0" mnemonicParsing="false" onAction="#eliminarProducto" style="-fx-background-color: red;" text="Eliminar producto" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
