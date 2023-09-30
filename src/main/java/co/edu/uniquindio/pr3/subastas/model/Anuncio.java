@@ -1,5 +1,7 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import java.util.List;
+
 public class Anuncio {
 
     private String codigo;
