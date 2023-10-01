@@ -12,19 +12,15 @@ public interface ISubasta {
 
     public Comprador obtenerComprador(String usuario, String contrasenia);
     public boolean crearComprador(Comprador newComprador) throws UsuarioException, CompradorException;
-    public boolean actualizarComprador(String nombre, String apellido, String identificacion, int edad,
-                                       String nombreUsuario, String correo, String contrasenia,
-                                       boolean autenticado);
-    public boolean eliminarComprador(String identificacion);
+    public boolean actualizarComprador(Comprador newComprador) throws UsuarioException, CompradorException;
+    public boolean eliminarComprador(Comprador compradorEliminar) throws UsuarioException, CompradorException;
     //................Metodos del anunciante.................................
 
-    public Anunciante obtenerAnunciante(String identificacion);
+    public Anunciante obtenerAnunciante(String usuario, String contrasenia);
 
-    public boolean crearAnunciante(String nombre, String apellido, String identificacion, int edad,
-                                   String nombreUsuario, String correo, String contrasenia, boolean autenticado);
-    public boolean actualizarAnunciante(String nombre, String apellido, String identificacion, int edad,
-                                        String nombreUsuario, String correo, String contrasenia, boolean autenticado);
-    public boolean eliminarAnunciante(String identificacion);
+    public boolean crearAnunciante(Anunciante newAnunciante);
+    public boolean actualizarAnunciante(Anunciante newAnunciante);
+    public boolean eliminarAnunciante(Anunciante anuncianteEliminar);
 
 
 }

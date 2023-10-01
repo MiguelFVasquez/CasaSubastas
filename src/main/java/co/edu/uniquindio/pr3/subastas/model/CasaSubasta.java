@@ -113,6 +113,13 @@ public class CasaSubasta implements ISubasta {
         return (Comprador) listaCompradores.stream().filter(c-> c.getNombreUsuario().equals(usuario) && c.getContrasenia().equals(contrasenia));
     }
 
+    /**
+     *
+     * @param newComprador
+     * @return
+     * @throws UsuarioException
+     * @throws CompradorException
+     */
     @Override
     public boolean crearComprador(Comprador newComprador) throws UsuarioException, CompradorException {
         boolean creado= false;
@@ -126,34 +133,65 @@ public class CasaSubasta implements ISubasta {
         return creado;
     }
 
+    /**
+     *
+     * @param newComprador
+     * @return
+     * @throws UsuarioException
+     * @throws CompradorException
+     */
     @Override
-    public boolean actualizarComprador(String nombre, String apellido, String identificacion, int edad, String nombreUsuario, String correo, String contrasenia, boolean autenticado) {
-        return false;
+    public boolean actualizarComprador(Comprador newComprador) throws UsuarioException, CompradorException {
+        boolean actualizado= false;
+        Comprador compradorAux= obtenerComprador(newComprador.getNombreUsuario(), newComprador.getContrasenia());
+        if (compradorAux==null){
+            throw new CompradorException("El usuario no ha sido encontrado");
+        }else {
+            actualizado=true;
+            compradorAux.setNombre(newComprador.getNombre());
+            compradorAux.setApellido(newComprador.getApellido());
+            compradorAux.setEdad(newComprador.getEdad());
+            compradorAux.setCorreo(newComprador.getCorreo());
+            compradorAux.setContrasenia(newComprador.getContrasenia());
+            compradorAux.setNombreUsuario(newComprador.getNombreUsuario());
+        }
+        return actualizado;
     }
 
     @Override
-    public boolean eliminarComprador(String identificacion) {
-        return false;
+    public boolean eliminarComprador(Comprador compradorEliminar) throws UsuarioException,CompradorException{
+        boolean eliminado=false;
+        Comprador compradorAux= obtenerComprador(compradorEliminar.getNombreUsuario(),compradorEliminar.getContrasenia());
+        if (compradorAux==null){
+            throw new CompradorException("El usuario no ha sido encontrado");
+        }else{
+            eliminado=true;
+            //Se elimina el usuario de las respectivas listas
+            listaUsuarios.remove(compradorEliminar);
+            listaCompradores.remove(compradorEliminar);
+        }
+
+        return eliminado;
     }
 
     @Override
-    public Anunciante obtenerAnunciante(String identificacion) {
+    public Anunciante obtenerAnunciante(String usuario, String contrasenia) {
         return null;
     }
 
     //----------------------CRUD DEL ANUNCIANTE--------------------------------------------------
     @Override
-    public boolean crearAnunciante(String nombre, String apellido, String identificacion, int edad, String nombreUsuario, String correo, String contrasenia, boolean autenticado) {
+    public boolean crearAnunciante(Anunciante newAnunciante) {
         return false;
     }
 
     @Override
-    public boolean actualizarAnunciante(String nombre, String apellido, String identificacion, int edad, String nombreUsuario, String correo, String contrasenia, boolean autenticado) {
+    public boolean actualizarAnunciante(Anunciante newAnunciante) {
         return false;
     }
 
     @Override
-    public boolean eliminarAnunciante(String identificacion) {
+    public boolean eliminarAnunciante(Anunciante anuncianteEliminar) {
         return false;
     }
 
