@@ -5,23 +5,23 @@ public class Producto {
     private String codigo;
     private String nombre;
     private String descripcion;
-    private String image;
+    private String imagen;
     private Double valorInicial;
     private TipoProducto tipoProducto;
-    private Boolean isAnunciado;
+    private Boolean estaAnunciado;
 
     public Producto() {
     }
 
-    public Producto(String codigo, String nombre, String descripcion, String image,
-                    Double valorInicial, TipoProducto tipoProducto, Boolean isAnunciado) {
+    public Producto(String codigo, String nombre, String descripcion, String imagen,
+                    Double valorInicial, TipoProducto tipoProducto, Boolean estaAnunciado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.image = image;
+        this.imagen = imagen;
         this.valorInicial = valorInicial;
         this.tipoProducto = tipoProducto;
-        this.isAnunciado = isAnunciado;
+        this.estaAnunciado = estaAnunciado;
     }
 
 
@@ -49,12 +49,12 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Double getValorInicial() {
@@ -74,10 +74,10 @@ public class Producto {
     }
 
     public Boolean getAnunciado() {
-        return isAnunciado;
+        return estaAnunciado;
     }
 
     public void setAnunciado(Boolean anunciado) {
-        isAnunciado = anunciado;
+        estaAnunciado = anunciado;
     }
 }

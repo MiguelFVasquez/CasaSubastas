@@ -14,7 +14,7 @@
       <Pane prefHeight="68.0" prefWidth="855.0" style="-fx-background-color: #0697AE;" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Logo%20usuario.png" />
+            <Image url="@../images/LogoUsuario.png" />
          </image>
       </ImageView>
       <Label layoutX="37.0" layoutY="77.0" text="Información de la cuenta">
