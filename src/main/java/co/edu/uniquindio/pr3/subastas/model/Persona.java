@@ -3,35 +3,35 @@ package co.edu.uniquindio.pr3.subastas.model;
 import java.util.Objects;
 
 public abstract class Persona {
-    private String nombres;
-    private String apellidos;
+    private String nombre;
+    private String apellido;
     private String identificacion;
     private Integer edad;
 
 
     public Persona() {
     }
-    public Persona(String nombres, String apellidos, String identificacion, int edad) {
-        this.nombres = nombres;
-        this.apellidos=apellidos;
+    public Persona(String nombre, String apellido, String identificacion, int edad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.identificacion=identificacion;
         this.edad=edad;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getIdentificacion() {
@@ -65,7 +65,7 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Nombres: " + nombres + "\nApellidos: " + apellidos +
+        return "Nombres: " + nombre + "\nApellidos: " + apellido +
                 "\nIdentificación: " + identificacion
                 +"\nEdad: " + edad;
 

@@ -11,6 +11,17 @@ public class Anuncio {
     private Producto producto;
     private List<Puja> listaPujas;
 
+    public Anuncio() {
+    }
+
+    public Anuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) {
+        this.codigo = codigo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.nombreAnunciante = nombreAnunciante;
+        this.producto = producto;
+    }
+
     public Anuncio(String codigo, String fechaInicio, String fechaFinal,
                    String nombreAnunciante, Producto producto,
                    List<Puja> listaPujas) {

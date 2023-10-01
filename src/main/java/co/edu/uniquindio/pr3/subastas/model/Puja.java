@@ -3,19 +3,22 @@ package co.edu.uniquindio.pr3.subastas.model;
 import java.util.Objects;
 
 public class Puja {
+
     private Anuncio anuncio;
     private Comprador comprador;
     private Double valor;
     private String fecha;
+    private String codigo;
 
     public Puja() {
     }
 
-    public Puja(Anuncio anuncio, Comprador comprador, Double valor, String fecha) {
+    public Puja(Anuncio anuncio, Comprador comprador, Double valor, String fecha, String codigo) {
         this.anuncio = anuncio;
         this.comprador = comprador;
         this.valor = valor;
         this.fecha = fecha;
+        this.codigo=codigo;
     }
 
 
@@ -49,6 +52,14 @@ public class Puja {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     @Override
