@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Anunciante extends Usuario{
     private int cantidadAnuncios;
-
     private List<Anuncio> listaAnuncios;
     private List<Producto> listaProductos;
 
