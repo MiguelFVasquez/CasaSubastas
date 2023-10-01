@@ -2,7 +2,7 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import java.util.List;
 
-public class Comprador {
+public class Comprador extends Usuario {
     private List<Puja> listaPujas;
     private List<Integer> cantidadDeVecesPujada;
 
@@ -30,4 +30,9 @@ public class Comprador {
     public void setCantidadDeVecesPujada(List<Integer> cantidadDeVecesPujada) {
         this.cantidadDeVecesPujada = cantidadDeVecesPujada;
     }
+
+
+
+
+
 }
