@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.ISubasta;
@@ -89,15 +90,14 @@ public class CasaSubasta implements ISubasta {
     /**
      *
      * @param usuario
-     * @param contrasenia
      * @return true, si la lista "UsuariosIdenticos" NO está vacia, esto significa que encontro un usuario con el mismo nombreDeusuario y contraseña y lo añadio a la lista
      * @return false, si la lista "UsuariosIdenticos" permance vacia, ya que no encontraria ningun usuario con el mismo nombreDeUsuario y contraseña
      */
     @Override
-    public boolean verificarUsuario(String usuario, String contrasenia) {
+    public boolean verificarUsuario(String usuario) {
         boolean encontrado= false;
         List<Usuario> usuariosIdenticos = this.listaUsuarios.stream()
-                .filter(u-> u.getNombreUsuario().equals(usuario) && u.getContrasenia().equals(contrasenia))
+                .filter(u-> u.getNombreUsuario().equals(usuario))
                 .collect(Collectors.toList());
                 ;
         if(!usuariosIdenticos.isEmpty()) {
@@ -123,7 +123,7 @@ public class CasaSubasta implements ISubasta {
     @Override
     public boolean crearComprador(Comprador newComprador) throws UsuarioException, CompradorException {
         boolean creado= false;
-        if (verificarUsuario(newComprador.getNombreUsuario(),newComprador.getContrasenia())){
+        if (verificarUsuario(newComprador.getNombreUsuario())){
             throw new CompradorException("Este Usuario ya se encuentra registrado");
         }else {
             creado=true;
@@ -167,32 +167,83 @@ public class CasaSubasta implements ISubasta {
         }else{
             eliminado=true;
             //Se elimina el usuario de las respectivas listas
-            listaUsuarios.remove(compradorEliminar);
-            listaCompradores.remove(compradorEliminar);
+            listaUsuarios.remove(compradorAux);
+            listaCompradores.remove(compradorAux);
         }
 
         return eliminado;
     }
 
-    @Override
-    public Anunciante obtenerAnunciante(String usuario, String contrasenia) {
-        return null;
-    }
-
     //----------------------CRUD DEL ANUNCIANTE--------------------------------------------------
     @Override
-    public boolean crearAnunciante(Anunciante newAnunciante) {
-        return false;
+    public Anunciante obtenerAnunciante(String usuario, String contrasenia) {
+        return (Anunciante) listaAnunciantes.stream().filter(a->a.getNombreUsuario().equals(usuario) && a.getContrasenia().equals(contrasenia));
+    }
+    /**
+     *
+     * @param newAnunciante
+     * @return
+     * @throws UsuarioException
+     * @throws AnuncianteException
+     */
+    @Override
+    public boolean crearAnunciante(Anunciante newAnunciante) throws UsuarioException, AnuncianteException {
+        boolean creado= false;
+        if (verificarUsuario(newAnunciante.getNombreUsuario())){
+            throw new AnuncianteException("Ya existe un usuario con este mismo nombre");
+        }else {
+            creado=true;
+            listaUsuarios.add(newAnunciante);
+            listaAnunciantes.add(newAnunciante);
+        }
+        return creado;
     }
 
+    /**
+     *
+     * @param newAnunciante
+     * @return
+     * @throws UsuarioException
+     * @throws AnuncianteException
+     */
     @Override
-    public boolean actualizarAnunciante(Anunciante newAnunciante) {
-        return false;
+    public boolean actualizarAnunciante(Anunciante newAnunciante)throws UsuarioException, AnuncianteException {
+        boolean actualizado=true;
+        Anunciante anuncianteAux= obtenerAnunciante(newAnunciante.getNombreUsuario(), newAnunciante.getContrasenia());
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El usuario no ha sido registrado");
+        }else{
+            actualizado=true;
+            anuncianteAux.setNombre(newAnunciante.getNombre());
+            anuncianteAux.setApellido(newAnunciante.getApellido());
+            anuncianteAux.setEdad(newAnunciante.getEdad());
+            anuncianteAux.setCorreo(newAnunciante.getCorreo());
+            anuncianteAux.setContrasenia(newAnunciante.getContrasenia());
+            anuncianteAux.setNombreUsuario(newAnunciante.getNombreUsuario());
+        }
+
+        return actualizado;
     }
 
+    /**
+     *
+     * @param anuncianteEliminar
+     * @return
+     * @throws UsuarioException
+     * @throws AnuncianteException
+     */
     @Override
-    public boolean eliminarAnunciante(Anunciante anuncianteEliminar) {
-        return false;
+    public boolean eliminarAnunciante(Anunciante anuncianteEliminar) throws UsuarioException, AnuncianteException{
+        boolean eliminado=false;
+        Anunciante anuncianteAux= obtenerAnunciante(anuncianteEliminar.getNombreUsuario(), anuncianteEliminar.getContrasenia());
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El usuario no ha sido encontrado");
+        }else{
+            eliminado=true;
+            listaAnunciantes.remove(anuncianteAux);
+            listaUsuarios.remove(anuncianteAux);
+        }
+        return  eliminado;
     }
 
 
