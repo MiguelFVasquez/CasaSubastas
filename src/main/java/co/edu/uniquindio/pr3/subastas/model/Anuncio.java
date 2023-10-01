@@ -9,18 +9,16 @@ public class Anuncio {
     private String fechaFinal;
     private String nombreAnunciante;
     private Producto producto;
-    private Compra compra;
     private List<Puja> listaPujas;
 
     public Anuncio(String codigo, String fechaInicio, String fechaFinal,
-                   String nombreAnunciante, Producto producto, Compra compra,
+                   String nombreAnunciante, Producto producto,
                    List<Puja> listaPujas) {
         this.codigo = codigo;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.nombreAnunciante = nombreAnunciante;
         this.producto = producto;
-        this.compra = compra;
         this.listaPujas = listaPujas;
     }
 
@@ -63,14 +61,6 @@ public class Anuncio {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public Compra getCompra() {
-        return compra;
-    }
-
-    public void setCompra(Compra compra) {
-        this.compra = compra;
     }
 
     public List<Puja> getListaPujas() {
