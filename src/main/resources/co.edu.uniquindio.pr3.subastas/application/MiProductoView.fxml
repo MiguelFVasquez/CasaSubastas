@@ -83,7 +83,7 @@
                               <TableColumn fx:id="columDescripcion" prefWidth="384.0" text="Descripción" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnEliminarProducto" layoutX="396.0" layoutY="481.0" mnemonicParsing="false" onAction="#eliminarProducto" style="-fx-background-color: #ffdd00;" text="Eliminar producto" textFill="WHITE" />
+                        <Button fx:id="btnEliminarProducto" layoutX="396.0" layoutY="481.0" mnemonicParsing="false" onAction="#eliminarProducto" style="-fx-background-color: red;" text="Eliminar producto" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>
