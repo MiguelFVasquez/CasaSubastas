@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="855.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiCuentaViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="885.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiCuentaViewController">
    <children>
-      <Pane prefHeight="68.0" prefWidth="855.0" style="-fx-background-color: #0697AE;" />
+      <Pane prefHeight="68.0" prefWidth="885.0" style="-fx-background-color: #0697AE;" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/LogoUsuario.png" />

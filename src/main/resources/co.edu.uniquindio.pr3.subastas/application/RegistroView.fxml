@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="860.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.RegistroViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="885.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.RegistroViewController">
    <children>
-      <Pane prefHeight="50.0" prefWidth="855.0" style="-fx-background-color: #0697AE;">
+      <Pane prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
