@@ -42,7 +42,7 @@
                         <Label layoutX="500.0" layoutY="199.0" text="Previsualización" />
                         <ImageView fx:id="imageViewPrevisualizacion" fitHeight="186.0" fitWidth="257.0" layoutX="642.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Martillo.jpeg" />
+                              <Image url="@../../../../../../co.edu.uniquindio.pr3.subastas/images/Martillo.jpeg" />
                            </image>
                         </ImageView>
                         <Button fx:id="btnAniadirProducto" layoutX="308.0" layoutY="453.0" mnemonicParsing="false" onAction="#aniadirProducto" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Añadir" textFill="WHITE">
