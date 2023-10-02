@@ -25,7 +25,7 @@
       </Pane>
       <ImageView fitHeight="499.0" fitWidth="488.0" layoutX="367.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Martillo.jpeg" />
+            <Image url="@../../../../../../co.edu.uniquindio.pr3.subastas/images/Martillo.jpeg" />
          </image>
       </ImageView>
       <ComboBox fx:id="comboBoxTipoUsuario" layoutX="171.0" layoutY="137.0" prefHeight="25.0" prefWidth="166.0" />
