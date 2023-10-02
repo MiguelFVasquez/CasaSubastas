@@ -12,8 +12,7 @@ public class Producto {
 
     public Producto() {
     }
-
-    public Producto(String codigo, String nombre, String descripcion, String imagen,
+     public Producto(String codigo, String nombre, String descripcion, String imagen,
                     Double valorInicial, TipoProducto tipoProducto, Boolean estaAnunciado) {
         this.codigo = codigo;
         this.nombre = nombre;
