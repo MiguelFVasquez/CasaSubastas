@@ -14,8 +14,7 @@ import java.net.URL;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        URL fxmlUrl = getClass().getResource("/co/edu/uniquindio/pr3/subastas/application/VentanaPrincipalView.fxml");
-        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaPrincipalView.fxml"));
         Parent AnchorPane = loader.load();
         Scene scene = new Scene(AnchorPane);
         primaryStage.setScene(scene);
