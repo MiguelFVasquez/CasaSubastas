@@ -1,8 +1,10 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import co.edu.uniquindio.pr3.subastas.model.Interfaces.IAnunciante;
+
 import java.util.List;
 
-public class Anunciante extends Usuario{
+public class Anunciante extends Usuario implements IAnunciante {
     private int cantidadAnuncios;
 
     private List<Anuncio> listaAnuncios;
@@ -63,4 +65,33 @@ public class Anunciante extends Usuario{
                 '}';
     }
 
+    @Override
+    public boolean crearAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarAnuncio(String codigo) {
+        return false;
+    }
+
+    @Override
+    public boolean crearProducto(String codigo, String nombre, String descripcion, String imagen, Double valorInicial, TipoProducto tipoProducto) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String imagen, Double valorInicial, TipoProducto tipoProducto) {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarProducto(String codigo) {
+        return false;
+    }
 }

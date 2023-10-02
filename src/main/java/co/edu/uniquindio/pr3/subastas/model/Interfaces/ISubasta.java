@@ -18,10 +18,8 @@ public interface ISubasta {
     //................Metodos del anunciante.................................
 
     public Anunciante obtenerAnunciante(String usuario, String contrasenia);
-
     public boolean crearAnunciante(Anunciante newAnunciante) throws UsuarioException, AnuncianteException;
     public boolean actualizarAnunciante(Anunciante newAnunciante) throws UsuarioException, AnuncianteException;
     public boolean eliminarAnunciante(Anunciante anuncianteEliminar) throws UsuarioException, AnuncianteException;
-
 
 }
