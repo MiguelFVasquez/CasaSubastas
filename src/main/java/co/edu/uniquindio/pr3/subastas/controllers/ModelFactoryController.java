@@ -1,17 +1,28 @@
 package co.edu.uniquindio.pr3.subastas.controllers;
 
+import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.CasaSubasta;
-import co.edu.uniquindio.pr3.subastas.viewControllers.VentanaPrincipalViewController;
+import co.edu.uniquindio.pr3.subastas.viewControllers.*;
 
-public class ModelFactoryController {
-
+public class ModelFactoryController implements IModelFactoryController {
+    //Clase global de la subasta
     CasaSubasta miCasa;
+    //Para la creacion de un CRUD en la aplicacion
+    //DTO
     SubastaMapper mapper = SubastaMapper.INSTANCE;
+    //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
+    private RegistroViewController registroViewController;
+    private InicioSesionViewController inicioSesionViewController;
+
+    private MiCuentaViewController miCuentaViewController;
+    private MiAnuncioViewController miAnuncioViewController;
+    private MiProductoViewController miProductoViewController;
+
 
     public ModelFactoryController() {
-        System.out.println("invocacion clase singleton");
+        System.out.println("Invocacion clase singleton");
         inicializarDatos();
     }
 
@@ -32,7 +43,7 @@ public class ModelFactoryController {
         miCasa = new CasaSubasta("Subastas UQ");
     }
 
-
+    // Getter y setter de la casa de subastas
     public CasaSubasta getMiCasa() {
         return miCasa;
     }
@@ -41,11 +52,32 @@ public class ModelFactoryController {
         this.miCasa = miCasa;
     }
 
-    //Funciones de subastas para el singleton
+    //--------------Funciones de subastas para el singleton-------------------
+    @Override
     public void initVentanaPrincipalViewController(VentanaPrincipalViewController ventanaPrincipalViewController) {
         this.ventanaPrincipalViewController = ventanaPrincipalViewController;
     }
+    @Override
+    public void initRegistroViewController(RegistroViewController registroViewController){
+        this.registroViewController=registroViewController;
+    }
+    @Override
+    public void initInicioSesionViewController(InicioSesionViewController inicioSesionViewController){
+        this.inicioSesionViewController= inicioSesionViewController;
 
+    }
+    @Override
+    public void initMiCuentaViewController(MiCuentaViewController miCuentaViewController){
+        this.miCuentaViewController=miCuentaViewController;
+    }
+    @Override
+    public void initMiAnuncioViewController(MiAnuncioViewController miAnuncioViewController){
+        this.miAnuncioViewController=miAnuncioViewController;
+    }
+    @Override
+    public void initMiProductoViewController(MiProductoViewController miProductoViewController){
+        this.miProductoViewController= miProductoViewController;
+    }
 
 
 }

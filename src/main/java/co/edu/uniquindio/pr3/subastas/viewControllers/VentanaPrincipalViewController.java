@@ -60,4 +60,6 @@ public class VentanaPrincipalViewController implements Initializable {
         ventanaPrincipalController = new VentanaPrincipalController();
         ventanaPrincipalController.mfm.initVentanaPrincipalViewController(this);
     }
+
+
 }
