@@ -7,6 +7,7 @@ import co.edu.uniquindio.pr3.subastas.model.Interfaces.ISubasta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CasaSubasta implements ISubasta {
@@ -110,7 +111,11 @@ public class CasaSubasta implements ISubasta {
 
     @Override
     public Comprador obtenerComprador(String usuario, String contrasenia) {
-        return (Comprador) listaCompradores.stream().filter(c-> c.getNombreUsuario().equals(usuario) && c.getContrasenia().equals(contrasenia));
+        Optional<Comprador> compradorOptional= listaCompradores.stream()
+                .filter(c->c.getNombreUsuario().equals(usuario) && c.getContrasenia().equals(contrasenia))
+                .findFirst();
+        return compradorOptional.orElse(null);
+
     }
 
     /**
@@ -177,7 +182,10 @@ public class CasaSubasta implements ISubasta {
     //----------------------CRUD DEL ANUNCIANTE--------------------------------------------------
     @Override
     public Anunciante obtenerAnunciante(String usuario, String contrasenia) {
-        return (Anunciante) listaAnunciantes.stream().filter(a->a.getNombreUsuario().equals(usuario) && a.getContrasenia().equals(contrasenia));
+        Optional <Anunciante> anuncianteOptional = listaAnunciantes.stream().
+                filter(a->a.getNombreUsuario().equals(usuario) && a.getContrasenia().equals(contrasenia))
+                .findFirst();
+        return anuncianteOptional.orElse(null);
     }
     /**
      *

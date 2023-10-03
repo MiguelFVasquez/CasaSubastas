@@ -1,8 +1,12 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
+import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IAnunciante;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Anunciante extends Usuario implements IAnunciante {
     private int cantidadAnuncios;
@@ -64,33 +68,170 @@ public class Anunciante extends Usuario implements IAnunciante {
                 '}';
     }
 
+    //----------------METODOS DE LOS ANUNCIOS(CRUD)-------------------
+
+    /**
+     *
+     * @param codigo
+     * @return
+     */
+    public boolean verificarAnuncio(String codigo){
+        boolean encontrado= false;
+        List<Anuncio> anunciosIguales= this.listaAnuncios.stream()
+                .filter(a->a.getCodigo().equals(codigo))
+                .collect(Collectors.toList());
+        if (!anunciosIguales.isEmpty()){
+            encontrado=true;
+        }
+        return encontrado;
+
+    }
+
+
+    /**
+     *
+     * @param codigo
+     * @return un anuncio que coincida con el codigo, si no lo encuentra retorna null
+     */
+    public Anuncio obtenerAnuncio(String codigo) {
+        Optional<Anuncio> anuncioOptional = listaAnuncios.stream()
+                .filter(a -> a.getCodigo().equals(codigo))
+                .findFirst();
+
+        return anuncioOptional.orElse(null);
+    }
+
+    /**
+     *
+     * @param newAnuncio
+     * @return
+     * @throws AnuncioException
+     */
     @Override
-    public boolean crearAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) {
-        return false;
+    public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException {
+        boolean creado= false;
+        if (verificarAnuncio(newAnuncio.getCodigo())){
+            throw new AnuncioException("Ya existe un anuncio con el código: "+ newAnuncio.getCodigo());
+        }else {
+            creado=true;
+            listaAnuncios.add(newAnuncio);
+        }
+
+        return creado;
+    }
+
+    /**
+     *
+     * @param anuncioActualizar
+     * @return
+     * @throws AnuncioException
+     */
+    @Override
+    public boolean actualizarAnuncio(Anuncio anuncioActualizar) throws AnuncioException {
+        boolean actualizado= false;
+        Anuncio anuncioAux= obtenerAnuncio(anuncioActualizar.getCodigo());
+        if (anuncioAux==null){
+            throw new AnuncioException("El anuncio con código: "+anuncioActualizar.getCodigo()+" no ha sido encontrado");
+        }else {
+            actualizado=true;
+            anuncioAux.setFechaInicio(anuncioActualizar.getFechaInicio());
+            anuncioAux.setFechaFinal(anuncioActualizar.getFechaFinal());
+            anuncioAux.setNombreAnunciante(anuncioActualizar.getNombreAnunciante());
+        }
+        return actualizado;
+    }
+
+    /**
+     *
+     * @param anuncioEliminar
+     * @return
+     * @throws AnuncioException
+     */
+    @Override
+    public boolean eliminarAnuncio(Anuncio anuncioEliminar) throws AnuncioException{
+        boolean eliminado= false;
+        Anuncio anuncioAux= obtenerAnuncio(anuncioEliminar.getCodigo());
+        if (anuncioAux==null){
+            throw new AnuncioException("El anuncio que desea eliminar no se ha sido encontrado");
+        }else {
+            eliminado=true;
+            listaAnuncios.remove(anuncioAux);
+        }
+        return eliminado;
+    }
+
+
+    //--------------------METODOS DE LOS PRODUCTOS(CRUD)------------------------------
+    /**
+     *
+     * @param codigo
+     * @return
+     */
+    public boolean verificarProducto(String codigo){
+        boolean encontrado = false;
+        List<Producto> productosIguales= this.listaProductos.stream()
+                .filter(p->p.getCodigo().equals(codigo))
+                .collect(Collectors.toList());
+
+        if (!productosIguales.isEmpty()){
+            encontrado=true;
+        }
+        return encontrado;
+    }
+
+    /**
+     *
+     * @param codigo
+     * @return
+     */
+    public Producto obtenerProducto(String codigo){
+        Optional<Producto> productoOptional = listaProductos.stream()
+                .filter(p->p.getCodigo().equals(codigo))
+                .findFirst();
+        return productoOptional.orElse(null);
+    }
+
+
+    @Override
+    public boolean crearProducto(Producto newProducto) throws ProductoException {
+        boolean creado= false;
+        if (verificarProducto(newProducto.getCodigo())){
+            throw new ProductoException("El producto con código: "+ newProducto.getCodigo()+" ya se encuentra registrado");
+        }else{
+            creado=true;
+            listaProductos.add(newProducto);
+        }
+        return creado;
     }
 
     @Override
-    public boolean actualizarAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) {
-        return false;
+    public boolean actualizarProducto(Producto productoActualizar) throws ProductoException {
+        boolean actualizado= false;
+        Producto productoAux= obtenerProducto(productoActualizar.getCodigo());
+        if (productoAux==null){
+            throw new ProductoException("El producto con código: "+ productoActualizar.getCodigo()+" no ha sido encontrado");
+        }else {
+            actualizado=true;
+            productoAux.setNombre(productoActualizar.getNombre());
+            productoAux.setDescripcion(productoActualizar.getDescripcion());
+            productoAux.setImagen(productoActualizar.getImagen());
+        }
+        return actualizado;
+
     }
 
     @Override
-    public boolean eliminarAnuncio(String codigo) {
-        return false;
+    public boolean eliminarProducto(Producto productoEliminar) throws ProductoException {
+        boolean eliminado= false;
+        Producto productoAux= obtenerProducto(productoEliminar.getCodigo());
+        if (productoAux==null){
+            throw new ProductoException("El producto con el código proporcionado no existe");
+        }else {
+            eliminado=true;
+            listaProductos.remove(productoAux);
+        }
+        return eliminado;
     }
 
-    @Override
-    public boolean crearProducto(String codigo, String nombre, String descripcion, String imagen, Double valorInicial, TipoProducto tipoProducto) {
-        return false;
-    }
 
-    @Override
-    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String imagen, Double valorInicial, TipoProducto tipoProducto) {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarProducto(String codigo) {
-        return false;
-    }
 }
