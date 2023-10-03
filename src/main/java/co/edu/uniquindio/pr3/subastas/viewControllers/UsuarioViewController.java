@@ -36,6 +36,15 @@ public class UsuarioViewController implements Initializable {
     @FXML
     private Tab misProductosTab;
 
+
+    //Metodo par deshabilitar las pestañas para sesión no iniciada
+    public void dehabilitarPestanias(){
+        registroTab.setDisable(true);
+        misProductosTab.setDisable(true);
+        misAnunciosTab.setDisable(true);
+        misPujasTab.setDisable(true);
+        miCuentaTab.setDisable(true);
+    }
     @FXML
     void initialize() {
 
@@ -44,6 +53,6 @@ public class UsuarioViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        registroTab.setDisable(false);
+        dehabilitarPestanias();
     }
 }

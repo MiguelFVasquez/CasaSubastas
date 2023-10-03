@@ -21,7 +21,7 @@
          </children></Pane>
       <ImageView fitHeight="492.0" fitWidth="488.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../co.edu.uniquindio.pr3.subastas/images/Martillo.jpeg" />
+            <Image url="@../images/Martillo.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="508.0" layoutY="192.0" text="Nombre de usuario" />
