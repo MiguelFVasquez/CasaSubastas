@@ -31,48 +31,7 @@
             </content>
           </Tab>
             <Tab fx:id="usuarioTab" text="Usuario">
-               <content>
-                   <fx:include source="UsuarioView.fxml" />
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                       <children>
-                             <TabPane prefHeight="585.0" prefWidth="803.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <tabs>
-                                     <Tab fx:id="ttabIniciarSesion" text="Iniciar sesión">
-                                         <content>
-                                             <fx:include source="InicioSesionView.fxml" />
-                                         </content>
-                                     </Tab>
-   
-                                     <Tab fx:id="tabRegistro" text="Registro">
-                                         <content>
-                                             <fx:include source="RegistroView.fxml" />
-                                         </content>
-                                     </Tab>
-                                     <Tab fx:id="tabMiCuenta" text="Mi cuenta">
-                                         <content>
-                                             <fx:include source="MiCuentaView.fxml" />
-                                         </content>
-                                     </Tab>
-                                     <Tab fx:id="tabMisAnuncios" text="Mis anuncios">
-                                         <content>
-                                             <fx:include source="MiAnuncioView.fxml" />
-                                         </content>
-                                     </Tab>
-                                     <Tab fx:id="tabMisPujas" text="Mis pujas">
-                                         <content>
-                                             <fx:include source="MiPujaView.fxml" />
-                                         </content>
-                                     </Tab>
-                                     <Tab fx:id="tabMisProductos" text="Mis productos">
-                                         <content>
-                                             <fx:include source="MiProductoView.fxml" />
-                                         </content>
-                                     </Tab>
-                                 </tabs>
-                             </TabPane>
-                       </children>
-                   </AnchorPane>
-               </content>
+                <fx:include source="UsuarioView.fxml"/>
             </Tab>
         </tabs>
       </TabPane>

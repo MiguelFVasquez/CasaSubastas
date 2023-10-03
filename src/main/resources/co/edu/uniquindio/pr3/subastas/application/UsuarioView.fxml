@@ -13,39 +13,27 @@
         <tabs>
           <Tab fx:id="inicioSesionTab" text="Iniciar sesion">
               <fx:include source="InicioSesionView.fxml" />
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+
           </Tab>
           <Tab fx:id="registroTab" text="Registro">
               <fx:include source="RegistroView.fxml" />
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+
           </Tab>
             <Tab fx:id="miCuentaTab" text="Mi cuenta">
                 <fx:include source="MiCuentaView.fxml" />
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+
             </Tab>
             <Tab fx:id="misAnunciosTab" text="Mis anuncios">
                 <fx:include source="MiAnuncioView.fxml" />
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+
             </Tab>
             <Tab fx:id="misPujasTab" text="Mis pujas">
                 <fx:include source="MiPujaView.fxml" />
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+
             </Tab>
             <Tab fx:id="misProductosTab" text="Mis productos">
-                <fx:include source="MiProductoView.fxml" />
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+                <fx:include source="MiProductoView.fxml"/>
+
             </Tab>
         </tabs>
       </TabPane>
