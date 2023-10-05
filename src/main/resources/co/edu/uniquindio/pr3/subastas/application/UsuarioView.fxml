@@ -1,44 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.UsuarioViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.UsuarioViewController">
    <children>
-      <TabPane prefHeight="578.0" prefWidth="976.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="TabPanePrincipal" prefHeight="578.0" prefWidth="976.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab fx:id="inicioSesionTab" text="Iniciar sesion">
-             <content>
-                 <fx:include source="InicioSesionView.fxml" />
-             </content>
-          </Tab>
-          <Tab fx:id="registroTab" text="Registro">
-             <content>
-                 <fx:include source="RegistroView.fxml" />
-             </content>
-          </Tab>
-            <Tab fx:id="miCuentaTab" text="Mi cuenta">
-               <content>
-                   <fx:include source="MiCuentaView.fxml" />
-               </content>
+            <Tab fx:id="inicioSesionTab" text="Iniciar sesion">
+                <fx:include source="InicioSesionView.fxml"/>
             </Tab>
-            <Tab fx:id="misAnunciosTab" text="Mis anuncios">
-               <content>
-                   <fx:include source="MiAnuncioView.fxml" />
-               </content>
-            </Tab>
-            <Tab fx:id="misPujasTab" text="Mis pujas">
-               <content>
-                   <fx:include source="MiPujaView.fxml" />
-               </content>
-            </Tab>
-            <Tab fx:id="misProductosTab" text="Mis productos">
-               <content>
-                   <fx:include source="MiProductoView.fxml" />
-               </content>
+            <Tab fx:id="registroTab" text="Registro">
+                <fx:include source="RegistroView.fxml"/>
             </Tab>
         </tabs>
       </TabPane>

@@ -19,6 +19,7 @@ public class ModelFactoryController implements IModelFactoryController {
     private MiCuentaViewController miCuentaViewController;
     private MiAnuncioViewController miAnuncioViewController;
     private MiProductoViewController miProductoViewController;
+    private UsuarioViewController usuarioViewController;
 
 
     public ModelFactoryController() {
@@ -26,12 +27,14 @@ public class ModelFactoryController implements IModelFactoryController {
         inicializarDatos();
     }
 
+
     //Singleton (Garantiza instancia unica)
     private static class SingletonHolder {
         // El constructor de Singleton puede ser llamado desde aquí al ser protected
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
 
     }
+
 
     // Método para obtener la instancia de nuestra clase
 
@@ -57,26 +60,41 @@ public class ModelFactoryController implements IModelFactoryController {
     public void initVentanaPrincipalViewController(VentanaPrincipalViewController ventanaPrincipalViewController) {
         this.ventanaPrincipalViewController = ventanaPrincipalViewController;
     }
+
     @Override
-    public void initRegistroViewController(RegistroViewController registroViewController){
-        this.registroViewController=registroViewController;
+    public void initRegistroViewController(RegistroViewController registroViewController) {
+        this.registroViewController = registroViewController;
     }
+
     @Override
-    public void initInicioSesionViewController(InicioSesionViewController inicioSesionViewController){
-        this.inicioSesionViewController= inicioSesionViewController;
+    public void initInicioSesionViewController(InicioSesionViewController inicioSesionViewController) {
+        this.inicioSesionViewController = inicioSesionViewController;
 
     }
+
     @Override
-    public void initMiCuentaViewController(MiCuentaViewController miCuentaViewController){
-        this.miCuentaViewController=miCuentaViewController;
+    public void initMiCuentaViewController(MiCuentaViewController miCuentaViewController) {
+        this.miCuentaViewController = miCuentaViewController;
     }
+
     @Override
-    public void initMiAnuncioViewController(MiAnuncioViewController miAnuncioViewController){
-        this.miAnuncioViewController=miAnuncioViewController;
+    public void initMiAnuncioViewController(MiAnuncioViewController miAnuncioViewController) {
+        this.miAnuncioViewController = miAnuncioViewController;
     }
+
     @Override
-    public void initMiProductoViewController(MiProductoViewController miProductoViewController){
-        this.miProductoViewController= miProductoViewController;
+    public void initMiProductoViewController(MiProductoViewController miProductoViewController) {
+        this.miProductoViewController = miProductoViewController;
+    }
+
+    @Override
+    public void initUsuarioViewController(UsuarioViewController usuarioViewController) {
+        this.usuarioViewController = usuarioViewController;
+    }
+
+
+    public void mover() {
+        usuarioViewController.registroTab.setDisable(false);
     }
 
 
