@@ -1,8 +1,10 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
 import co.edu.uniquindio.pr3.subastas.application.App;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import co.edu.uniquindio.pr3.subastas.controllers.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +61,19 @@ public class VentanaPrincipalViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ventanaPrincipalController = new VentanaPrincipalController();
         ventanaPrincipalController.mfm.initVentanaPrincipalViewController(this);
+    }
+
+    public void cambiarContenidoComprador(){
+        try {
+            // Cargar el nuevo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CompradorView.fxml"));
+            AnchorPane nuevoContenido = loader.load();
+
+            // Asignar el nuevo contenido al Tab
+            usuarioTab.setContent(nuevoContenido);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -5,11 +5,12 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class RegistroViewController {
+public class RegistroViewController implements Initializable{
 
     @FXML
     private ResourceBundle resources;
@@ -69,6 +70,11 @@ public class RegistroViewController {
         assert txtCorreo != null : "fx:id=\"txtCorreo\" was not injected: check your FXML file 'RegistroView.fxml'.";
         assert txtUsuario != null : "fx:id=\"txtUsuario\" was not injected: check your FXML file 'RegistroView.fxml'.";
         assert txtContrasenia != null : "fx:id=\"txtContrasenia\" was not injected: check your FXML file 'RegistroView.fxml'.";
+
+    }
+
+    @Override
+    public void initialize(URL url , ResourceBundle resourceBundle) {
 
     }
 }

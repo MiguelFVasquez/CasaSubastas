@@ -2,7 +2,9 @@ package co.edu.uniquindio.pr3.subastas.controllers;
 
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
+import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.CasaSubasta;
+import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
 
 public class ModelFactoryController implements IModelFactoryController {
@@ -92,10 +94,31 @@ public class ModelFactoryController implements IModelFactoryController {
         this.usuarioViewController = usuarioViewController;
     }
 
-
+    //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
         usuarioViewController.registroTab.setDisable(false);
     }
 
 
+    public boolean verificarComprador(String nombre, String password){
+        Comprador compra = miCasa.obtenerComprador( nombre, password );
+        if(compra!=null){
+            return true;
+        }
+        return false;
+    }
+    public boolean verificarAnunciante(String nombre, String password){
+        Anunciante anun = miCasa.obtenerAnunciante( nombre, password );
+        if(anun!=null){
+            return true;
+        }
+        return false;
+    }
+    public boolean verifificarUsuario(String nombre) {
+        boolean flag = miCasa.verificarUsuario( nombre );
+        return flag;
+    }
 }
+
+
+

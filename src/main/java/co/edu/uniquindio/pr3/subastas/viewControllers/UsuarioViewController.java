@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.UsuarioController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 
 public class UsuarioViewController implements Initializable {
 
