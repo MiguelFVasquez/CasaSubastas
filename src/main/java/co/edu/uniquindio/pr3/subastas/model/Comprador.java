@@ -1,8 +1,14 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
-import java.util.List;
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
+import co.edu.uniquindio.pr3.subastas.exceptions.PujaException;
+import co.edu.uniquindio.pr3.subastas.model.Interfaces.IComprador;
 
-public class Comprador extends Usuario {
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class Comprador extends Usuario implements IComprador {
     private List<Puja> listaPujas;
     private List<Integer> cantidadDeVecesPujada;
 
@@ -33,6 +39,62 @@ public class Comprador extends Usuario {
 
 
 
+    //----------------Metodos del Comprador (PUJAS)-------------------------------------------
 
+    /**
+     *
+     * @param codigo
+     * @return
+     */
+    public boolean verificarPuja(String codigo){
+        boolean encontrado= false;
+        List<Puja> pujasIguales= this.listaPujas.stream()
+                .filter(p->p.getCodigo().equals(codigo))
+                .collect(Collectors.toList());
 
+        if (!pujasIguales.isEmpty()){
+            encontrado=true;
+        }
+        return encontrado;
+    }
+
+    /**
+     *
+     * @param codigo
+     * @return
+     */
+    public Puja obtenerPuja(String codigo) {
+        Optional<Puja> pujaOptional= listaPujas.stream()
+                .filter(p->p.getCodigo().equals(codigo))
+                .findFirst();
+        return pujaOptional.orElse(null);
+    }
+
+    @Override
+    public boolean crearPuja(Puja newPuja) throws PujaException, AnuncioException {
+        boolean creado= false;
+        if (verificarPuja(newPuja.getCodigo())){
+            throw new PujaException("Ya existe una puja con el mismo códgo");
+        }else if (newPuja.getAnuncio()==null){
+            throw new AnuncioException("El anuncio por el que desea pujar ya no existe");
+        }else {
+            creado=true;
+            listaPujas.add(newPuja);
+        }
+        return creado;
+    }
+
+    @Override
+    public boolean eliminarPuja(Puja pujaEliminar) throws PujaException {
+        boolean eliminado=false;
+        Puja pujaAux= obtenerPuja(pujaEliminar.getCodigo());
+        if (pujaAux==null){
+            throw new PujaException("La puja que desea eliminar no ha sido encontrada");
+        }else {
+            eliminado=true;
+            listaPujas.remove(pujaAux);
+        }
+
+        return eliminado;
+    }
 }
