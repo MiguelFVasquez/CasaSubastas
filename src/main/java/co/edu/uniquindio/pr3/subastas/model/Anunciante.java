@@ -108,11 +108,16 @@ public class Anunciante extends Usuario implements IAnunciante {
      * @throws AnuncioException
      */
     @Override
-    public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException {
+    public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException,ProductoException {
         boolean creado= false;
         if (verificarAnuncio(newAnuncio.getCodigo())){
             throw new AnuncioException("Ya existe un anuncio con el código: "+ newAnuncio.getCodigo());
-        }else {
+        }
+        else if(!verificarProducto(newAnuncio.getProducto().getCodigo())){//SI el producto que se quiere anunciar no existe no se
+                                                                                        // podra crear un anuncio
+            throw new ProductoException("El producto que quiere anunciar no existe");
+        }
+        else {
             creado=true;
             listaAnuncios.add(newAnuncio);
         }

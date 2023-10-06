@@ -8,7 +8,7 @@ import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
 
 public interface IAnunciante {
     //Metodos de los anuncios
-    public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException;
+    public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException, ProductoException;
     public boolean actualizarAnuncio(Anuncio anuncioActualizar) throws AnuncioException;
     public boolean eliminarAnuncio(Anuncio anuncioEliminar) throws AnuncioException;
     //Metodos de los productos

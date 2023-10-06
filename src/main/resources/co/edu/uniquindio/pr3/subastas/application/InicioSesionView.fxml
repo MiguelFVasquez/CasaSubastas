@@ -13,7 +13,7 @@
    <children>
       <Pane prefHeight="62.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
          <children>
-            <Label layoutX="364.0" layoutY="-6.0" text="Iniciar sesión" textFill="WHITE">
+            <Label layoutX="364.0" layoutY="-6.0" text="Inicio de sesión" textFill="WHITE">
                <font>
                   <Font name="Javanese Text" size="27.0" />
                </font>
@@ -28,14 +28,20 @@
       <TextField fx:id="txtInicioNombre" layoutX="635.0" layoutY="188.0" promptText="Nombre de usuario" />
       <Label layoutX="508.0" layoutY="251.0" text="Contraseña" />
       <PasswordField fx:id="txtInicioPassword" layoutX="635.0" layoutY="247.0" promptText="Contraseña" />
-      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Entrar" textFill="WHITE">
+      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
       <Button fx:id="btnRecuperarCuenta" layoutX="714.0" layoutY="290.0" mnemonicParsing="false" onAction="#recuperarContrasenia" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Recuperar" textFill="#5900ff" />
-      <Label layoutX="518.0" layoutY="294.0" text="¿Olvido su contraseña? Ingrese aqui:" />
-      <Label layoutX="639.0" layoutY="76.0" text="Bienvenido " />
-      <Label layoutX="572.0" layoutY="109.0" text="Disfrute de la mejor casa de subastas" />
+      <Label layoutX="513.0" layoutY="295.0" text="¿Olvido su contraseña? Ingrese aqui:" />
+      <Label layoutX="639.0" layoutY="76.0" text="Bienvenido ">
+         <font>
+            <Font name="Bookman Old Style" size="16.0" />
+         </font></Label>
+      <Label layoutX="539.0" layoutY="110.0" text="Disfrute de la mejor casa de subastas">
+         <font>
+            <Font name="Bookman Old Style" size="15.0" />
+         </font></Label>
       <Label layoutX="672.0" layoutY="412.0" text="0" />
       <Button fx:id="btnCrearCuenta" layoutX="625.0" layoutY="444.0" mnemonicParsing="false" onAction="#crearCuentaNueva" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE">
          <font>
