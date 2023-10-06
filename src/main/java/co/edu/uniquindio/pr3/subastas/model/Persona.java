@@ -6,12 +6,12 @@ public abstract class Persona {
     private String nombre;
     private String apellido;
     private String identificacion;
-    private Integer edad;
+    private String edad;
 
 
     public Persona() {
     }
-    public Persona(String nombre, String apellido, String identificacion, int edad) {
+    public Persona(String nombre, String apellido, String identificacion, String edad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.identificacion=identificacion;
@@ -42,11 +42,11 @@ public abstract class Persona {
         this.identificacion = identificacion;
     }
 
-    public Integer getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
 

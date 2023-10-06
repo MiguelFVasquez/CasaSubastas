@@ -18,7 +18,7 @@ public class Usuario extends Persona{
     public Usuario() {
     }
 
-    public Usuario(String nombres, String apellidos, String identificacion, int edad,
+    public Usuario(String nombres, String apellidos, String identificacion, String edad,
                    String nombreUsuario, String correo, String contrasenia,
                    TipoUsuario tipoUsuario, boolean autenticado) {
         super(nombres, apellidos, identificacion, edad);

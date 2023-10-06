@@ -39,7 +39,7 @@ public class  InicioSesionViewController implements Initializable {
     @FXML
     private PasswordField txtInicioPassword;
 
-    private InicioSesionController inicioSesionController;
+    InicioSesionController inicioSesionController = new InicioSesionController();
 
 
 
@@ -55,13 +55,22 @@ public class  InicioSesionViewController implements Initializable {
 
         if(validarDatos( nombre, password )){
             if(verificarComprador(nombre, password)){
+                System.out.println("SI llegas");
 
             }
-            else
-                if(verificarAnunciante(nombre, password  )){
+            else {
+                if ( verificarAnunciante( nombre , password ) ) {
 
                 }
+                else{
+                    mostrarMensaje( "Notificación" , "Usuario no encontrado", "Usuario y/o contraseña incorrecta", Alert.AlertType.INFORMATION );
+                    txtInicioPassword.clear();
+                }
+
+            }
+
         }
+
 
     }
 
@@ -112,7 +121,7 @@ public class  InicioSesionViewController implements Initializable {
 
         if ( !notificacion.isEmpty() ) {
             mostrarMensaje("Notificación", "Inicio fallido",
-                    "El nombre y/o la contraseña ingresados son incorrectos"
+                    notificacion
                     , Alert.AlertType.WARNING);
             return false;
         }

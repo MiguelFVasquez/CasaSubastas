@@ -24,7 +24,7 @@ public class Anunciante extends Usuario implements IAnunciante {
         this.listaProductos = listaProductos;
     }
 
-    public Anunciante(String nombres, String apellidos, String identificacion, int edad,
+    public Anunciante(String nombres, String apellidos, String identificacion, String edad,
                       String nombreUsuario, String correo, String contrasenia,
                       TipoUsuario tipoUsuario, boolean autenticado, int cantidadAnuncios,
                       List<Anuncio> listaAnuncios, List<Producto> listaProductos) {
@@ -33,6 +33,7 @@ public class Anunciante extends Usuario implements IAnunciante {
         this.listaAnuncios = listaAnuncios;
         this.listaProductos = listaProductos;
     }
+
 
 
     //Getters y Setters

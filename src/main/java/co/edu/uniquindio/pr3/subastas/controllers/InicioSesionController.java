@@ -4,7 +4,7 @@ public class InicioSesionController {
 
     public ModelFactoryController mfm;
     public InicioSesionController(){
-        System.out.println("Llamando al singleton desde VentanaPrincipalController");
+        System.out.println("Llamando al singleton desde InicioSesionController");
         mfm = ModelFactoryController.getInstance();
     }
 }

@@ -1,11 +1,15 @@
 package co.edu.uniquindio.pr3.subastas.controllers;
 
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
+import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
+import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
-import co.edu.uniquindio.pr3.subastas.model.Anunciante;
-import co.edu.uniquindio.pr3.subastas.model.CasaSubasta;
-import co.edu.uniquindio.pr3.subastas.model.Comprador;
+import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModelFactoryController implements IModelFactoryController {
     //Clase global de la subasta
@@ -28,6 +32,8 @@ public class ModelFactoryController implements IModelFactoryController {
         System.out.println("Invocacion clase singleton");
         inicializarDatos();
     }
+
+
 
 
     //Singleton (Garantiza instancia unica)
@@ -116,6 +122,24 @@ public class ModelFactoryController implements IModelFactoryController {
     }
     public boolean verifificarUsuario(String nombre) {
         boolean flag = miCasa.verificarUsuario( nombre );
+        return flag;
+    }
+
+    //------------------------------------FUNCIONES DE TAB DE REGISTRO--------------------------------------------------
+    public boolean crearAnunciante(String nombre , String apellidos , String id ,
+                                   String edad , String usuario , String correo , String password)
+            throws UsuarioException, AnuncianteException {
+
+        Anunciante anun = (Anunciante) new Usuario(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.ANUNCIANTE, false);
+        boolean flag = miCasa.crearAnunciante( anun );
+        return flag;
+    }
+    public boolean crearComprador(String nombre , String apellidos , String id , String edad , String usuario ,
+                                  String correo , String password) throws UsuarioException, CompradorException {
+        List<Puja> pujas = new ArrayList<>();
+        List<Integer> vecesPujas = new ArrayList<>();
+        Comprador comprador = new Comprador(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.ANUNCIANTE, false,pujas, vecesPujas );
+        boolean flag = miCasa.crearComprador( comprador );
         return flag;
     }
 }
