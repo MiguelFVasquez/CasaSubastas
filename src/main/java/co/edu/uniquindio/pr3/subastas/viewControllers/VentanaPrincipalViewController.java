@@ -4,8 +4,12 @@ import co.edu.uniquindio.pr3.subastas.application.App;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import co.edu.uniquindio.pr3.subastas.controllers.*;
+import javafx.scene.Node;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -25,25 +29,16 @@ public class VentanaPrincipalViewController implements Initializable {
     private URL location;
 
     @FXML
-    private Tab ttabIniciarSesion;
-
-    @FXML
-    private Tab tabRegistro;
-
-    @FXML
-    private Tab tabMisAnuncios;
-
-    @FXML
-    private Tab tabMisProductos;
-
-    @FXML
-    private Tab tabMiCuenta;
-
-    @FXML
-    private Tab tabMisPujas;
-
-    @FXML
     private Tab usuarioTab;
+
+    @FXML
+    private Tab tabSubastas;
+
+    @FXML
+    private Tab usuarioTabC;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     void initialize() {
@@ -61,20 +56,30 @@ public class VentanaPrincipalViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ventanaPrincipalController = new VentanaPrincipalController();
         ventanaPrincipalController.mfm.initVentanaPrincipalViewController(this);
+
     }
 
-    public void cambiarContenidoComprador(){
+    public void cambiarContenidoComprador() {
         try {
-            // Cargar el nuevo FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("CompradorView.fxml"));
-            AnchorPane nuevoContenido = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/pr3/subastas/application/CompradorView.fxml"));
+            Node nuevoContenido = loader.load();
 
-            // Asignar el nuevo contenido al Tab
-            usuarioTab.setContent(nuevoContenido);
-        } catch (Exception e) {
+            // Crea un nuevo Tab con el contenido
+            Tab nuevoTabUsuario = new Tab("Nuevo Tab");
+            nuevoTabUsuario.setContent(nuevoContenido);
+
+            // Obtiene el índice del Tab a reemplazar
+            int indiceTabUsuario = tabPane.getTabs().indexOf(usuarioTab);
+
+            // Reemplaza el Tab existente con el nuevo Tab
+            tabPane.getTabs().remove(indiceTabUsuario);
+            tabPane.getTabs().add(indiceTabUsuario, nuevoTabUsuario);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 
 
 }

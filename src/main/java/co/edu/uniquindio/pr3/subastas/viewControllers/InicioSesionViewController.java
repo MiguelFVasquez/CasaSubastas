@@ -5,16 +5,15 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
-import co.edu.uniquindio.pr3.subastas.controllers.UsuarioController;
+import co.edu.uniquindio.pr3.subastas.controllers.VentanaPrincipalController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+
 
 public class  InicioSesionViewController implements Initializable {
 
@@ -41,6 +40,8 @@ public class  InicioSesionViewController implements Initializable {
 
     InicioSesionController inicioSesionController = new InicioSesionController();
 
+    VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
+
 
 
 
@@ -56,6 +57,8 @@ public class  InicioSesionViewController implements Initializable {
         if(validarDatos( nombre, password )){
             if(verificarComprador(nombre, password)){
                 System.out.println("SI llegas");
+                ventanaPrincipalViewController.cambiarContenidoComprador();
+
 
             }
             else {
