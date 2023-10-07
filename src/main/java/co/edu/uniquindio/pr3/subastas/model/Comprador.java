@@ -28,6 +28,11 @@ public class Comprador extends Usuario implements IComprador {
         this.cantidadDeVecesPujada = vecesPujas;
     }
 
+    public Comprador(String nombre , String apellidos , String id , String edad , String usuario , String correo , String password ,
+                     TipoUsuario tipoUsuario , boolean autenticado) {
+        super(nombre, apellidos, id, edad, usuario, correo, password, tipoUsuario, autenticado);
+    }
+
     public List<Puja> getListaPujas() {
         return listaPujas;
     }

@@ -26,6 +26,7 @@ public class ModelFactoryController implements IModelFactoryController {
     private MiAnuncioViewController miAnuncioViewController;
     private MiProductoViewController miProductoViewController;
     private UsuarioViewController usuarioViewController;
+    private CompradorViewController compradorViewController;
 
 
     public ModelFactoryController() {
@@ -52,6 +53,12 @@ public class ModelFactoryController implements IModelFactoryController {
 
     private void inicializarDatos() {
         miCasa = new CasaSubasta("Subastas UQ");
+
+        Comprador compra = new Comprador("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
+                "12", TipoUsuario.COMPRADOR, false);
+        miCasa.getListaCompradores().add( compra );
+
+
     }
 
     // Getter y setter de la casa de subastas
@@ -99,7 +106,6 @@ public class ModelFactoryController implements IModelFactoryController {
     public void initUsuarioViewController(UsuarioViewController usuarioViewController) {
         this.usuarioViewController = usuarioViewController;
     }
-
     //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
         usuarioViewController.registroTab.setDisable(false);
@@ -125,6 +131,11 @@ public class ModelFactoryController implements IModelFactoryController {
         return flag;
     }
 
+    public Comprador setInfoCuentaComprador(String nombre , String password) {
+        Comprador compra = miCasa.obtenerComprador( nombre, password );
+        return compra;
+    }
+
     //------------------------------------FUNCIONES DE TAB DE REGISTRO--------------------------------------------------
     public boolean crearAnunciante(String nombre , String apellidos , String id ,
                                    String edad , String usuario , String correo , String password)
@@ -138,7 +149,7 @@ public class ModelFactoryController implements IModelFactoryController {
                                   String correo , String password) throws UsuarioException, CompradorException {
         List<Puja> pujas = new ArrayList<>();
         List<Integer> vecesPujas = new ArrayList<>();
-        Comprador comprador = new Comprador(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.ANUNCIANTE, false,pujas, vecesPujas );
+        Comprador comprador = new Comprador(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.COMPRADOR, false,pujas, vecesPujas );
         boolean flag = miCasa.crearComprador( comprador );
         return flag;
     }

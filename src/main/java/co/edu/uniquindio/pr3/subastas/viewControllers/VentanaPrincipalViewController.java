@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
 import co.edu.uniquindio.pr3.subastas.application.App;
+import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import co.edu.uniquindio.pr3.subastas.controllers.*;

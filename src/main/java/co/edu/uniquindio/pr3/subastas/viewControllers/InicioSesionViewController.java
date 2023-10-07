@@ -1,18 +1,25 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.controllers.VentanaPrincipalController;
+import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 
 public class  InicioSesionViewController implements Initializable {
@@ -41,24 +48,53 @@ public class  InicioSesionViewController implements Initializable {
     InicioSesionController inicioSesionController = new InicioSesionController();
 
     VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
+    CompradorViewController compradorViewController  = new CompradorViewController();
+
+    private Stage stage;
+
+    private App aplicacion;
+
+    private String nombreIniciado;
+    private String passwordIniciada;
 
 
+    public String getNombreIniciado() {
+        return nombreIniciado;
+    }
 
+    public void setNombreIniciado(String nombreIniciado) {
+        this.nombreIniciado = nombreIniciado;
+    }
 
+    public String getPasswordIniciada() {
+        return passwordIniciada;
+    }
 
-
-
+    public void setPasswordIniciada(String paswordIniciada) {
+        this.passwordIniciada = paswordIniciada;
+    }
 
     @FXML
-    void iniciarSesion(ActionEvent event) {
+    void iniciarSesion(ActionEvent event) throws IOException {
         String nombre = txtInicioNombre.getText();
         String password = txtInicioPassword.getText();
 
         if(validarDatos( nombre, password )){
             if(verificarComprador(nombre, password)){
                 System.out.println("SI llegas");
-                ventanaPrincipalViewController.cambiarContenidoComprador();
 
+                FXMLLoader loader= new FXMLLoader();
+                loader.setLocation(App.class.getResource("CompradorView.fxml"));
+                AnchorPane anchorPane= (AnchorPane)loader.load();
+                CompradorViewController controller = loader.getController();
+                controller.setAplicacion(aplicacion);
+                Scene scene= new Scene(anchorPane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                controller.init(stage);
+                stage.show();
+                setNombreIniciado( nombre );
+                setPasswordIniciada( password );
 
             }
             else {
@@ -73,8 +109,11 @@ public class  InicioSesionViewController implements Initializable {
             }
 
         }
+    }
 
-
+    public Comprador setInfoCuentaComprador(String nombre, String password){
+        Comprador compra = inicioSesionController.mfm.setInfoCuentaComprador(nombre, password);
+        return compra;
     }
 
     private boolean verificarAnunciante(String nombre , String password) {
