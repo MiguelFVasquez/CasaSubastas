@@ -34,8 +34,11 @@ public class Anunciante extends Usuario implements IAnunciante {
         this.listaProductos = listaProductos;
     }
 
-
-
+    public Anunciante(String nombres, String apellidos, String identificacion, String edad, String nombreUsuario, String correo,
+                      String contrasenia, int cantidadAnuncios) {
+        super(nombres, apellidos, identificacion, edad, nombreUsuario, correo, contrasenia);
+        this.cantidadAnuncios = cantidadAnuncios;
+    }
     //Getters y Setters
 
     public int getCantidadAnuncios() {

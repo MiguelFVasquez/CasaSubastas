@@ -130,10 +130,12 @@ public class ModelFactoryController implements IModelFactoryController {
         boolean flag = miCasa.verificarUsuario( nombre );
         return flag;
     }
-
+    /*Esto no estaba*/
+    public Comprador obtenerComprador(String usuario, String contrasenia){
+        return miCasa.obtenerComprador(usuario,contrasenia);
+    }
     public Comprador setInfoCuentaComprador(String nombre , String password) {
-        Comprador compra = miCasa.obtenerComprador( nombre, password );
-        return compra;
+        return miCasa.obtenerComprador(nombre, password);
     }
 
     //------------------------------------FUNCIONES DE TAB DE REGISTRO--------------------------------------------------
@@ -141,10 +143,14 @@ public class ModelFactoryController implements IModelFactoryController {
                                    String edad , String usuario , String correo , String password)
             throws UsuarioException, AnuncianteException {
 
-        Anunciante anun = (Anunciante) new Usuario(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.ANUNCIANTE, false);
+        Anunciante anun = new Anunciante( nombre, apellidos,  id,  edad, usuario,  correo,
+                password, 0);
         boolean flag = miCasa.crearAnunciante( anun );
         return flag;
     }
+
+
+
     public boolean crearComprador(String nombre , String apellidos , String id , String edad , String usuario ,
                                   String correo , String password) throws UsuarioException, CompradorException {
         List<Puja> pujas = new ArrayList<>();

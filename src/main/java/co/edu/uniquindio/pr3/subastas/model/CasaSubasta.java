@@ -216,7 +216,7 @@ public class CasaSubasta implements ISubasta {
      */
     @Override
     public boolean actualizarAnunciante(Anunciante newAnunciante)throws UsuarioException, AnuncianteException {
-        boolean actualizado=true;
+        boolean actualizado=false;
         Anunciante anuncianteAux= obtenerAnunciante(newAnunciante.getNombreUsuario(), newAnunciante.getContrasenia());
         if (anuncianteAux==null){
             throw new AnuncianteException("El usuario no ha sido registrado");

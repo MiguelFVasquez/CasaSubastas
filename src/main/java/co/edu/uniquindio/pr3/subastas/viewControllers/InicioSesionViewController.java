@@ -8,6 +8,7 @@ import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.controllers.VentanaPrincipalController;
+import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,13 +80,13 @@ public class  InicioSesionViewController implements Initializable {
         String nombre = txtInicioNombre.getText();
         String password = txtInicioPassword.getText();
 
-        if(validarDatos( nombre, password )){
+        if(validarDatos(nombre, password)){
             if(verificarComprador(nombre, password)){
                 System.out.println("SI llegas");
 
                 FXMLLoader loader= new FXMLLoader();
                 loader.setLocation(App.class.getResource("CompradorView.fxml"));
-                AnchorPane anchorPane= (AnchorPane)loader.load();
+                AnchorPane anchorPane= loader.load();
                 CompradorViewController controller = loader.getController();
                 controller.setAplicacion(aplicacion);
                 Scene scene= new Scene(anchorPane);
@@ -93,12 +94,11 @@ public class  InicioSesionViewController implements Initializable {
                 stage.setScene(scene);
                 controller.init(stage);
                 stage.show();
-                setNombreIniciado( nombre );
-                setPasswordIniciada( password );
-
+                controller.setInfoCuenta(inicioSesionController.mfm.obtenerComprador(nombre,password));
             }
             else {
                 if ( verificarAnunciante( nombre , password ) ) {
+                    System.out.println("SI llegas");
 
                 }
                 else{
@@ -112,8 +112,7 @@ public class  InicioSesionViewController implements Initializable {
     }
 
     public Comprador setInfoCuentaComprador(String nombre, String password){
-        Comprador compra = inicioSesionController.mfm.setInfoCuentaComprador(nombre, password);
-        return compra;
+        return inicioSesionController.mfm.setInfoCuentaComprador(nombre, password);
     }
 
     private boolean verificarAnunciante(String nombre , String password) {
@@ -172,10 +171,7 @@ public class  InicioSesionViewController implements Initializable {
     }
 
     private boolean esNumero(String string) {
-        try {
-
-            Float.parseFloat(string);
-
+        try {Float.parseFloat(string);
             return true;
         } catch (Exception e) {
             return false;

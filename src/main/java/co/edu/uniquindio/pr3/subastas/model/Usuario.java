@@ -29,7 +29,16 @@ public class Usuario extends Persona{
         this.autenticado = autenticado;
     }
 
+    public Usuario(String nombre, String apellido, String identificacion, String edad, String nombreUsuario, String correo, String contrasenia) {
+        super(nombre, apellido, identificacion, edad);
+        this.nombreUsuario = nombreUsuario;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+    }
+
+
     //Getters y setters
+
 
 
     public String getNombreUsuario() {
