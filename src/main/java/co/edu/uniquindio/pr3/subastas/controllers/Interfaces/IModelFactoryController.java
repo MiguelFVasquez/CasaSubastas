@@ -16,4 +16,6 @@ public interface IModelFactoryController {
     void initMiProductoViewController(MiProductoViewController miProductoViewController);
 
     void initUsuarioViewController(UsuarioViewController usuarioViewController);
+
+    void initCompradorViewController(CompradorViewController compradorViewController);
 }

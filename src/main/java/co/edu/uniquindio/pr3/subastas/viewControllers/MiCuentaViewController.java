@@ -28,13 +28,13 @@ public class MiCuentaViewController implements Initializable {
     private URL location;
 
     @FXML
-    private TextField txtNombre;
+    public TextField txtNombre;
 
     @FXML
     private Button btnEliminarCuenta;
 
     @FXML
-    private TextField txtApellidos;
+    public TextField txtApellidos;
 
     @FXML
     private Button btnActualizarInformacion;
@@ -45,22 +45,22 @@ public class MiCuentaViewController implements Initializable {
     private Button btnCerrarSesion;
 
     @FXML
-    private TextField txtEdad;
+    public TextField txtEdad;
 
     @FXML
     private ComboBox<TipoUsuario> comboBoxTipoUsuario;
 
     @FXML
-    private TextField txtIdentificacion;
+    public TextField txtIdentificacion;
 
     @FXML
-    private TextField txtCorreo;
+    public TextField txtCorreo;
 
     @FXML
-    private TextField txtUsuario;
+    public TextField txtUsuario;
 
     @FXML
-    private PasswordField txtContrasenia;
+    public PasswordField txtContrasenia;
 
     MiCuentaController miCuentaController = new MiCuentaController();
 
@@ -135,46 +135,20 @@ public class MiCuentaViewController implements Initializable {
     }
 
     public  void setInfoCuentaComprador(Comprador comprador) {
-        Comprador comprador1 = miCuentaController.mfm.getMiComprador();
-        txtNombre.setText( comprador1.getNombre());
-        txtApellidos.setText( comprador1.getApellido() );
-        txtEdad.setText( comprador1.getEdad() );
-        txtIdentificacion.setText( comprador1.getIdentificacion() );
-        txtUsuario.setText( comprador1.getNombreUsuario() );
-        txtCorreo.setText( comprador1.getCorreo() );
-        txtContrasenia.setText( comprador1.getContrasenia() );
-        comboBoxTipoUsuario.setValue( comprador1.getTipoUsuario() );
-
-        btnActualizarInformacion1.setVisible( false );
+        Comprador comprador1 = miCuentaController.mfm.obtenerComprador(comprador.getNombreUsuario(), comprador.getContrasenia());
+         miCuentaController.mfm.mostrarInfoComprador(comprador1);
+         miCuentaController.mfm.deshabilitarDatos();
         System.out.println("hola");
 
-        deshabilitarDatos();
     }
 
-    private void deshabilitarDatos() {
-        txtNombre.setEditable( false );
-        txtApellidos.setEditable( false);
-        txtEdad.setEditable( false);
-        txtIdentificacion.setEditable( false);
-        txtUsuario.setEditable( false);
-        txtCorreo.setEditable( false);
-        txtContrasenia.setEditable( false);
-        comboBoxTipoUsuario.setEditable( false );
-    }
 
     public  void setInfoCuentaAnunciante(Anunciante anunciante) {
-        txtNombre.setText( anunciante.getNombre());
-        txtApellidos.setText( anunciante.getApellido() );
-        txtEdad.setText( anunciante.getEdad() );
-        txtIdentificacion.setText( anunciante.getIdentificacion() );
-        txtUsuario.setText( anunciante.getNombreUsuario() );
-        txtCorreo.setText( anunciante.getCorreo() );
-        txtContrasenia.setText( anunciante.getContrasenia() );
-        comboBoxTipoUsuario.setValue( anunciante.getTipoUsuario() );
-
-        btnActualizarInformacion1.setVisible( false );
-        deshabilitarDatos();
-    }
+        Anunciante anuncianteAux= miCuentaController.mfm.obtenerAnunciante(anunciante.getNombreUsuario(),anunciante.getContrasenia());
+        miCuentaController.mfm.mostrarInfoAnunciante(anuncianteAux);
+        miCuentaController.mfm.deshabilitarDatos();
+        //btnActualizarInformacion1.setVisible( false );
+        }
 
 
     private boolean validarDatos(String nombre , String apellidos ,  String edad , String usuario , String correo ,
@@ -280,7 +254,8 @@ public class MiCuentaViewController implements Initializable {
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
-
+        miCuentaController= new MiCuentaController();
+        miCuentaController.mfm.initMiCuentaViewController(this);
     }
 
     public void setAplicacion(App aplicacion) {

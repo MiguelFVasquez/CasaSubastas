@@ -6,9 +6,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.application.App;
+import co.edu.uniquindio.pr3.subastas.controllers.CompradorController;
 import co.edu.uniquindio.pr3.subastas.controllers.MiCuentaController;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
+import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
 import javafx.event.ActionEvent;
@@ -20,6 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CompradorViewController implements Initializable {
+
+    CompradorController compradorController;
 
     @FXML
     private ResourceBundle resources;
@@ -93,11 +97,16 @@ public class CompradorViewController implements Initializable {
         stage.show();
 
     }
-
-
+    public  void setInfoCuentaComprador(Comprador comprador) {
+        miCuentaViewController.setInfoCuentaComprador(comprador);
+    }
+    public void setInfoCuentaAnunciante(Anunciante anunciante){
+        miCuentaViewController.setInfoCuentaAnunciante(anunciante);
+    }
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
-
+        compradorController= new CompradorController();
+        compradorController.mfm.initCompradorViewController(this);
 
     }
 

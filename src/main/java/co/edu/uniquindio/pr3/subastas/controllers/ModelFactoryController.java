@@ -39,8 +39,9 @@ public class ModelFactoryController implements IModelFactoryController {
     public void setMiComprador(Comprador comprador) {
         this.comprador = comprador;
     }
+
     public Comprador getMiComprador() {
-       return comprador;
+        return comprador;
     }
 
 
@@ -63,7 +64,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
         Comprador compra = new Comprador("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
                 "12", TipoUsuario.COMPRADOR, false);
-        miCasa.getListaCompradores().add( compra );
+        miCasa.getListaCompradores().add(compra);
 
 
     }
@@ -113,6 +114,12 @@ public class ModelFactoryController implements IModelFactoryController {
     public void initUsuarioViewController(UsuarioViewController usuarioViewController) {
         this.usuarioViewController = usuarioViewController;
     }
+
+    @Override
+    public void initCompradorViewController(CompradorViewController compradorViewController){
+        this.compradorViewController=compradorViewController;
+    }
+
     //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
         usuarioViewController.registroTab.setDisable(false);
@@ -171,9 +178,39 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //-------------------------------------------MI CUENTA VIEW---------------------------------------------------------
+    public void mostrarInfoComprador(Comprador comprador){
+        miCuentaViewController.txtNombre.setText(comprador.getNombre());
+        miCuentaViewController.txtApellidos.setText(comprador.getApellido());
+        miCuentaViewController.txtIdentificacion.setText(comprador.getIdentificacion());
+        miCuentaViewController.txtEdad.setText(comprador.getEdad());
+        miCuentaViewController.txtCorreo.setText(comprador.getCorreo());
+        miCuentaViewController.txtUsuario.setText(comprador.getNombreUsuario());
+        miCuentaViewController.txtContrasenia.setText(comprador.getContrasenia());
+
+    }
+    public void deshabilitarDatos(){
+
+        miCuentaViewController.txtNombre.setEditable( false );
+        miCuentaViewController.txtApellidos.setEditable( false);
+        miCuentaViewController.txtEdad.setEditable( false);
+        miCuentaViewController.txtIdentificacion.setEditable( false);
+        miCuentaViewController.txtUsuario.setEditable( false);
+        miCuentaViewController.txtCorreo.setEditable( false);
+        miCuentaViewController.txtContrasenia.setEditable( false);
+
+    }
+    public void mostrarInfoAnunciante(Anunciante anuncianteAux){
+        miCuentaViewController.txtNombre.setText(anuncianteAux.getNombre());
+        miCuentaViewController.txtApellidos.setText(anuncianteAux.getApellido());
+        miCuentaViewController.txtIdentificacion.setText(anuncianteAux.getIdentificacion());
+        miCuentaViewController.txtEdad.setText(anuncianteAux.getEdad());
+        miCuentaViewController.txtCorreo.setText(anuncianteAux.getCorreo());
+        miCuentaViewController.txtUsuario.setText(anuncianteAux.getNombreUsuario());
+        miCuentaViewController.txtContrasenia.setText(anuncianteAux.getContrasenia());
+
+    }
     public boolean actualizarInforComprador(Comprador comprador , String nombre , String apellidos , String edad , String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
-        boolean flag = miCasa.actualizarComprador( comprador, nombre, apellidos, edad, nombreUsu, correo, password);
-        return flag;
+        return miCasa.actualizarComprador( comprador, nombre, apellidos, edad, nombreUsu, correo, password);
     }
 
     public void eliminarCuentaComprador(String nombreUsu , String password) throws UsuarioException, CompradorException {
@@ -182,8 +219,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
     public boolean actualizarInforAnunciante(Anunciante anunciante , String nombre , String apellidos ,
                                              String edad , String nombreUsu , String correo , String password) throws UsuarioException, AnuncianteException {
-        boolean flag = miCasa.actualizarAnunciante( anunciante, nombre, apellidos, edad, nombreUsu, correo, password);
-        return flag;
+        return miCasa.actualizarAnunciante( anunciante, nombre, apellidos, edad, nombreUsu, correo, password);
 
     }
     public void eliminarCuentaAnunciante(String nombreUsu , String password) throws UsuarioException, AnuncianteException {
