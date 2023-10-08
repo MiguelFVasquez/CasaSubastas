@@ -213,26 +213,31 @@ public class CasaSubasta implements ISubasta {
     }
 
     /**
-     *
      * @param newAnunciante
+     * @param nombre
+     * @param apellidos
+     * @param edad
+     * @param nombreUsu
+     * @param correo
+     * @param password
      * @return
      * @throws UsuarioException
      * @throws AnuncianteException
      */
     @Override
-    public boolean actualizarAnunciante(Anunciante newAnunciante)throws UsuarioException, AnuncianteException {
+    public boolean actualizarAnunciante(Anunciante newAnunciante , String nombre , String apellidos , String edad , String nombreUsu , String correo , String password)throws UsuarioException, AnuncianteException {
         boolean actualizado=false;
         Anunciante anuncianteAux= obtenerAnunciante(newAnunciante.getNombreUsuario(), newAnunciante.getContrasenia());
         if (anuncianteAux==null){
             throw new AnuncianteException("El usuario no ha sido registrado");
         }else{
             actualizado=true;
-            anuncianteAux.setNombre(newAnunciante.getNombre());
-            anuncianteAux.setApellido(newAnunciante.getApellido());
-            anuncianteAux.setEdad(newAnunciante.getEdad());
-            anuncianteAux.setCorreo(newAnunciante.getCorreo());
-            anuncianteAux.setContrasenia(newAnunciante.getContrasenia());
-            anuncianteAux.setNombreUsuario(newAnunciante.getNombreUsuario());
+            anuncianteAux.setNombre(nombre);
+            anuncianteAux.setApellido(apellidos);
+            anuncianteAux.setEdad(edad);
+            anuncianteAux.setCorreo(correo);
+            anuncianteAux.setContrasenia(password);
+            anuncianteAux.setNombreUsuario(nombreUsu);
         }
 
         return actualizado;

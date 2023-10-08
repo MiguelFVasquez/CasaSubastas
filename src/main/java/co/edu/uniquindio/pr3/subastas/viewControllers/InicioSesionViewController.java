@@ -49,6 +49,7 @@ public class  InicioSesionViewController implements Initializable {
     InicioSesionController inicioSesionController = new InicioSesionController();
 
     VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
+    MiCuentaViewController miCuentaViewController = new MiCuentaViewController();
 
 
     private Stage stage;
@@ -94,15 +95,29 @@ public class  InicioSesionViewController implements Initializable {
                 stage.setScene(scene);
                 controller.init(stage);
                 stage.show();
-                controller.setInfoCuenta(inicioSesionController.mfm.obtenerComprador(nombre,password));
+                inicioSesionController.mfm.setMiComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
                 txtInicioPassword.clear();
                 txtInicioNombre.clear();
 
 
             }
             else {
-                if ( verificarAnunciante( nombre , password ) ) {
+                if (verificarAnunciante( nombre , password ) ) {
                     System.out.println("SI llegas");
+
+                    FXMLLoader loader= new FXMLLoader();
+                    loader.setLocation(App.class.getResource("AnuncianteView.fxml"));
+                    AnchorPane anchorPane= loader.load();
+                    AnuncianteViewController controller = loader.getController();
+                    controller.setAplicacion(aplicacion);
+                    Scene scene= new Scene(anchorPane);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    controller.init(stage);
+                    stage.show();
+                    controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre,password));
+                    txtInicioPassword.clear();
+                    txtInicioNombre.clear();
 
                 }
                 else{

@@ -18,58 +18,7 @@
          <tabs>
             <Tab fx:id="tabMicuenta" text="Mi cuenta">
                <content>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="885.0" style="-fx-background-color: white;">
-                     <children>
-                        <Pane prefHeight="68.0" prefWidth="885.0" style="-fx-background-color: #0697AE;" />
-                        <Label layoutX="37.0" layoutY="77.0" text="Información de la cuenta">
-                           <font>
-                              <Font size="33.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="422.0" layoutY="177.0" text="Nombres" />
-                        <Label layoutX="423.0" layoutY="212.0" text="Apellidos" />
-                        <Label layoutX="414.0" layoutY="283.0" text="Identificación" />
-                        <Label layoutX="422.0" layoutY="248.0" text="Edad" />
-                        <Label layoutX="421.0" layoutY="319.0" text="Usuario" />
-                        <Label layoutX="423.0" layoutY="359.0" text="Correo" />
-                        <Label layoutX="417.0" layoutY="392.0" text="Contraseña" />
-                        <Label layoutX="48.0" layoutY="359.0" text="Tipo de usuario">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txtNombre" layoutX="579.0" layoutY="173.0" prefHeight="25.0" prefWidth="230.0" />
-                        <TextField fx:id="txtApellidos" layoutX="579.0" layoutY="208.0" prefHeight="25.0" prefWidth="230.0" />
-                        <TextField fx:id="txtEdad" layoutX="579.0" layoutY="244.0" prefHeight="25.0" prefWidth="230.0" />
-                        <TextField fx:id="txtIdentificacion" layoutX="579.0" layoutY="279.0" prefHeight="25.0" prefWidth="230.0" />
-                        <TextField fx:id="txtUsuario" layoutX="579.0" layoutY="315.0" prefHeight="25.0" prefWidth="230.0" />
-                        <TextField fx:id="txtCorreo" layoutX="579.0" layoutY="355.0" prefHeight="25.0" prefWidth="230.0" />
-                        <PasswordField fx:id="txtContrasenia" layoutX="579.0" layoutY="397.0" prefHeight="25.0" prefWidth="230.0" />
-                        <Button fx:id="btnActualizarInformacion" layoutX="208.0" layoutY="489.0" mnemonicParsing="false" onAction="#actualizarUsuario" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <ComboBox fx:id="comboBoxTipoUsuario" layoutX="174.0" layoutY="364.0" prefHeight="25.0" prefWidth="178.0" />
-                        <Separator layoutX="47.0" layoutY="464.0" prefHeight="7.0" prefWidth="800.0" />
-                        <Button fx:id="btnCerrarSesion" layoutX="422.0" layoutY="489.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnEliminarCuenta" layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="422.0" layoutY="126.0" text="Puede ver y modificar la información de su cuenta" />
-                        <Button fx:id="btnActualizarInformacion1" layoutX="624.0" layoutY="428.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #0697AE;" text="Guardar cambios" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
+                  <fx:include source="MiCuentaView.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabMisPujas" text="Mis pujas">

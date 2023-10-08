@@ -27,6 +27,8 @@ public class ModelFactoryController implements IModelFactoryController {
     private MiProductoViewController miProductoViewController;
     private UsuarioViewController usuarioViewController;
     private CompradorViewController compradorViewController;
+    private Comprador comprador;
+    private Anunciante anunciante;
 
 
     public ModelFactoryController() {
@@ -34,7 +36,12 @@ public class ModelFactoryController implements IModelFactoryController {
         inicializarDatos();
     }
 
-
+    public void setMiComprador(Comprador comprador) {
+        this.comprador = comprador;
+    }
+    public Comprador getMiComprador() {
+       return comprador;
+    }
 
 
     //Singleton (Garantiza instancia unica)
@@ -134,6 +141,9 @@ public class ModelFactoryController implements IModelFactoryController {
     public Comprador obtenerComprador(String usuario, String contrasenia){
         return miCasa.obtenerComprador(usuario,contrasenia);
     }
+    public Anunciante obtenerAnunciante(String usuario, String contrasenia){
+        return miCasa.obtenerAnunciante(usuario,contrasenia);
+    }
     public Comprador setInfoCuentaComprador(String nombre , String password) {
         return miCasa.obtenerComprador(nombre, password);
     }
@@ -160,15 +170,25 @@ public class ModelFactoryController implements IModelFactoryController {
         return flag;
     }
 
-    //-------------------------------------------COMPRADOR VIEW---------------------------------------------------------
+    //-------------------------------------------MI CUENTA VIEW---------------------------------------------------------
     public boolean actualizarInforComprador(Comprador comprador , String nombre , String apellidos , String edad , String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
         boolean flag = miCasa.actualizarComprador( comprador, nombre, apellidos, edad, nombreUsu, correo, password);
         return flag;
     }
 
-    public boolean eliminarCuentaComprador(String nombreUsu , String password) throws UsuarioException, CompradorException {
-        boolean flag = miCasa.eliminarComprador( obtenerComprador( nombreUsu, password ) );
+    public void eliminarCuentaComprador(String nombreUsu , String password) throws UsuarioException, CompradorException {
+        miCasa.eliminarComprador( obtenerComprador( nombreUsu, password ) );
+    }
+
+    public boolean actualizarInforAnunciante(Anunciante anunciante , String nombre , String apellidos ,
+                                             String edad , String nombreUsu , String correo , String password) throws UsuarioException, AnuncianteException {
+        boolean flag = miCasa.actualizarAnunciante( anunciante, nombre, apellidos, edad, nombreUsu, correo, password);
         return flag;
+
+    }
+    public void eliminarCuentaAnunciante(String nombreUsu , String password) throws UsuarioException, AnuncianteException {
+        miCasa.eliminarAnunciante( obtenerAnunciante( nombreUsu, password ) );
+
     }
 }
 
