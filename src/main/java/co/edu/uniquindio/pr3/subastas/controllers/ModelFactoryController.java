@@ -7,6 +7,7 @@ import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.*;
+import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
 import javafx.scene.image.Image;
 
@@ -71,16 +72,7 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     private void inicializarDatos() {
-        miCasa = new CasaSubasta("Subastas UQ");
-
-        Comprador compra = new Comprador("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
-                "12", TipoUsuario.COMPRADOR, false);
-        Anunciante anunciante = new Anunciante("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
-                "23",  0 );
-        miCasa.getListaCompradores().add(compra);
-        miCasa.getListaAnunciantes().add( anunciante );
-
-
+        miCasa = CasaSubastasUtil.inicializarDatos();
     }
 
     // Getter y setter de la casa de subastas
