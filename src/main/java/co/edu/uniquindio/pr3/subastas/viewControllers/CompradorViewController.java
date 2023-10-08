@@ -109,7 +109,6 @@ public class CompradorViewController implements Initializable {
         compradorController.mfm.initCompradorViewController(this);
 
     }
-
-
-
+    public void close() {
+    }
 }

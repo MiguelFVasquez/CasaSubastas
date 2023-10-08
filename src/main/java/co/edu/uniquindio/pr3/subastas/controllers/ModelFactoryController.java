@@ -64,7 +64,10 @@ public class ModelFactoryController implements IModelFactoryController {
 
         Comprador compra = new Comprador("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
                 "12", TipoUsuario.COMPRADOR, false);
+        Anunciante anunciante = new Anunciante("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
+                "23",  0 );
         miCasa.getListaCompradores().add(compra);
+        miCasa.getListaAnunciantes().add( anunciante );
 
 
     }
@@ -186,7 +189,7 @@ public class ModelFactoryController implements IModelFactoryController {
         miCuentaViewController.txtCorreo.setText(comprador.getCorreo());
         miCuentaViewController.txtUsuario.setText(comprador.getNombreUsuario());
         miCuentaViewController.txtContrasenia.setText(comprador.getContrasenia());
-
+        miCuentaViewController.comboBoxTipoUsuario.setValue( TipoUsuario.COMPRADOR );
     }
     public void deshabilitarDatos(){
 
@@ -207,6 +210,7 @@ public class ModelFactoryController implements IModelFactoryController {
         miCuentaViewController.txtCorreo.setText(anuncianteAux.getCorreo());
         miCuentaViewController.txtUsuario.setText(anuncianteAux.getNombreUsuario());
         miCuentaViewController.txtContrasenia.setText(anuncianteAux.getContrasenia());
+        miCuentaViewController.comboBoxTipoUsuario.setValue( TipoUsuario.ANUNCIANTE );
 
     }
     public boolean actualizarInforComprador(Comprador comprador , String nombre , String apellidos , String edad , String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
