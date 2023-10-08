@@ -120,7 +120,7 @@ public class AnuncianteViewController {
 
     private Stage stage;
 
-
+    MiCuentaViewController miCuentaViewController= new MiCuentaViewController();
     public  void setInfoCuentaComprador(Comprador comprador) {
         txtNombre.setText( comprador.getNombre());
         txtApellidos.setText( comprador.getApellido() );
@@ -196,26 +196,7 @@ public class AnuncianteViewController {
     }
 
     public void setInfoCuenta(Anunciante anunciante) {
-        txtNombre.setText( anunciante.getNombre());
-        txtApellidos.setText( anunciante.getApellido() );
-        txtEdad.setText( anunciante.getEdad() );
-        txtIdentificacion.setText( anunciante.getIdentificacion() );
-        txtUsuario.setText( anunciante.getNombreUsuario() );
-        txtCorreo.setText( anunciante.getCorreo() );
-        txtContrasenia.setText( anunciante.getContrasenia() );
-        comboBoxTipoUsuario.setValue( anunciante.getTipoUsuario());
-
-        btnActualizarInformacion1.setVisible( false );
-
-
-        txtNombre.setEditable( false );
-        txtApellidos.setEditable( false);
-        txtEdad.setEditable( false);
-        txtIdentificacion.setEditable( false);
-        txtUsuario.setEditable( false);
-        txtCorreo.setEditable( false);
-        txtContrasenia.setEditable( false);
-        comboBoxTipoUsuario.setEditable( false );
+        miCuentaViewController.setInfoCuentaAnunciante(anunciante);
     }
 
 
