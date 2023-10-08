@@ -136,8 +136,7 @@ public class MiCuentaViewController implements Initializable {
             }else {
                 if(miCuentaController.mfm.actualizarInforAnunciante(miCuentaController.mfm.obtenerAnunciante(getUsuarioIniciado(), getPasswordIniciada()),nombre,apellidos,
                         edad, nombreUsu, correo, password)){
-                    setUsuarioIniciado( nombreUsu );
-                    setPasswordIniciada( password );
+                    miCuentaController.mfm.setMiAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password));
                     setInfoCuentaAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password) );
                     mostrarMensaje( "Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION );
                     btnActualizarInformacion1.setVisible( false );

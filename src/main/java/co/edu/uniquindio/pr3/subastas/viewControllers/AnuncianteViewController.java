@@ -6,21 +6,17 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
+import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class AnuncianteViewController {
+public class AnuncianteViewController implements Initializable {
 
     @FXML
     private ResourceBundle resources;
@@ -67,10 +63,9 @@ public class AnuncianteViewController {
     private TableColumn<?, ?> columTipoProducto;
 
     @FXML
-    private ComboBox<?> comboBoxTipoProducto;
+    private ComboBox<TipoProducto> comboBoxTipoProducto;
 
-    @FXML
-    private ComboBox<TipoUsuario> comboBoxTipoUsuario;
+
 
     @FXML
     private ImageView imageViewPrevisualizacion;
@@ -83,30 +78,12 @@ public class AnuncianteViewController {
 
     @FXML
     private TableView<?> tableViewProductos;
-
-    @FXML
-    private TextField txtApellidos;
-
     @FXML
     private TextField txtCodigoProducto;
 
-    @FXML
-    private PasswordField txtContrasenia;
-
-    @FXML
-    private TextField txtCorreo;
 
     @FXML
     private TextArea txtDescripcion;
-
-    @FXML
-    private TextField txtEdad;
-
-    @FXML
-    private TextField txtIdentificacion;
-
-    @FXML
-    private TextField txtNombre;
 
     @FXML
     private TextField txtNombreProducto;
@@ -121,67 +98,6 @@ public class AnuncianteViewController {
     private Stage stage;
 
     MiCuentaViewController miCuentaViewController= new MiCuentaViewController();
-    public  void setInfoCuentaComprador(Comprador comprador) {
-        txtNombre.setText( comprador.getNombre());
-        txtApellidos.setText( comprador.getApellido() );
-        txtEdad.setText( comprador.getEdad() );
-        txtIdentificacion.setText( comprador.getIdentificacion() );
-        txtUsuario.setText( comprador.getNombreUsuario() );
-        txtCorreo.setText( comprador.getCorreo() );
-        txtContrasenia.setText( comprador.getContrasenia() );
-        comboBoxTipoUsuario.setValue( comprador.getTipoUsuario() );
-
-        btnActualizarInformacion1.setVisible( false );
-
-
-        txtNombre.setEditable( false );
-        txtApellidos.setEditable( false);
-        txtEdad.setEditable( false);
-        txtIdentificacion.setEditable( false);
-        txtUsuario.setEditable( false);
-        txtCorreo.setEditable( false);
-        txtContrasenia.setEditable( false);
-        comboBoxTipoUsuario.setEditable( false );
-
-    }
-    @FXML
-    void actualizarProducto(ActionEvent event) {
-
-    }
-    @FXML
-    void guardarCambiosActualizar(ActionEvent event) {
-
-    }
-
-    @FXML
-    void actualizarUsuario(ActionEvent event) {
-
-    }
-
-    @FXML
-    void aniadirImagenProducto(ActionEvent event) {
-
-    }
-
-    @FXML
-    void aniadirProducto(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cerrarSesion(ActionEvent event) {
-
-    }
-
-    @FXML
-    void eliminarProducto(ActionEvent event) {
-
-    }
-
-    @FXML
-    void eliminarUsuario(ActionEvent event) {
-
-    }
 
     @FXML
     void initialize() {
@@ -197,6 +113,11 @@ public class AnuncianteViewController {
 
     public void setInfoCuenta(Anunciante anunciante) {
         miCuentaViewController.setInfoCuentaAnunciante(anunciante);
+    }
+
+    @Override
+    public void initialize(URL url , ResourceBundle resourceBundle) {
+
     }
 
 

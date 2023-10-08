@@ -2,8 +2,10 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
+import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.ISubasta;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -264,6 +266,13 @@ public class CasaSubasta implements ISubasta {
         return  eliminado;
     }
 
+    //--------------------------------------------CRUD PRODUCTO---------------------------------------------------------
+
+    public boolean crearProducto(Anunciante anunciante , String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException {
+        Producto producto = new Producto(codigo,nombre,descrp,image.getUrl(), valor, tipoProducto,false );
+        boolean flag = anunciante.crearProducto(producto );
+        return flag;
+    }
 
 
 

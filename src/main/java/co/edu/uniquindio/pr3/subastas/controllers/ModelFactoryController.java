@@ -3,10 +3,12 @@ package co.edu.uniquindio.pr3.subastas.controllers;
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
+import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,15 @@ public class ModelFactoryController implements IModelFactoryController {
     public Comprador getMiComprador() {
         return comprador;
     }
+    public void setMiAnunciante(Anunciante anunciante) {
+        this.anunciante = anunciante;
+    }
+
+    public Anunciante getMiAnunciante() {
+        return anunciante;
+    }
+
+
 
 
     //Singleton (Garantiza instancia unica)
@@ -229,6 +240,13 @@ public class ModelFactoryController implements IModelFactoryController {
     public void eliminarCuentaAnunciante(String nombreUsu , String password) throws UsuarioException, AnuncianteException {
         miCasa.eliminarAnunciante( obtenerAnunciante( nombreUsu, password ) );
 
+    }
+
+    //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
+    public boolean crearProducto(String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException {
+        Anunciante anun = getMiAnunciante();
+        boolean flag = miCasa.crearProducto(anun, nombre, codigo, valor, descrp, tipoProducto, image);
+        return flag;
     }
 }
 

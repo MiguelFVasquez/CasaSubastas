@@ -13,12 +13,7 @@
                   <fx:include source="MiCuentaView.fxml" />
                </content>
             </Tab>
-            <Tab text="Mis productos">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab fx:id="tabInformacionProducto" text="Agregar producto">
+            <Tab fx:id="tabInformacionProducto" text="Producto">
                <content>
                   <fx:include source="MiProductoView.fxml" />
                </content>

@@ -51,6 +51,8 @@ public class  InicioSesionViewController implements Initializable {
     VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
     MiCuentaViewController miCuentaViewController = new MiCuentaViewController();
 
+    MiProductoViewController miProductoViewController = new MiProductoViewController();
+
 
     private Stage stage;
 
@@ -114,6 +116,8 @@ public class  InicioSesionViewController implements Initializable {
                     controller.init(stage);
                     stage.show();
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre,password));
+                    inicioSesionController.mfm.setMiAnunciante( inicioSesionController.mfm.obtenerAnunciante(nombre, password));
+
                     txtInicioPassword.clear();
                     txtInicioNombre.clear();
                 }
@@ -184,14 +188,6 @@ public class  InicioSesionViewController implements Initializable {
         }
 
         return true;
-    }
-
-    private boolean esNumero(String string) {
-        try {Float.parseFloat(string);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     public void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertype) {

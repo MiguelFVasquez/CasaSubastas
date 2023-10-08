@@ -6,14 +6,14 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String imagen;
-    private Double valorInicial;
+    private String valorInicial;
     private TipoProducto tipoProducto;
     private Boolean estaAnunciado;
 
-    public Producto() {
+    public Producto(String codigo , String nombre , String descrp , String url , String valor , TipoProducto tipoProducto , boolean estaAnunciado) {
     }
      public Producto(String codigo, String nombre, String descripcion, String imagen,
-                    Double valorInicial, TipoProducto tipoProducto, Boolean estaAnunciado) {
+                    String valorInicial, TipoProducto tipoProducto, Boolean estaAnunciado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -56,11 +56,11 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public Double getValorInicial() {
+    public String getValorInicial() {
         return valorInicial;
     }
 
-    public void setValorInicial(Double valorInicial) {
+    public void setValorInicial(String valorInicial) {
         this.valorInicial = valorInicial;
     }
 
