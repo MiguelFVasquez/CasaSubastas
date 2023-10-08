@@ -49,9 +49,9 @@ public class UsuarioViewController implements Initializable {
         registroTab.setDisable(true);
         TabPanePrincipal = new TabPane();
 
-
         usuarioController = new UsuarioController();
         usuarioController.mfm.initUsuarioViewController(this);
 
     }
+
 }

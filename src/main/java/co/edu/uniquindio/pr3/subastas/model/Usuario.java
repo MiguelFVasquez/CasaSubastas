@@ -1,8 +1,13 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import java.io.Serial;
 import java.util.Objects;
 
-public class Usuario extends Persona{
+import java.io.Serializable;
+public class Usuario extends Persona implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private String nombreUsuario;
 
@@ -105,4 +110,6 @@ public class Usuario extends Persona{
                 ", autenticado=" + autenticado +
                 '}';
     }
+
+
 }

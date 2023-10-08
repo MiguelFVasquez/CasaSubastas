@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.viewControllers.UsuarioViewController;
 import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -159,9 +161,10 @@ public class  InicioSesionViewController implements Initializable {
 
     @FXML
     void crearCuentaNueva(ActionEvent event) {
-
         ModelFactoryController.getInstance().mover();
 
+        mostrarMensaje("Creacion de cuenta", "Crear una cuenta", "Ahora puede " +
+                "acceder a la pestaña de registro", Alert.AlertType.INFORMATION);
     }
 
     //FUNCIONES UTILITARIAS
@@ -207,4 +210,5 @@ public class  InicioSesionViewController implements Initializable {
     public void initialize(URL url , ResourceBundle resourceBundle) {
 
     }
+
 }

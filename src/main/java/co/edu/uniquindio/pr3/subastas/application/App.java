@@ -1,6 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.application;
 
-import co.edu.uniquindio.pr3.subastas.viewControllers.*;
+import co.edu.uniquindio.pr3.subastas.viewControllers.VentanaPrincipalViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+
 
 
 public class App extends Application {
