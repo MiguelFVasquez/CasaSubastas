@@ -49,7 +49,7 @@ public class  InicioSesionViewController implements Initializable {
     InicioSesionController inicioSesionController = new InicioSesionController();
 
     VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
-    CompradorViewController compradorViewController  = new CompradorViewController();
+
 
     private Stage stage;
 
@@ -95,6 +95,10 @@ public class  InicioSesionViewController implements Initializable {
                 controller.init(stage);
                 stage.show();
                 controller.setInfoCuenta(inicioSesionController.mfm.obtenerComprador(nombre,password));
+                txtInicioPassword.clear();
+                txtInicioNombre.clear();
+
+
             }
             else {
                 if ( verificarAnunciante( nombre , password ) ) {

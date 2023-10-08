@@ -139,26 +139,31 @@ public class CasaSubasta implements ISubasta {
     }
 
     /**
-     *
      * @param newComprador
+     * @param nombre
+     * @param apellidos
+     * @param edad
+     * @param nombreUsu
+     * @param correo
+     * @param password
      * @return
      * @throws UsuarioException
      * @throws CompradorException
      */
-    @Override
-    public boolean actualizarComprador(Comprador newComprador) throws UsuarioException, CompradorException {
+    public boolean actualizarComprador(Comprador newComprador , String nombre , String apellidos , String edad ,String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
         boolean actualizado= false;
         Comprador compradorAux= obtenerComprador(newComprador.getNombreUsuario(), newComprador.getContrasenia());
         if (compradorAux==null){
             throw new CompradorException("El usuario no ha sido encontrado");
         }else {
+
             actualizado=true;
-            compradorAux.setNombre(newComprador.getNombre());
-            compradorAux.setApellido(newComprador.getApellido());
-            compradorAux.setEdad(newComprador.getEdad());
-            compradorAux.setCorreo(newComprador.getCorreo());
-            compradorAux.setContrasenia(newComprador.getContrasenia());
-            compradorAux.setNombreUsuario(newComprador.getNombreUsuario());
+            compradorAux.setNombre(nombre);
+            compradorAux.setApellido(apellidos);
+            compradorAux.setEdad(edad);
+            compradorAux.setCorreo(correo);
+            compradorAux.setContrasenia(password);
+            compradorAux.setNombreUsuario(nombreUsu);
         }
         return actualizado;
     }

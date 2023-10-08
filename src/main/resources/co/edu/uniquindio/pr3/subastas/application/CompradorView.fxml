@@ -63,6 +63,11 @@
                            </font>
                         </Button>
                         <Label layoutX="422.0" layoutY="126.0" text="Puede ver y modificar la información de su cuenta" />
+                        <Button fx:id="btnActualizarInformacion1" layoutX="624.0" layoutY="428.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #0697AE;" text="Guardar cambios" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>

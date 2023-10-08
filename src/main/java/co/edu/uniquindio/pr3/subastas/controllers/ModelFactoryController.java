@@ -159,6 +159,17 @@ public class ModelFactoryController implements IModelFactoryController {
         boolean flag = miCasa.crearComprador( comprador );
         return flag;
     }
+
+    //-------------------------------------------COMPRADOR VIEW---------------------------------------------------------
+    public boolean actualizarInforComprador(Comprador comprador , String nombre , String apellidos , String edad , String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
+        boolean flag = miCasa.actualizarComprador( comprador, nombre, apellidos, edad, nombreUsu, correo, password);
+        return flag;
+    }
+
+    public boolean eliminarCuentaComprador(String nombreUsu , String password) throws UsuarioException, CompradorException {
+        boolean flag = miCasa.eliminarComprador( obtenerComprador( nombreUsu, password ) );
+        return flag;
+    }
 }
 
 

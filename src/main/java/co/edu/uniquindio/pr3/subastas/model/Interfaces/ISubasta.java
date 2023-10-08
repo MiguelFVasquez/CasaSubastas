@@ -13,7 +13,7 @@ public interface ISubasta {
 
     public Comprador obtenerComprador(String usuario, String contrasenia);
     public boolean crearComprador(Comprador newComprador) throws UsuarioException, CompradorException;
-    public boolean actualizarComprador(Comprador newComprador) throws UsuarioException, CompradorException;
+    public boolean actualizarComprador(Comprador newComprador , String nombre , String apellidos , String edad ,String nombreUsu , String correo , String password) throws UsuarioException, CompradorException;
     public boolean eliminarComprador(Comprador compradorEliminar) throws UsuarioException, CompradorException;
     //................Metodos del anunciante.................................
 
