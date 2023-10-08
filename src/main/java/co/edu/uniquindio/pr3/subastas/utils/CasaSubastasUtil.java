@@ -1,9 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.utils;
 
-import co.edu.uniquindio.pr3.subastas.model.Anunciante;
-import co.edu.uniquindio.pr3.subastas.model.CasaSubasta;
-import co.edu.uniquindio.pr3.subastas.model.Comprador;
-import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
+import co.edu.uniquindio.pr3.subastas.model.*;
 
 
 public class CasaSubastasUtil {
@@ -16,8 +13,12 @@ public class CasaSubastasUtil {
                 "12", TipoUsuario.COMPRADOR, false);
         Anunciante anunciante = new Anunciante("sasd", "asdasd", "2323", "34", "sa", "sasdsd",
                 "23",  0 );
+        Producto producto = new Producto( "code", "name", "dsc", null, "123123", TipoProducto.DEPORTE, false );
+        anunciante.getListaProductos().add(  producto);
         miCasa.getListaCompradores().add(compra);
         miCasa.getListaAnunciantes().add( anunciante );
+
+
         return miCasa;
         }
 }

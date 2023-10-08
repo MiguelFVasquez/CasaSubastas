@@ -107,6 +107,7 @@ public class  InicioSesionViewController implements Initializable {
                 if (verificarAnunciante( nombre , password ) ) {
                     System.out.println("SI llegas");
 
+                    inicioSesionController.mfm.setMiAnunciante( inicioSesionController.mfm.obtenerAnunciante(nombre, password));
                     FXMLLoader loader= new FXMLLoader();
                     loader.setLocation(App.class.getResource("AnuncianteView.fxml"));
                     AnchorPane anchorPane= loader.load();
@@ -118,7 +119,6 @@ public class  InicioSesionViewController implements Initializable {
                     controller.init(stage);
                     stage.show();
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre,password));
-                    inicioSesionController.mfm.setMiAnunciante( inicioSesionController.mfm.obtenerAnunciante(nombre, password));
 
                     txtInicioPassword.clear();
                     txtInicioNombre.clear();

@@ -154,18 +154,20 @@ public class CasaSubasta implements ISubasta {
      */
     public boolean actualizarComprador(Comprador newComprador , String nombre , String apellidos , String edad ,String nombreUsu , String correo , String password) throws UsuarioException, CompradorException {
         boolean actualizado= false;
-        Comprador compradorAux= obtenerComprador(newComprador.getNombreUsuario(), newComprador.getContrasenia());
-        if (compradorAux==null){
-            throw new CompradorException("El usuario no ha sido encontrado");
-        }else {
+        if(newComprador!=null){
+            Comprador compradorAux= obtenerComprador(newComprador.getNombreUsuario(), newComprador.getContrasenia());
+            if (compradorAux==null){
+                throw new CompradorException("El usuario no ha sido encontrado");
+            }else {
 
-            actualizado=true;
-            compradorAux.setNombre(nombre);
-            compradorAux.setApellido(apellidos);
-            compradorAux.setEdad(edad);
-            compradorAux.setCorreo(correo);
-            compradorAux.setContrasenia(password);
-            compradorAux.setNombreUsuario(nombreUsu);
+                actualizado=true;
+                compradorAux.setNombre(nombre);
+                compradorAux.setApellido(apellidos);
+                compradorAux.setEdad(edad);
+                compradorAux.setCorreo(correo);
+                compradorAux.setContrasenia(password);
+                compradorAux.setNombreUsuario(nombreUsu);
+            }
         }
         return actualizado;
     }
@@ -269,7 +271,7 @@ public class CasaSubasta implements ISubasta {
     //--------------------------------------------CRUD PRODUCTO---------------------------------------------------------
 
     public boolean crearProducto(Anunciante anunciante , String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException {
-        Producto producto = new Producto(codigo,nombre,descrp,image.getUrl(), valor, tipoProducto,false );
+        Producto producto = new Producto(codigo,nombre,descrp,image, valor, tipoProducto,false );
         boolean flag = anunciante.crearProducto(producto );
         return flag;
     }

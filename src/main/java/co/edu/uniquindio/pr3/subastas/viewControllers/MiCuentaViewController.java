@@ -134,7 +134,7 @@ public class MiCuentaViewController implements Initializable {
                 mostrarMensaje( "Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION );
                 btnActualizarInformacion1.setVisible( false );
             }else {
-                if(miCuentaController.mfm.actualizarInforAnunciante(miCuentaController.mfm.obtenerAnunciante(getUsuarioIniciado(), getPasswordIniciada()),nombre,apellidos,
+                if(miCuentaController.mfm.actualizarInforAnunciante(miCuentaController.mfm.getMiAnunciante(),nombre,apellidos,
                         edad, nombreUsu, correo, password)){
                     miCuentaController.mfm.setMiAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password));
                     setInfoCuentaAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password) );
@@ -175,8 +175,7 @@ public class MiCuentaViewController implements Initializable {
     }
 
     public  void setInfoCuentaAnunciante(Anunciante anunciante) {
-        Anunciante anuncianteAux= miCuentaController.mfm.obtenerAnunciante(anunciante.getNombreUsuario(),anunciante.getContrasenia());
-        miCuentaController.mfm.mostrarInfoAnunciante(anuncianteAux);
+        miCuentaController.mfm.mostrarInfoAnunciante(anunciante);
         miCuentaController.mfm.deshabilitarDatos();
     }
 

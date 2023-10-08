@@ -1,18 +1,20 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import javafx.scene.image.Image;
+
 public class Producto {
 
     private String codigo;
     private String nombre;
     private String descripcion;
-    private String imagen;
+    private Image imagen;
     private String valorInicial;
     private TipoProducto tipoProducto;
     private Boolean estaAnunciado;
 
-    public Producto(String codigo , String nombre , String descrp , String url , String valor , TipoProducto tipoProducto , boolean estaAnunciado) {
+    public Producto(String codigo , String nombre , String descrp , Image url , String valor , TipoProducto tipoProducto , boolean estaAnunciado) {
     }
-     public Producto(String codigo, String nombre, String descripcion, String imagen,
+     public Producto(String codigo, String nombre, String descripcion, Image imagen,
                     String valorInicial, TipoProducto tipoProducto, Boolean estaAnunciado) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -48,11 +50,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getImagen() {
+    public Image getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Image imagen) {
         this.imagen = imagen;
     }
 

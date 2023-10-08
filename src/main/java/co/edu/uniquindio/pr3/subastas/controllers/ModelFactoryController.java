@@ -56,7 +56,6 @@ public class ModelFactoryController implements IModelFactoryController {
 
 
 
-
     //Singleton (Garantiza instancia unica)
     private static class SingletonHolder {
         // El constructor de Singleton puede ser llamado desde aquí al ser protected
@@ -240,6 +239,14 @@ public class ModelFactoryController implements IModelFactoryController {
         boolean flag = miCasa.crearProducto(anun, nombre, codigo, valor, descrp, tipoProducto, image);
         return flag;
     }
+    public List<Producto> getListaProductosAnunciante() {
+        Anunciante anun = getMiAnunciante();
+        List<Producto> miA = anun.getListaProductos();
+        return miA;
+    }
+
+
+
 }
 
 

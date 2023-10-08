@@ -4,6 +4,7 @@ import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IAnunciante;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,6 +38,8 @@ public class Anunciante extends Usuario implements IAnunciante {
     public Anunciante(String nombres, String apellidos, String identificacion, String edad, String nombreUsuario, String correo,
                       String contrasenia, int cantidadAnuncios) {
         super(nombres, apellidos, identificacion, edad, nombreUsuario, correo, contrasenia);
+        this.listaAnuncios = new ArrayList<>();
+        this.listaProductos = new ArrayList<>();
         this.cantidadAnuncios = cantidadAnuncios;
     }
     //Getters y Setters
