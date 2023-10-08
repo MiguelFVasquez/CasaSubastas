@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +53,7 @@ public class Persistencia {
      * @param
      * @throws IOException
      */
-    public static void guardarUsuarios(ArrayList<Usuario> listaUsuarios) throws IOException {
+    public static void guardarUsuarios(List<Usuario> listaUsuarios) throws IOException {
         String contenido = "";
         for (Usuario usuario : listaUsuarios) {
             contenido += "@@" + usuario.getNombre() + "@@" + usuario.getApellido() + "@@" +

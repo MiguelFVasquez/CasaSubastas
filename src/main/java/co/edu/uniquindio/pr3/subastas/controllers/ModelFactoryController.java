@@ -7,10 +7,12 @@ import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.*;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
 import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +35,6 @@ public class ModelFactoryController implements IModelFactoryController {
     private Comprador comprador;
     private Anunciante anunciante;
 
-
-    public ModelFactoryController() {
-        System.out.println("Invocacion clase singleton");
-        inicializarDatos();
-    }
-
     public void setMiComprador(Comprador comprador) {
         this.comprador = comprador;
     }
@@ -54,8 +50,6 @@ public class ModelFactoryController implements IModelFactoryController {
         return anunciante;
     }
 
-
-
     //Singleton (Garantiza instancia unica)
     private static class SingletonHolder {
         // El constructor de Singleton puede ser llamado desde aquí al ser protected
@@ -63,13 +57,20 @@ public class ModelFactoryController implements IModelFactoryController {
 
     }
 
-
     // Método para obtener la instancia de nuestra clase
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
 
+    //METODOS DE SERIALIZACION
+    public ModelFactoryController() {
+        //1. inicializar datos y luego guardarlo en archivos
+        System.out.println("Invocacion clase singleton");
+        inicializarDatos();
+        salvarDatosPrueba();
+
+    }
     private void inicializarDatos() {
         miCasa = CasaSubastasUtil.inicializarDatos();
     }
@@ -245,8 +246,16 @@ public class ModelFactoryController implements IModelFactoryController {
         return miA;
     }
 
+//-------------- SERIALIZACION
 
-
+    private void salvarDatosPrueba() {
+        try {
+            Persistencia.guardarUsuarios(getMiCasa().getListaUsuarios());
+            System.out.println("Serializado de usuarios");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 
