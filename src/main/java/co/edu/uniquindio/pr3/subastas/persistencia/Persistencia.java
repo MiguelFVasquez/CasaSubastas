@@ -27,6 +27,7 @@ public class Persistencia {
     public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/archivos/archivoUsuarios.txt";
     public static final String RUTA_ARCHIVO_LOG = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/log/casaSubastas_Log.txt";
     public static final String RUTA_ARCHIVO_MODELO_CASASUBASTA_BINARIO = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.dat";
+
     public static final String RUTA_ARCHIVO_MODELO_CASASUBASTA_XML = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml";
 
     public static void cargarDatosArchivos(CasaSubasta casaSubasta) throws FileNotFoundException, IOException {

@@ -12,4 +12,5 @@ module com.example.casasubastas {
     opens co.edu.uniquindio.pr3.subastas.model to javafx.base;
     opens co.edu.uniquindio.pr3.subastas.viewControllers to javafx.fxml;
     exports co.edu.uniquindio.pr3.subastas.mapping.mappers;
+    exports co.edu.uniquindio.pr3.subastas.model;
 }
