@@ -102,12 +102,19 @@ public class CasaSubasta implements ISubasta {
         List<Usuario> usuariosIdenticos = this.listaUsuarios.stream()
                 .filter(u-> u.getNombreUsuario().equals(usuario))
                 .collect(Collectors.toList());
-                ;
+
         if(!usuariosIdenticos.isEmpty()) {
             encontrado = true;
         }
 
         return encontrado;
+    }
+
+    public Usuario obtenerUsuario(String usuario,String password){
+        Optional<Usuario> usuarioOptional= listaUsuarios.stream()
+                .filter(u->u.getNombreUsuario().equals(usuario) && u.getContrasenia().equals(password))
+                .findFirst();
+        return usuarioOptional.orElse(null);
     }
     //----------------------CRUD DEL COMPRADOR--------------------------------------------------
 

@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.pr3.subastas.viewControllers.UsuarioViewController;
 import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
-import co.edu.uniquindio.pr3.subastas.controllers.VentanaPrincipalController;
-import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +17,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -88,7 +84,6 @@ public class  InicioSesionViewController implements Initializable {
         if(validarDatos(nombre, password)){
             if(verificarComprador(nombre, password)){
                 System.out.println("SI llegas");
-
                 FXMLLoader loader= new FXMLLoader();
                 loader.setLocation(App.class.getResource("CompradorView.fxml"));
                 AnchorPane anchorPane= loader.load();
@@ -102,32 +97,29 @@ public class  InicioSesionViewController implements Initializable {
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
                 txtInicioPassword.clear();
                 txtInicioNombre.clear();
-            }
-            else {
-                if (verificarAnunciante( nombre , password ) ) {
+            }else {
+                if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
 
-                    inicioSesionController.mfm.setMiAnunciante( inicioSesionController.mfm.obtenerAnunciante(nombre, password));
-                    FXMLLoader loader= new FXMLLoader();
+                    inicioSesionController.mfm.setMiAnunciante(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
+                    FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(App.class.getResource("AnuncianteView.fxml"));
-                    AnchorPane anchorPane= loader.load();
+                    AnchorPane anchorPane = loader.load();
                     AnuncianteViewController controller = loader.getController();
                     controller.setAplicacion(aplicacion);
-                    Scene scene= new Scene(anchorPane);
+                    Scene scene = new Scene(anchorPane);
                     Stage stage = new Stage();
                     stage.setScene(scene);
                     controller.init(stage);
                     stage.show();
-                    controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre,password));
+                    controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
 
                     txtInicioPassword.clear();
                     txtInicioNombre.clear();
-                }
-                else{
-                    mostrarMensaje( "Notificación" , "Usuario no encontrado", "Usuario y/o contraseña incorrecta", Alert.AlertType.INFORMATION );
+                } else {
+                    mostrarMensaje("Notificación", "Usuario no encontrado", "Usuario y/o contraseña incorrecta", Alert.AlertType.INFORMATION);
                     txtInicioPassword.clear();
                 }
-
             }
 
         }
@@ -138,19 +130,15 @@ public class  InicioSesionViewController implements Initializable {
     }
 
     private boolean verificarAnunciante(String nombre , String password) {
-        boolean flag = inicioSesionController.mfm.verificarAnunciante( nombre, password );
-        return flag;
+        return inicioSesionController.mfm.verificarAnunciante( nombre, password );
     }
 
-
     private boolean verificarComprador(String nombre , String password) {
-        boolean flag = inicioSesionController.mfm.verificarComprador( nombre, password );
-        return flag;
+        return inicioSesionController.mfm.verificarComprador( nombre, password );
     }
 
     public boolean verificarUsuario(String nombre){
-        boolean flag = inicioSesionController.mfm.verifificarUsuario( nombre );
-        return flag;
+        return inicioSesionController.mfm.verifificarUsuario( nombre );
     }
 
     @FXML

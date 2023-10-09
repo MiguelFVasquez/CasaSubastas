@@ -261,7 +261,7 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     private void cargarDatosDesdeArchivos() {
-        miCasa = new CasaSubasta();
+        miCasa = CasaSubastasUtil.inicializarDatos();
         try {
             Persistencia.cargarDatosArchivos(miCasa);
             System.out.println("Serializado de usuarios");
