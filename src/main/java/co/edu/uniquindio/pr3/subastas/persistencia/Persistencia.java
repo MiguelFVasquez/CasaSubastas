@@ -56,10 +56,15 @@ public class Persistencia {
     public static void guardarUsuarios(List<Usuario> listaUsuarios) throws IOException {
         String contenido = "";
         for (Usuario usuario : listaUsuarios) {
-            contenido += "@@" + usuario.getNombre() + "@@" + usuario.getApellido() + "@@" +
-                    usuario.getIdentificacion() + "@@" + usuario.getEdad() + "@@" + usuario.getNombreUsuario()
-                    + usuario.getCorreo() + "@@" + usuario.getContrasenia() + "@@" +
-                    usuario.getTipoUsuario() + "@@" + usuario.isAutenticado();
+            contenido += usuario.getNombre() + "@@"
+                    + usuario.getApellido() + "@@"
+                    + usuario.getIdentificacion() + "@@"
+                    + usuario.getEdad() + "@@"
+                    + usuario.getNombreUsuario() + "@@"
+                    + usuario.getCorreo() + "@@" +
+                    usuario.getContrasenia() + "@@" +
+                    usuario.getTipoUsuario() + "@@" +
+                    usuario.isAutenticado();
 
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, false);
