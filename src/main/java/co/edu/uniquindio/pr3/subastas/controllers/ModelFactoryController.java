@@ -74,17 +74,17 @@ public class ModelFactoryController implements IModelFactoryController {
         //cargarDatosDesdeArchivos();
 
         //3. Guardar y Cargar el recurso serializable binario
-        cargarResourceBinario();
+        //cargarResourceBinario();
         //guardarResourceBinario();
 
         //4. Guardar y Cargar el recurso serializable XML
         //cargarResourceXML();
-        guardarResourceXML();
+        //guardarResourceXML();
         //Siempre se debe verificar si la raiz del recurso es null
 
         if(miCasa == null){
-            cargarDatosBase();
-            guardarResourceXML();
+              cargarDatosBase();
+              guardarResourceXML();
         }
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
 
@@ -103,7 +103,8 @@ public class ModelFactoryController implements IModelFactoryController {
         this.miCasa = miCasa;
     }
 
-    //--------------Funciones de subastas para el singleton-------------------
+//--------------Funciones de subastas para el singleton-------------------
+
     @Override
     public void initVentanaPrincipalViewController(VentanaPrincipalViewController ventanaPrincipalViewController) {
         this.ventanaPrincipalViewController = ventanaPrincipalViewController;
@@ -145,7 +146,7 @@ public class ModelFactoryController implements IModelFactoryController {
         this.compradorViewController=compradorViewController;
     }
 
-    //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
+//--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
         usuarioViewController.registroTab.setDisable(false);
     }
@@ -176,7 +177,7 @@ public class ModelFactoryController implements IModelFactoryController {
         return miCasa.obtenerComprador(nombre, password);
     }
 
-    //------------------------------------FUNCIONES DE TAB DE REGISTRO--------------------------------------------------
+//------------------------------------FUNCIONES DE TAB DE REGISTRO--------------------------------------------------
     public boolean crearAnunciante(String nombre , String apellidos , String id ,
                                    String edad , String usuario , String correo , String password)
             throws UsuarioException, AnuncianteException {
@@ -198,7 +199,7 @@ public class ModelFactoryController implements IModelFactoryController {
         return flag;
     }
 
-    //-------------------------------------------MI CUENTA VIEW---------------------------------------------------------
+//-------------------------------------------MI CUENTA VIEW---------------------------------------------------------
     public void mostrarInfoComprador(Comprador comprador){
         miCuentaViewController.txtNombre.setText(comprador.getNombre());
         miCuentaViewController.txtApellidos.setText(comprador.getApellido());
@@ -249,7 +250,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
     }
 
-    //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
+//-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
     public boolean crearProducto(String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException {
         Anunciante anun = getMiAnunciante();
         boolean flag = miCasa.crearProducto(anun, nombre, codigo, valor, descrp, tipoProducto, image);
@@ -294,6 +295,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
     //PUNTO 4
     private void cargarResourceXML() {
+        miCasa = Persistencia.cargarRecursoCasaSubastaXML();
     }
 
     private void guardarResourceXML() {
@@ -305,7 +307,7 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     private void cargarDatosBase() {
-
+        inicializarDatos();
     }
 
 }

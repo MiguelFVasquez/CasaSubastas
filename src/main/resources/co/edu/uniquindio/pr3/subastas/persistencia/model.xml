@@ -106,34 +106,6 @@
    <void method="add">
     <object idref="Comprador0"/>
    </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.pr3.subastas.model.Usuario">
-     <void property="apellido">
-      <string>asdasd</string>
-     </void>
-     <void property="contrasenia">
-      <string>12</string>
-     </void>
-     <void property="correo">
-      <string>sasdsd</string>
-     </void>
-     <void property="edad">
-      <string>34</string>
-     </void>
-     <void property="identificacion">
-      <string>2323</string>
-     </void>
-     <void property="nombre">
-      <string>sasd</string>
-     </void>
-     <void property="nombreUsuario">
-      <string>sa</string>
-     </void>
-     <void property="tipoUsuario">
-      <object idref="TipoUsuario0"/>
-     </void>
-    </object>
-   </void>
   </void>
   <void property="nombre">
    <string>Subastas UQ</string>

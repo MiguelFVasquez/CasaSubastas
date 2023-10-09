@@ -1,64 +1,20 @@
-oct. 08, 2023 10:16:58 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-08
-oct. 08, 2023 11:13:29 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-08
-oct. 08, 2023 11:14:09 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-08
-oct. 08, 2023 11:16:42 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-08
-oct. 08, 2023 11:22:11 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-08
-oct. 08, 2023 11:34:06 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-08
-oct. 09, 2023 12:03:32 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:07:44 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:11:51 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:16:07 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:19:06 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:21:30 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:22:38 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:23:28 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:31:47 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:32:37 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:33:29 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:34:59 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:35:41 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:36:49 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:38:05 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:38:42 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:42:20 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:42:58 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:43:51 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:45:24 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 12:46:09 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
-INFO: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 2:59:30 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+oct. 09, 2023 6:07:44 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 3:06:32 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+oct. 09, 2023 6:11:01 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 3:08:19 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+oct. 09, 2023 6:13:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 3:55:12 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+oct. 09, 2023 6:18:49 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
-oct. 09, 2023 3:57:36 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+oct. 09, 2023 6:21:43 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
+oct. 09, 2023 6:23:55 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
+oct. 09, 2023 6:25:09 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
+oct. 09, 2023 6:25:30 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
+oct. 09, 2023 6:27:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
+oct. 09, 2023 6:29:33 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: inicioSesión,Inicio de sesión,2023-10-09
