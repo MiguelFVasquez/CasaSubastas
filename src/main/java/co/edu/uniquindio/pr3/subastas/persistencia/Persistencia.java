@@ -25,7 +25,7 @@ public class Persistencia {
     //RUTAS
 
     public static final String RUTA_ARCHIVO_USUARIOS = "src/main/java/co/edu/uniquindio/pr3/subastas/persistencia/archivos/archivoUsuarios.txt";
-    public static final String RUTA_ARCHIVO_LOG = "src/main/java/co/edu/uniquindio/pr3/subastas/persistencia/log/Log.java";
+    public static final String RUTA_ARCHIVO_LOG = "src/main/java/co/edu/uniquindio/pr3/subastas/persistencia/log/casaSubastas_Log.txt";
     public static final String RUTA_ARCHIVO_MODELO_CASASUBASTA_BINARIO = "src/main/java/co/edu/uniquindio/pr3/subastas/persistencia/model.dat";
     public static final String RUTA_ARCHIVO_MODELO_CASASUBASTA_XML = "src/main/java/co/edu/uniquindio/pr3/subastas/persistencia/model.xml";
 

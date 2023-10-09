@@ -70,8 +70,22 @@ public class ModelFactoryController implements IModelFactoryController {
         //inicializarDatos();
         //salvarDatosPrueba();
         //2. Cargar los datos de los archivos
-        cargarDatosDesdeArchivos();
+        //cargarDatosDesdeArchivos();
+        //3. Guardar y Cargar el recurso serializable binario
+        cargarResourceBinario();
+        guardarResourceBinario();
 
+        //4. Guardar y Cargar el recurso serializable XML
+        guardarResourceXML();
+        cargarResourceXML();
+
+        //Siempre se debe verificar si la raiz del recurso es null
+
+        if(miCasa == null){
+            cargarDatosBase();
+            guardarResourceXML();
+        }
+        registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
     }
 
     private void inicializarDatos() {
@@ -260,6 +274,7 @@ public class ModelFactoryController implements IModelFactoryController {
         }
     }
 
+    //PUNTO 2 METODO
     private void cargarDatosDesdeArchivos() {
         miCasa = CasaSubastasUtil.inicializarDatos();
         try {
@@ -268,6 +283,30 @@ public class ModelFactoryController implements IModelFactoryController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //PUNTO 3
+    private void guardarResourceBinario() {
+    }
+
+    private void cargarResourceBinario() {
+
+    }
+
+    //PUNTO 4
+    private void cargarResourceXML() {
+    }
+
+    private void guardarResourceXML() {
+
+    }
+
+    private void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    private void cargarDatosBase() {
+
     }
 
 }
