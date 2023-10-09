@@ -4,12 +4,16 @@ import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IAnunciante;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Anunciante extends Usuario implements IAnunciante {
+public class Anunciante extends Usuario implements IAnunciante, Serializable {
+
+    private static final long serialVersionUID = 1l;
     private int cantidadAnuncios;
     private List<Anuncio> listaAnuncios;
     private List<Producto> listaProductos;

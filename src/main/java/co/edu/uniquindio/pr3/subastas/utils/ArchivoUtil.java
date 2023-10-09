@@ -154,10 +154,8 @@ public  class ArchivoUtil {
      */
 
     @SuppressWarnings("unchecked")
-    public static Object cargarRecursoSerializado(String rutaArchivo)throws Exception
-    {
+    public static Object cargarRecursoSerializado(String rutaArchivo)throws Exception {
         Object aux = null;
-//		Empresa empresa = null;
         ObjectInputStream ois = null;
         try {
             // Se crea un ObjectInputStream
@@ -189,7 +187,7 @@ public  class ArchivoUtil {
     }
 
 
-
+    //---------------------MANEJO DE XML--------------------------------
 
     public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
 
@@ -204,13 +202,11 @@ public  class ArchivoUtil {
     }
 
     public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
-
         XMLEncoder codificadorXML;
 
         codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
         codificadorXML.writeObject(objeto);
         codificadorXML.close();
-
     }
 
 

@@ -1,9 +1,10 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Puja {
-
+public class Puja implements Serializable {
+    private static final long serialVersionUID = 1l;
     private Anuncio anuncio;
     private Comprador comprador;
     private Double valor;

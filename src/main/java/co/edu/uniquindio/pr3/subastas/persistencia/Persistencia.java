@@ -146,7 +146,6 @@ public class Persistencia {
 
     public static CasaSubasta cargarRecursoCasaSubastaBinario() {
         CasaSubasta casaSubasta = null;
-
             try {
                 casaSubasta = (CasaSubasta)ArchivoUtil.cargarRecursoSerializado(RUTA_ARCHIVO_MODELO_CASASUBASTA_BINARIO);
             } catch (Exception e) {
@@ -179,7 +178,6 @@ public class Persistencia {
     }
 
     public static void guardarRecursoCasaSubastaXML(CasaSubasta casaSubasta) {
-
         try {
             ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_CASASUBASTA_XML, casaSubasta);
         } catch (Exception e) {

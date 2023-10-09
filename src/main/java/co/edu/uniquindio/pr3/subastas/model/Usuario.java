@@ -5,8 +5,6 @@ import java.util.Objects;
 
 import java.io.Serializable;
 public class Usuario extends Persona implements Serializable{
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private String nombreUsuario;

@@ -69,16 +69,17 @@ public class ModelFactoryController implements IModelFactoryController {
         System.out.println("Invocacion clase singleton");
         //inicializarDatos();
         //salvarDatosPrueba();
+
         //2. Cargar los datos de los archivos
         //cargarDatosDesdeArchivos();
+
         //3. Guardar y Cargar el recurso serializable binario
         cargarResourceBinario();
-        guardarResourceBinario();
+        //guardarResourceBinario();
 
         //4. Guardar y Cargar el recurso serializable XML
+        //cargarResourceXML();
         guardarResourceXML();
-        cargarResourceXML();
-
         //Siempre se debe verificar si la raiz del recurso es null
 
         if(miCasa == null){
@@ -86,6 +87,7 @@ public class ModelFactoryController implements IModelFactoryController {
             guardarResourceXML();
         }
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
+
     }
 
     private void inicializarDatos() {
@@ -157,11 +159,7 @@ public class ModelFactoryController implements IModelFactoryController {
         return false;
     }
     public boolean verificarAnunciante(String nombre, String password){
-        Anunciante anun = miCasa.obtenerAnunciante( nombre, password );
-        if(anun!=null){
-            return true;
-        }
-        return false;
+        return miCasa.verificarUsuario(nombre);
     }
     public boolean verifificarUsuario(String nombre) {
         boolean flag = miCasa.verificarUsuario( nombre );
@@ -287,10 +285,11 @@ public class ModelFactoryController implements IModelFactoryController {
 
     //PUNTO 3
     private void guardarResourceBinario() {
+        Persistencia.guardarRecursoCasaSubastaBinario(miCasa);
     }
 
     private void cargarResourceBinario() {
-
+        miCasa= Persistencia.cargarRecursoCasaSubastaBinario();
     }
 
     //PUNTO 4
@@ -298,7 +297,7 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     private void guardarResourceXML() {
-
+        Persistencia.guardarRecursoCasaSubastaXML(miCasa);
     }
 
     private void registrarAccionesSistema(String mensaje, int nivel, String accion) {

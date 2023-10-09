@@ -7,13 +7,14 @@ import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.ISubasta;
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class CasaSubasta implements ISubasta {
-
+public class CasaSubasta implements  ISubasta,Serializable {
+    private static final long serialVersionUID = 1l;
     private String nombre;
     private List<Comprador> listaCompradores= new ArrayList<>();
     private List<Anunciante> listaAnunciantes= new ArrayList<>();

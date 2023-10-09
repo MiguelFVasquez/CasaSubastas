@@ -2,8 +2,10 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import javafx.scene.image.Image;
 
-public class Producto {
+import java.io.Serializable;
 
+public class Producto implements Serializable {
+    private static final long serialVersionUID = 1l;
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -11,6 +13,10 @@ public class Producto {
     private String valorInicial;
     private TipoProducto tipoProducto;
     private Boolean estaAnunciado;
+
+
+    public Producto() {
+    }
 
     public Producto(String codigo , String nombre , String descrp , Image url , String valor , TipoProducto tipoProducto , boolean estaAnunciado) {
     }

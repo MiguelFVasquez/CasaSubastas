@@ -4,11 +4,13 @@ import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.PujaException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IComprador;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Comprador extends Usuario implements IComprador {
+public class Comprador extends Usuario implements IComprador, Serializable {
+    private static final long serialVersionUID = 1l;
     private List<Puja> listaPujas;
     private List<Integer> cantidadDeVecesPujada;
 
