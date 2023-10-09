@@ -67,10 +67,13 @@ public class ModelFactoryController implements IModelFactoryController {
     public ModelFactoryController() {
         //1. inicializar datos y luego guardarlo en archivos
         System.out.println("Invocacion clase singleton");
-        inicializarDatos();
-        salvarDatosPrueba();
+        //inicializarDatos();
+        //salvarDatosPrueba();
+        //2. Cargar los datos de los archivos
+        cargarDatosDesdeArchivos();
 
     }
+
     private void inicializarDatos() {
         miCasa = CasaSubastasUtil.inicializarDatos();
     }
@@ -256,6 +259,17 @@ public class ModelFactoryController implements IModelFactoryController {
             throw new RuntimeException(e);
         }
     }
+
+    private void cargarDatosDesdeArchivos() {
+        miCasa = new CasaSubasta();
+        try {
+            Persistencia.cargarDatosArchivos(miCasa);
+            System.out.println("Serializado de usuarios");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
 
 

@@ -64,8 +64,7 @@ public class Persistencia {
                     + usuario.getCorreo() + "@@" +
                     usuario.getContrasenia() + "@@" +
                     usuario.getTipoUsuario() + "@@" +
-                    usuario.isAutenticado();
-
+                    usuario.isAutenticado()+ "\n";
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, false);
     }

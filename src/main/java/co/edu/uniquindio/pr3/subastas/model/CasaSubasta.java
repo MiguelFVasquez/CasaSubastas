@@ -117,7 +117,6 @@ public class CasaSubasta implements ISubasta {
                 .filter(c->c.getNombreUsuario().equals(usuario) && c.getContrasenia().equals(contrasenia))
                 .findFirst();
         return compradorOptional.orElse(null);
-
     }
 
     /**
