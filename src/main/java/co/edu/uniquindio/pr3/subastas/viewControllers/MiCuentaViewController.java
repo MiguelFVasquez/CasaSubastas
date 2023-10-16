@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -108,11 +109,21 @@ public class MiCuentaViewController implements Initializable {
 
     }
 
+
+    @FXML
+    void actualizarUsuarioTecla(ActionEvent event) {
+        actualizarUsuario(event);
+    }
     @FXML
     void cerrarSesion(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         // Cerrar la ventana
         stage.close();
+    }
+
+    @FXML
+    void cerrarSesionTecla(ActionEvent event) throws IOException {
+        cerrarSesion(event);
     }
 
     @FXML
@@ -147,6 +158,10 @@ public class MiCuentaViewController implements Initializable {
     }
 
     @FXML
+    void guardarCambiosActualizarTecla(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException {
+        guardarCambiosActualizar(event);
+    }
+    @FXML
     void eliminarUsuario(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException, IOException {
         TipoUsuario tipoUsuario = comboBoxTipoUsuario.getValue();
         if(confirmacionAlert()){
@@ -166,6 +181,12 @@ public class MiCuentaViewController implements Initializable {
             }
 
         }
+    }
+
+
+    @FXML
+    void eliminarUsuarioTecla(ActionEvent event) throws UsuarioException, CompradorException, IOException, AnuncianteException {
+        eliminarUsuario(event);
     }
 
     //----------------------------------------FUNCIONES DE INFORMACIÓN -------------------------------------------------
@@ -255,7 +276,79 @@ public class MiCuentaViewController implements Initializable {
 
         return true;
     }
+    private void configurarEventos() {
 
+        //Boton de actualizar información
+        btnActualizarInformacion.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                btnActualizarInformacion.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill: #0697AE");
+            } else {
+                btnActualizarInformacion.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+        //Cuando el mouse esta sobre el boton
+        btnActualizarInformacion.setOnMouseEntered(event -> {
+            btnActualizarInformacion.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:#0697AE;-fx-cursor: hand");
+        });
+        //Cuando no lo está
+        btnActualizarInformacion.setOnMouseExited(event -> {
+            btnActualizarInformacion.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+        //Boton de guardar cambios
+        btnActualizarInformacion1.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                btnActualizarInformacion1.setStyle("-fx-background-color: white; -fx-border-color:  #008000; -fx-text-fill: #008000");
+            } else {
+                btnActualizarInformacion1.setStyle("-fx-background-color:   #008000; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+        //Cuando el mouse esta sobre el boton
+        btnActualizarInformacion1.setOnMouseEntered(event -> {
+            btnActualizarInformacion1.setStyle("-fx-background-color: white; -fx-border-color:  #008000; -fx-text-fill: #008000");
+        });
+        //Cuando no lo está
+        btnActualizarInformacion1.setOnMouseExited(event -> {
+            btnActualizarInformacion1.setStyle("-fx-background-color:   #008000; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+        //boton de cerrar sesion
+        btnCerrarSesion.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                btnCerrarSesion.setStyle("-fx-background-color: white; -fx-border-color:  red; -fx-text-fill:  red;-fx-cursor: hand");
+            } else {
+                btnCerrarSesion.setStyle("-fx-background-color:  red; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+
+        //Cuando el mouse esta sobre el boton
+        btnCerrarSesion.setOnMouseEntered(event -> {
+            btnCerrarSesion.setStyle("-fx-background-color: white; -fx-border-color:  red; -fx-text-fill:  red;-fx-cursor: hand");
+        });
+        //Cuando no lo esta
+        btnCerrarSesion.setOnMouseExited(event -> {
+            btnCerrarSesion.setStyle("-fx-background-color:  red; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+        //Boton de eliminar cuenta
+        btnEliminarCuenta.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                btnEliminarCuenta.setStyle("-fx-background-color: white; -fx-border-color:  red; -fx-text-fill:  red;-fx-cursor: hand");
+            } else {
+                btnEliminarCuenta.setStyle("-fx-background-color:  red; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+
+        //Cuando el mouse está sobre el boton
+        btnEliminarCuenta.setOnMouseEntered(event -> {
+            btnEliminarCuenta.setStyle("-fx-background-color: white; -fx-border-color:  red; -fx-text-fill:  red;-fx-cursor: hand");
+        });
+        //Cuando no lo esta
+        btnEliminarCuenta.setOnMouseExited(event -> {
+            btnEliminarCuenta.setStyle("-fx-background-color:  red; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+    }
 
     @FXML
     void initialize() {
@@ -267,6 +360,49 @@ public class MiCuentaViewController implements Initializable {
         miCuentaController.mfm.initMiCuentaViewController(this);
         btnActualizarInformacion1.setVisible( false );
         comboBoxTipoUsuario.setEditable( false );
+
+        //Asociacion de los botones a la tecla ENTER
+        btnActualizarInformacion.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                actualizarUsuarioTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+        btnCerrarSesion.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    cerrarSesionTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        btnEliminarCuenta.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    eliminarUsuarioTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (UsuarioException | CompradorException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        btnActualizarInformacion1.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    guardarCambiosActualizarTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (UsuarioException | CompradorException e) {
+                    throw new RuntimeException(e);
+                } catch (AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        configurarEventos();
+
     }
 
     public void setAplicacion(App aplicacion) {

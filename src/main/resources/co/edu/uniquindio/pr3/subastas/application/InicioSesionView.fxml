@@ -28,7 +28,7 @@
       <TextField fx:id="txtInicioNombre" layoutX="635.0" layoutY="188.0" promptText="Nombre de usuario" />
       <Label layoutX="508.0" layoutY="251.0" text="Contraseña" />
       <PasswordField fx:id="txtInicioPassword" layoutX="635.0" layoutY="247.0" promptText="Contraseña" />
-      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE">
+      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" onKeyPressed="#iniciarSesionTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -43,7 +43,7 @@
             <Font name="Bookman Old Style" size="15.0" />
          </font></Label>
       <Label layoutX="672.0" layoutY="412.0" text="0" />
-      <Button fx:id="btnCrearCuenta" layoutX="625.0" layoutY="444.0" mnemonicParsing="false" onAction="#crearCuentaNueva" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE">
+      <Button fx:id="btnCrearCuenta" layoutX="625.0" layoutY="444.0" mnemonicParsing="false" onAction="#crearCuentaNueva" onKeyPressed="#crearCuentaNuevaTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>

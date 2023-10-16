@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -76,6 +77,105 @@ public class  InicioSesionViewController implements Initializable {
         this.passwordIniciada = paswordIniciada;
     }
 
+
+    //---------------FUNCIONES UTILITARIAS----------------------------------------
+    private boolean validarDatos(String nombre , String contraseña) {
+        String notificacion = "";
+
+		/*Se valida que el saldo ingresado no sea null ni sea cadena vacía,
+		además se valida que sea numérico para su correcta conversión */
+
+
+        if (nombre == null || nombre.isEmpty() ) {
+            notificacion += "Ingrese su nombre\n";
+        }
+
+        if (contraseña == null || contraseña.isEmpty() ) {
+            notificacion += "Ingrese su contraseña\n";
+        }
+
+        if ( !notificacion.isEmpty() ) {
+            mostrarMensaje("Notificación", "Inicio fallido",
+                    notificacion
+                    , Alert.AlertType.WARNING);
+            return false;
+        }
+
+        return true;
+    }
+
+    public void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertype) {
+        Alert alert = new Alert(alertype);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
+
+    public Comprador setInfoCuentaComprador(String nombre, String password){
+        return inicioSesionController.mfm.setInfoCuentaComprador(nombre, password);
+    }
+
+    private boolean verificarAnunciante(String nombre , String password) {
+        return inicioSesionController.mfm.verificarAnunciante( nombre, password );
+    }
+
+    private boolean verificarComprador(String nombre , String password) {
+        return inicioSesionController.mfm.verificarComprador( nombre, password );
+    }
+
+    public boolean verificarUsuario(String nombre){
+        return inicioSesionController.mfm.verifificarUsuario( nombre );
+    }
+
+//--------------------MANEJO DEL FOCUS DE LOS BOTONES-----------------------------
+
+
+
+    private void configurarEventos() {
+        btnIniciar.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // El botón está enfocado
+                btnIniciar.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+            } else {
+                // El botón ha perdido el foco
+                btnIniciar.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+
+        //Cuando el mouse está sobre el boton
+        btnIniciar.setOnMouseEntered(event -> {
+            btnIniciar.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+        });
+        //Cuando no lo esta
+        btnIniciar.setOnMouseExited(event -> {
+            btnIniciar.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+
+        btnCrearCuenta.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                //El boton esta enfocado
+                btnCrearCuenta.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+            } else {
+                // El botón ha perdido el foco
+                btnCrearCuenta.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+            }
+        });
+
+        //Cuando el mouse está sobre el boton
+        btnCrearCuenta.setOnMouseEntered(event -> {
+            btnCrearCuenta.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+        });
+        //Cuando no lo esta
+        btnCrearCuenta.setOnMouseExited(event -> {
+            btnCrearCuenta.setStyle("-fx-background-color:  #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+    }
+
+
+//--------------------FUNCIONES DE LOS BOTONES (EVENT)
     @FXML
     void iniciarSesion(ActionEvent event) throws IOException {
         String nombre = txtInicioNombre.getText();
@@ -125,21 +225,11 @@ public class  InicioSesionViewController implements Initializable {
         }
     }
 
-    public Comprador setInfoCuentaComprador(String nombre, String password){
-        return inicioSesionController.mfm.setInfoCuentaComprador(nombre, password);
+    @FXML
+    void iniciarSesionTecla(ActionEvent event) throws IOException {
+        iniciarSesion(event);
     }
 
-    private boolean verificarAnunciante(String nombre , String password) {
-        return inicioSesionController.mfm.verificarAnunciante( nombre, password );
-    }
-
-    private boolean verificarComprador(String nombre , String password) {
-        return inicioSesionController.mfm.verificarComprador( nombre, password );
-    }
-
-    public boolean verificarUsuario(String nombre){
-        return inicioSesionController.mfm.verifificarUsuario( nombre );
-    }
 
     @FXML
     void recuperarContrasenia(ActionEvent event) {
@@ -155,40 +245,10 @@ public class  InicioSesionViewController implements Initializable {
                 "acceder a la pestaña de registro", Alert.AlertType.INFORMATION);
     }
 
-    //FUNCIONES UTILITARIAS
-    private boolean validarDatos(String nombre , String contraseña) {
-        String notificacion = "";
-
-		/*Se valida que el saldo ingresado no sea null ni sea cadena vacía,
-		además se valida que sea numérico para su correcta conversión */
-
-
-        if (nombre == null || nombre.isEmpty() ) {
-            notificacion += "Ingrese su nombre\n";
-        }
-
-        if (contraseña == null || contraseña.isEmpty() ) {
-            notificacion += "Ingrese su contraseña\n";
-        }
-
-        if ( !notificacion.isEmpty() ) {
-            mostrarMensaje("Notificación", "Inicio fallido",
-                    notificacion
-                    , Alert.AlertType.WARNING);
-            return false;
-        }
-
-        return true;
+    @FXML
+    void crearCuentaNuevaTecla(ActionEvent event) {
+        crearCuentaNueva(event);
     }
-
-    public void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertype) {
-        Alert alert = new Alert(alertype);
-        alert.setTitle(titulo);
-        alert.setHeaderText(header);
-        alert.setContentText(contenido);
-        alert.showAndWait();
-    }
-
     @FXML
     void initialize() {
         System.out.println("aca");
@@ -196,7 +256,25 @@ public class  InicioSesionViewController implements Initializable {
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
-
+        btnIniciar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    iniciarSesionTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        btnCrearCuenta.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    iniciarSesionTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        configurarEventos();
     }
 
 }

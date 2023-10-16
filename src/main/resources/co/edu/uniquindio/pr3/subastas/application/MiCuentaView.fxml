@@ -49,25 +49,25 @@
       <TextField fx:id="txtUsuario" layoutX="579.0" layoutY="315.0" prefHeight="25.0" prefWidth="230.0" />
       <TextField fx:id="txtCorreo" layoutX="579.0" layoutY="355.0" prefHeight="25.0" prefWidth="230.0" />
       <PasswordField fx:id="txtContrasenia" layoutX="579.0" layoutY="397.0" prefHeight="25.0" prefWidth="230.0" />
-      <Button fx:id="btnActualizarInformacion" layoutX="208.0" layoutY="489.0" mnemonicParsing="false" onAction="#actualizarUsuario" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
+      <Button fx:id="btnActualizarInformacion" layoutX="208.0" layoutY="489.0" mnemonicParsing="false" onAction="#actualizarUsuario" onKeyPressed="#actualizarUsuarioTecla" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
       <ComboBox fx:id="comboBoxTipoUsuario" layoutX="174.0" layoutY="364.0" prefHeight="25.0" prefWidth="178.0" />
       <Separator layoutX="47.0" layoutY="464.0" prefHeight="7.0" prefWidth="800.0" />
-      <Button fx:id="btnCerrarSesion" layoutX="422.0" layoutY="489.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
+      <Button fx:id="btnCerrarSesion" layoutX="422.0" layoutY="489.0" mnemonicParsing="false" onAction="#cerrarSesion" onKeyPressed="#cerrarSesionTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnEliminarCuenta" layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
+      <Button fx:id="btnEliminarCuenta" layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#eliminarUsuario" onKeyPressed="#eliminarUsuarioTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
       <Label layoutX="422.0" layoutY="126.0" text="Puede ver y modificar la información de su cuenta" />
-      <Button fx:id="btnActualizarInformacion1" layoutX="671.0" layoutY="431.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="17.0" prefWidth="138.0" style="-fx-background-color: #008000;" text="Guardar cambios" textFill="WHITE">
+      <Button fx:id="btnActualizarInformacion1" layoutX="671.0" layoutY="431.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" onKeyPressed="#guardarCambiosActualizarTecla" prefHeight="17.0" prefWidth="138.0" style="-fx-background-color: #008000; -fx-cursor: hand;" text="Guardar cambios" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>

@@ -23,7 +23,7 @@ public class AnuncianteViewController implements Initializable {
 
     @FXML
     private URL location;
-
+    //---------------------BOTONES----------------------------
     @FXML
     private Button btnActualizarInformacion;
 
@@ -46,7 +46,9 @@ public class AnuncianteViewController implements Initializable {
     private Button btnEliminarProducto;
     @FXML
     private Button btnActualizarInformacion1;
-
+    //------TABLE VIEW----------------
+    @FXML
+    private TableView<?> tableViewProductos;
     @FXML
     private TableColumn<?, ?> columCodigo;
 
@@ -66,7 +68,6 @@ public class AnuncianteViewController implements Initializable {
     private ComboBox<TipoProducto> comboBoxTipoProducto;
 
 
-
     @FXML
     private ImageView imageViewPrevisualizacion;
 
@@ -77,13 +78,7 @@ public class AnuncianteViewController implements Initializable {
     private Tab tabMisProductos;
 
     @FXML
-    private TableView<?> tableViewProductos;
-    @FXML
     private TextField txtCodigoProducto;
-
-
-    @FXML
-    private TextArea txtDescripcion;
 
     @FXML
     private TextField txtNombreProducto;
@@ -93,6 +88,9 @@ public class AnuncianteViewController implements Initializable {
 
     @FXML
     private TextField txtValor;
+    @FXML
+    private TextArea txtDescripcion;
+
     private App aplicacion;
 
     private Stage stage;
@@ -119,7 +117,6 @@ public class AnuncianteViewController implements Initializable {
     public void initialize(URL url , ResourceBundle resourceBundle) {
 
     }
-
 
     //-----------------------------------------------TAB MI CUENTA------------------------------------------------------
 

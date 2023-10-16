@@ -14,6 +14,7 @@ public class CasaSubastasUtil {
                 "23",  0 );
         Comprador compradorAux= new Comprador("juan","Florez", "1010","19","juan","juan@gmail.com","1234",TipoUsuario.COMPRADOR,true);
         miCasa.getListaUsuarios().add(compra);
+
         miCasa.getListaCompradores().add(compra);
         miCasa.getListaAnunciantes().add(anunciante);
         miCasa.getListaCompradores().add(compradorAux);

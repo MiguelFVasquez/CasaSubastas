@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.9" class="java.beans.XMLDecoder">
+<java version="17.0.8" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.pr3.subastas.model.CasaSubasta" id="CasaSubasta0">
   <void property="listaAnunciantes">
    <void method="add">

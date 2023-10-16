@@ -55,9 +55,6 @@ public class CompradorViewController implements Initializable {
     private TextField txtApellidos;
 
     @FXML
-    private PasswordField txtContrasenia;
-
-    @FXML
     private TextField txtCorreo;
 
     @FXML
@@ -71,6 +68,11 @@ public class CompradorViewController implements Initializable {
 
     @FXML
     private TextField txtUsuario;
+
+    @FXML
+    private PasswordField txtContrasenia;
+
+
     private App aplicacion;
     private Stage stage;
 

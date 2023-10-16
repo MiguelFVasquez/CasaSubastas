@@ -34,14 +34,12 @@ public  class ArchivoUtil {
      * @param ruta es la ruta o path donde esta ubicado el archivo
      */
     public static void guardarArchivo(String ruta,String contenido, Boolean flagAnexarContenido) throws IOException {
-
         FileWriter fw = new FileWriter(ruta,flagAnexarContenido);
         BufferedWriter bfw = new BufferedWriter(fw);
         bfw.write(contenido);
         bfw.close();
         fw.close();
     }
-
     /**
      * ESte metodo retorna el contendio del archivo ubicado en una ruta,con la lista de cadenas.
      * @param ruta
@@ -64,8 +62,7 @@ public  class ArchivoUtil {
     }
 
 
-    public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo)
-    {
+    public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo) {
         String log = "";
         Logger LOGGER = Logger.getLogger(accion);
         FileHandler fileHandler =  null;
@@ -171,8 +168,6 @@ public  class ArchivoUtil {
         }
         return aux;
     }
-
-
     public static void salvarRecursoSerializado(String rutaArchivo, Object object)	throws Exception {
         ObjectOutputStream oos = null;
         try {
@@ -185,7 +180,6 @@ public  class ArchivoUtil {
                 oos.close();
         }
     }
-
 
     //---------------------MANEJO DE XML--------------------------------
 
