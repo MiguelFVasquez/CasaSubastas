@@ -1,10 +1,7 @@
 package co.edu.uniquindio.pr3.subastas.controllers;
 
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
-import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
-import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
-import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
+import co.edu.uniquindio.pr3.subastas.exceptions.*;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
@@ -274,12 +271,18 @@ public class ModelFactoryController implements IModelFactoryController {
         return miCasa.eliminarProducto(nombreUsuario,password,productoEliminar);
     }
 
-
-    public List<Producto> getListaProductosAnunciante() {
-        Anunciante anun = getMiAnunciante();
-        List<Producto> miA = anun.getListaProductos();
-        return miA;
+    //----------------------------------------------ANUNCIO VIEW---------------------------------------------------
+    public boolean crearAnuncio(String nombreUsuario, String password,String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
+        Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario, password);
+        Anuncio newAnuncio= new Anuncio(codigo,fechaInicio,fechaFinal,nombreAnunciante,producto);
+        return miCasa.crearAnuncio(anuncianteAux,newAnuncio);
     }
+
+    public boolean eliminarAnuncio(String nombreUsuario, String password, Anuncio anuncioEliminar) throws AnuncioException, AnuncianteException {
+        Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario,password);
+        return miCasa.eliminarAnuncio(anuncianteAux,anuncioEliminar);
+    }
+
 
 //-------------- SERIALIZACION
 

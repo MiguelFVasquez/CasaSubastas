@@ -178,3 +178,9 @@ oct. 16, 2023 12:30:09 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil g
 INFO: inicioSesión,Inicio de sesión,2023-10-16
 oct. 16, 2023 12:31:44 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2023-10-16
+oct. 16, 2023 1:04:55 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-16
+oct. 16, 2023 1:06:11 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-16
+oct. 16, 2023 1:07:09 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-16

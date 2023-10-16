@@ -30,9 +30,9 @@
                      <children>
                         <Pane prefHeight="64.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
                            <children>
-                              <Label layoutX="329.0" layoutY="15.0" text="Información del producto" textFill="WHITE">
+                              <Label layoutX="317.0" layoutY="16.0" text="Información del producto" textFill="WHITE">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font name="Bookman Old Style" size="27.0" />
                                  </font>
                               </Label>
                            </children>

@@ -88,10 +88,8 @@ public class MiProductoViewController implements Initializable {
 
     private Producto productoSeleccionado;
 
-    private InicioSesionViewController inicioSesionViewController;
     MiProductoController miProductoController;
-    MiCuentaViewController miCuentaViewController;
-    AnuncianteViewController anuncianteViewController;
+
     ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
 
 //--------------------Funciones utilitarias----------------------------------
@@ -161,9 +159,6 @@ public class MiProductoViewController implements Initializable {
         btnEliminarProducto.setOnMouseExited(event -> {
             btnEliminarProducto.setStyle("-fx-background-color: red; -fx-text-fill:  white");
         });
-
-
-
     }
     void limpiarCampos(){
         txtNombreProducto.clear();
