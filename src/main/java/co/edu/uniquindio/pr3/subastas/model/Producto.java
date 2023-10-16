@@ -97,8 +97,8 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto" +
-                "codigo: '" + codigo +
+        return "Producto: " +
+                "\ncodigo: '" + codigo +
                 "\nnombre:'" + nombre +
                 "\ndescripcion: '" + descripcion +
                 "\nvalorInicial: '" + valorInicial +

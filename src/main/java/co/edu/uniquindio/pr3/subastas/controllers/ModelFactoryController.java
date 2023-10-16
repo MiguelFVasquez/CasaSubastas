@@ -18,7 +18,7 @@ public class ModelFactoryController implements IModelFactoryController {
     CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    SubastaMapper mapper = SubastaMapper.INSTANCE;
+    //SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
@@ -283,7 +283,10 @@ public class ModelFactoryController implements IModelFactoryController {
         return miCasa.eliminarAnuncio(anuncianteAux,anuncioEliminar);
     }
 
-
+    public void setTxtProducto(String producto){
+        miAnuncioViewController.txtProducto.appendText(producto.toString());
+        miAnuncioViewController.txtProducto.setEditable(false);
+    }
 //-------------- SERIALIZACION
 
     private void salvarDatosPrueba() {

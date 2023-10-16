@@ -14,8 +14,19 @@ public class CasaSubastasUtil {
         Anunciante anunciante = new Anunciante("santiago","Ovalle","01","19","sa","san@gmial","23",TipoUsuario.ANUNCIANTE,false,0);
 
         Comprador compradorAux= new Comprador("juan","Florez", "1010","19","juan","juan@gmail.com","1234",TipoUsuario.COMPRADOR,true);
+
+        Producto producto = new Producto("0003","casa","una cas lampara",null,"9000",TipoProducto.HOGAR);
+
+        Anuncio anuncio= new Anuncio("0001","16/10/2023","23/10/2023","sa",producto);
+
         miCasa.getListaUsuarios().add(compra);
         miCasa.getListaUsuarios().add(anunciante);
+
+        anunciante.getListaProductos().add(producto);
+        anunciante.getListaAnuncios().add(anuncio);
+
+        miCasa.getListaAnuncios().add(anuncio);
+
 
         miCasa.getListaCompradores().add(compra);
         miCasa.getListaAnunciantes().add(anunciante);

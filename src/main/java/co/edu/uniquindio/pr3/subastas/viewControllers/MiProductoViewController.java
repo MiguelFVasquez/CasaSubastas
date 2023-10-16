@@ -72,11 +72,12 @@ public class MiProductoViewController implements Initializable {
     private Button btnActualizarProducto;
     @FXML
     private Button btnActualizarProducto1;
-
     @FXML
     private Button btnAniadirImagen;
     @FXML
     private Button btnNuevoProducto;
+    @FXML
+    private Button btnAnunciarProducto;
 
     @FXML
     private ComboBox<TipoProducto> comboBoxTipoProducto;
@@ -331,6 +332,20 @@ public class MiProductoViewController implements Initializable {
 
     }
 
+    @FXML
+    void anunciarProducto(ActionEvent event) {
+        if (productoSeleccionado!=null){
+            miProductoController.mfm.setTxtProducto(productoSeleccionado.toString());
+            mostrarMensaje("Producto anunciado","Producto anunciado","EL producto está listo para ser anunciado, dirijase a la pestaña 'Anuncios' y finalice el proceso", Alert.AlertType.INFORMATION);
+        }else{
+            mostrarMensaje("Producto selección","Producto no seleccionado","Por favor, seleccione un producto para anuncciar", Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    void anunciarProductoTecla(ActionEvent event) {
+        anunciarProducto(event);
+    }
     @FXML
     void actualizarProducto(ActionEvent event) {
 
