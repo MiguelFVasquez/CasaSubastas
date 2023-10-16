@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.MiAnuncioController;
-import co.edu.uniquindio.pr3.subastas.model.Anunciante;
-import co.edu.uniquindio.pr3.subastas.model.Anuncio;
-import co.edu.uniquindio.pr3.subastas.model.Producto;
-import co.edu.uniquindio.pr3.subastas.model.Puja;
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
+import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
+import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
+import co.edu.uniquindio.pr3.subastas.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -217,8 +217,29 @@ public class MiAnuncioViewController implements Initializable {
         if (producto==null || producto.isEmpty()){
             notificacion+="Por favor, seleccione un producto para anunciar\n";
         }
+        if (!notificacion.isEmpty()){
+            mostrarMensaje( "Notificación" , "Datos Erroneos" ,
+                    notificacion
+                    , Alert.AlertType.WARNING );
+            return false;
+        }
 
         return true;
+    }
+
+    private Producto obtenerProducto(String producto){
+        // Proceso de parsing
+        String[] lineas = producto.split("\n");
+        String codigo = lineas[1].split(":")[1].trim().replace("'", "");
+        String nombre = lineas[2].split(":")[1].trim().replace("'", "");
+        String descripcion = lineas[3].split(":")[1].trim().replace("'", "");
+        String valorInicial = lineas[4].split(":")[1].trim().replace("'", "");
+        TipoProducto tipoProducto = TipoProducto.valueOf(lineas[5].split(":")[1].trim().replace("'", ""));
+        boolean estaAnunciado = Boolean.parseBoolean(lineas[6].split(":")[1].trim());
+
+        // Crear instancia de Producto
+        Producto productoAux = new Producto(codigo, nombre, descripcion, valorInicial, tipoProducto, estaAnunciado);
+        return productoAux;
     }
 
     //--------------------Evento de los botones------------------------
@@ -238,12 +259,42 @@ public class MiAnuncioViewController implements Initializable {
 
 
     @FXML
-    void anunciarProducto(ActionEvent event) {
+    void anunciarProducto(ActionEvent event) throws ProductoException, AnuncioException, AnuncianteException {
+        //Información del anuncio
+        String nombreUsuarioAnuncio= txtNombreAnunciante.getText();
+        String codigo= txtCodigoAnuncio.getText();
+        String fechaInicial= txtFechaFinal.getValue().toString();
+        String fechaFinal= txtFechaFinal.getValue().toString();
+        String producto= txtProducto.getText();
+        //Obtenemos la intancia del producto a anunciar;
+        Producto productoAnunciar= obtenerProducto(producto);
+        //Informacion del anunciante
+        String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
+        String password= miAnuncioController.mfm.getPassword();
+
+        if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
+            crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar);
+            limpiarCampos(event);
+        }
+
 
     }
 
     @FXML
-    void anunciarProductoTecla(ActionEvent event) {
+    void anunciarProductoTecla(ActionEvent event) throws ProductoException, AnuncioException, AnuncianteException {
+        anunciarProducto(event);
+    }
+
+    private void crearAnuncio(String usuario, String password,String nombreUsuario, String codigo, String fechaInicial, String fechaFinal, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
+       try{
+           if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto)) {
+           mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
+           tableViewAnuncios.getItems().clear();
+           tableViewAnuncios.setItems(getListaAnuncios());
+           }
+       }catch (AnuncioException anuncioException){
+           mostrarMensaje( "Notificación Anuncio", "Anuncio no realizado", anuncioException.getMessage(), Alert.AlertType.INFORMATION );
+       }
 
     }
 
@@ -296,8 +347,8 @@ public class MiAnuncioViewController implements Initializable {
             }
         });
 
-        tableViewAnuncios.getItems().clear();
-        tableViewAnuncios.setItems(getListaAnuncios());
+        //tableViewAnuncios.getItems().clear();
+        //tableViewAnuncios.setItems(getListaAnuncios());
 
 
         configurarEventos();
