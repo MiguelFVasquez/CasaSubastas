@@ -203,8 +203,8 @@ public class  InicioSesionViewController implements Initializable {
                 controller.init(stage);
                 stage.show();
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
-                //txtInicioPassword.clear();
-                //txtInicioNombre.clear();
+                txtInicioPassword.clear();
+                txtInicioNombre.clear();
             }else {
                 if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
@@ -222,8 +222,8 @@ public class  InicioSesionViewController implements Initializable {
                     stage.show();
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
 
-                    //txtInicioPassword.clear();
-                    //txtInicioNombre.clear();
+                    txtInicioPassword.clear();
+                    txtInicioNombre.clear();
                 } else {
                     mostrarMensaje("Notificación", "Usuario no encontrado", "Usuario y/o contraseña incorrecta", Alert.AlertType.INFORMATION);
                     txtInicioPassword.clear();

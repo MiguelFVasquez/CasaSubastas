@@ -52,13 +52,18 @@
                         <Button fx:id="btnAniadirImagen" layoutX="629.0" layoutY="137.0" mnemonicParsing="false" onAction="#aniadirImagenProducto" prefHeight="25.0" prefWidth="211.0" style="-fx-background-color: #0697AE;" text="Añadir imagen" textFill="WHITE" />
                         <Label layoutX="500.0" layoutY="199.0" text="Previsualización" />
                         <ImageView fx:id="imageViewPrevisualizacion" fitHeight="186.0" fitWidth="257.0" layoutX="582.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnAniadirProducto" layoutX="308.0" layoutY="453.0" mnemonicParsing="false" onAction="#aniadirProducto" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Añadir" textFill="WHITE">
+                        <Button fx:id="btnAniadirProducto" layoutX="408.0" layoutY="453.0" mnemonicParsing="false" onAction="#aniadirProducto" onKeyPressed="#aniadirProductoTecla" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Añadir" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Button>
                         <Separator layoutX="10.0" layoutY="434.0" prefHeight="0.0" prefWidth="820.0" />
-                        <Button fx:id="btnActualizarProducto" layoutX="490.0" layoutY="453.0" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697aec2">
+                        <Button fx:id="btnActualizarProducto" layoutX="584.0" layoutY="453.0" mnemonicParsing="false" onAction="#actualizarProducto" onKeyPressed="#actualizarProductoTecla" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697aec2">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnNuevoProducto" layoutX="245.0" layoutY="453.0" mnemonicParsing="false" onAction="#LimpiarCampos" onKeyPressed="#LimpiarCamposTecla" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Nuevo" textFill="#0697aec2">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -90,7 +95,10 @@
                               <TableColumn fx:id="columDescripcion" prefWidth="330.0" text="Descripción" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnEliminarProducto" layoutX="396.0" layoutY="481.0" mnemonicParsing="false" onAction="#eliminarProducto" style="-fx-background-color: red;" text="Eliminar producto" textFill="WHITE" />
+                        <Button fx:id="btnEliminarProducto" layoutX="396.0" layoutY="481.0" mnemonicParsing="false" onAction="#eliminarProducto" onKeyPressed="#eliminarProductoTecla" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: red;" text="Eliminar producto" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Button>
                         <Button fx:id="btnActualizarProducto1" layoutX="743.0" layoutY="475.0" mnemonicParsing="false" onAction="#actualizarProductoInfo" prefHeight="37.0" prefWidth="117.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697aec2" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="743.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="475.0">
                            <font>
                               <Font size="19.0" />

@@ -266,7 +266,8 @@ public class ModelFactoryController implements IModelFactoryController {
     //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
     public boolean crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
         Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario,password);
-        return miCasa.crearProducto(anuncianteAux, nombre, codigo, valor, descrp, tipoProducto, image);
+        Producto newProducto= new Producto(nombre, codigo, descrp, image, valor, tipoProducto);
+        return miCasa.crearProducto(anuncianteAux, newProducto);
     }
 
     public boolean eliminarProducto(String nombreUsuario, String password, Producto productoEliminar) throws ProductoException, AnuncianteException {

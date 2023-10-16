@@ -274,14 +274,12 @@ public class CasaSubasta implements  ISubasta,Serializable {
 
     //--------------------------------------------CRUD PRODUCTO---------------------------------------------------------
 
-    public boolean crearProducto(Anunciante anunciante , String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
+    public boolean crearProducto(Anunciante anunciante , Producto newProducto) throws ProductoException, AnuncianteException {
         boolean creado= false;
-        Producto producto = new Producto(codigo,nombre,descrp,image, valor, tipoProducto,false );
-        Anunciante anuncianteAux= anunciante;
-        if (anuncianteAux==null){
+        if (anunciante ==null){
             throw new AnuncianteException("El anunciante no se encuentra registrado");
         }
-        if (anuncianteAux.crearProducto(producto)) {
+        if (anunciante.crearProducto(newProducto)) {
             creado = true;
         }else {
             throw new ProductoException("El producto no ha podido ser registrado");
@@ -299,10 +297,39 @@ public class CasaSubasta implements  ISubasta,Serializable {
         }
         if (anuncianteAux.eliminarProducto(productoEliminar)){
             eliminado=true;
-            anuncianteAux.getListaProductos().remove(productoEliminar);
         }
         return eliminado;
     }
+
+    //--------------------------CRUD DE LOS ANUNCIOS------------------------------------
+
+    public boolean crearAnuncio(Anunciante anuncianteAux, Anuncio newAnuncio   ) throws AnuncianteException, ProductoException, AnuncioException {
+        boolean creado= false;
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El anunciante no se encuentra registrado");
+        }
+        if (anuncianteAux.crearAnuncio(newAnuncio)){
+            creado= true;
+            this.listaAnuncios.add(newAnuncio);
+        }else {
+            throw new AnuncioException("El anuncio no ha podido ser creado");
+        }
+        return creado;
+    }
+
+
+    public boolean eliminarAnuncio(Anunciante anuncianteAux, Anuncio anuncioEliminar) throws AnuncianteException, AnuncioException {
+        boolean eliminado= false;
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El anunciante no encuentra registrado");
+        }
+        if (anuncianteAux.eliminarAnuncio(anuncioEliminar)){
+            eliminado=true;
+            this.listaAnuncios.remove(anuncioEliminar);
+        }
+        return eliminado;
+    }
+
 
 
 }

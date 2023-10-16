@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -60,7 +62,7 @@ public class MiProductoViewController implements Initializable {
     private TextField txtValor;
     @FXML
     private TextArea txtDescripcion;
-
+    //----------------BOTONES-----------------
     @FXML
     private Button btnAniadirProducto;
 
@@ -73,6 +75,8 @@ public class MiProductoViewController implements Initializable {
 
     @FXML
     private Button btnAniadirImagen;
+    @FXML
+    private Button btnNuevoProducto;
 
     @FXML
     private ComboBox<TipoProducto> comboBoxTipoProducto;
@@ -91,6 +95,76 @@ public class MiProductoViewController implements Initializable {
     ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
 
 //--------------------Funciones utilitarias----------------------------------
+
+    private void configurarEventos() {
+
+        //Animacion del boton de añadir
+        btnAniadirProducto.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // El botón está enfocado
+                btnAniadirProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill: #0697AE;-fx-cursor: hand");
+            } else {
+                // El botón ha perdido el foco
+                btnAniadirProducto.setStyle("-fx-background-color:   #0697AE; -fx-text-fill:WHITE");
+            }
+        });
+        //Evento cuando el mouse está sobre el boton
+        btnAniadirProducto.setOnMouseEntered(event -> {
+            btnAniadirProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+        });
+
+        // Evento para cuando el ratón sale del botón
+        btnAniadirProducto.setOnMouseExited(event -> {
+            btnAniadirProducto.setStyle("-fx-background-color:   #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+        //Animacion del boton "Nuevo"
+
+        btnNuevoProducto.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // El botón está enfocado
+                btnNuevoProducto.setStyle("-fx-background-color:   #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+            } else {
+                // El botón ha perdido el foco
+                btnNuevoProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+            }
+        });
+
+        //Evento cuando el mouse está sobre el boton
+        btnNuevoProducto.setOnMouseEntered(event -> {
+            btnNuevoProducto.setStyle("-fx-background-color:   #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
+        // Evento para cuando el ratón sale del botón
+        btnNuevoProducto.setOnMouseExited(event -> {
+            btnNuevoProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+        });
+
+        //Animacion del boton "Eliminar"
+        btnEliminarProducto.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // El botón está enfocado
+                btnEliminarProducto.setStyle("-fx-background-color: white; -fx-cursor: hand; -fx-text-fill:red; -fx-border-color: red");
+            } else {
+                // El botón ha perdido el foco
+                btnEliminarProducto.setStyle("-fx-background-color: red; -fx-text-fill:  white");
+            }
+        });
+
+
+        //Evento cuando el mouse está sobre el boton
+        btnEliminarProducto.setOnMouseEntered(event -> {
+            btnEliminarProducto.setStyle("-fx-background-color: white; -fx-cursor: hand; -fx-text-fill:red; -fx-border-color: red");
+        });
+
+        // Evento para cuando el ratón sale del botón
+        btnEliminarProducto.setOnMouseExited(event -> {
+            btnEliminarProducto.setStyle("-fx-background-color: red; -fx-text-fill:  white");
+        });
+
+
+
+    }
     void limpiarCampos(){
         txtNombreProducto.clear();
         txtCodigoProducto.clear();
@@ -165,7 +239,6 @@ public class MiProductoViewController implements Initializable {
 
         Anunciante anunciante= miProductoController.mfm.obtenerAnunciante(nombreUsuario,password);
         listaProductos.addAll(anunciante.getListaProductos());
-        System.out.println("Lista de productos del anunciante: "+anunciante.getListaProductos());
         return listaProductos;
     }
 
@@ -210,33 +283,51 @@ public class MiProductoViewController implements Initializable {
 
         }
     }
+    @FXML
+    void LimpiarCampos(ActionEvent event) {
+        txtNombreProducto.clear();
+        txtCodigoProducto.clear();
+        txtDescripcion.clear();
+        txtValor.clear();
+        imageViewPrevisualizacion.setImage(null);
+
+    }
+
+    @FXML
+    void LimpiarCamposTecla(ActionEvent event) {
+        LimpiarCampos(event);
+    }
 
     @FXML
     void aniadirProducto(ActionEvent event) throws ProductoException, AnuncianteException {
+        //Datos del producto
         String nombre = txtNombreProducto.getText();
         String codigo = txtCodigoProducto.getText();
         String valor = txtValor.getText();
         String descrp = txtDescripcion.getText();
         TipoProducto tipoProducto = comboBoxTipoProducto.getSelectionModel().getSelectedItem();
         Image image  = imageViewPrevisualizacion.getImage();
-        System.out.println("Valores capturados: "+nombre+codigo+valor+descrp+tipoProducto+image.getUrl());
+        //Datos para obtener el anunciante
         String nombreUsuario= miProductoController.mfm.getNombreUsuario();
         String password=  miProductoController.mfm.getPassword();
 
         if(validarDatos(nombre, codigo, valor, descrp, tipoProducto, image)){
             crearProducto(nombreUsuario, password,nombre, codigo, valor, descrp, tipoProducto, image);
-
-                //limpiarCampos();
+                limpiarCampos();
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
         }
     }
+    @FXML
+    void aniadirProductoTecla(ActionEvent event) throws ProductoException, AnuncianteException {
+        aniadirProducto(event);
+    }
+
     private void crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
         try{
             if (miProductoController.mfm.crearProducto(nombreUsuario, password, nombre, codigo, valor, descrp, tipoProducto, image)){
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
-                System.out.println("Lista de productos:\n"+getListaProductos().toString());
                 mostrarMensaje( "Notificación", "Producto creado", "El producto ha sido creado y agregado a tu cuenta", Alert.AlertType.INFORMATION );
             }
         }catch (ProductoException productoException){
@@ -248,6 +339,11 @@ public class MiProductoViewController implements Initializable {
     @FXML
     void actualizarProducto(ActionEvent event) {
 
+    }
+
+    @FXML
+    void actualizarProductoTecla(ActionEvent event) {
+        actualizarProducto(event);
     }
 
     @FXML
@@ -271,6 +367,10 @@ public class MiProductoViewController implements Initializable {
         }
     }
 
+    @FXML
+    void eliminarProductoTecla(ActionEvent event) throws AnuncianteException {
+        eliminarProducto(event);
+    }
     @FXML
     void actualizarProductoInfo(ActionEvent event) {
 
@@ -309,7 +409,6 @@ public class MiProductoViewController implements Initializable {
                 txtValor.setText( productoSeleccionado.getValorInicial() );
                 txtDescripcion.setText( productoSeleccionado.getDescripcion() );
                 comboBoxTipoProducto.setValue( productoSeleccionado.getTipoProducto() );
-
                 imageViewPrevisualizacion.setImage( productoSeleccionado.getImagen() );
             }
 
@@ -326,6 +425,44 @@ public class MiProductoViewController implements Initializable {
         btnActualizarProducto1.setOnMouseExited(event -> {
             btnActualizarProducto1.setStyle("-fx-background-color:  white; -fx-text-fill: black;-fx-border-color:  #0697AE;-fx-text-fill: #0697AE; -fx-cursor:  hand;");
         });
+        //Asociacion de los botones a la tecla ENTER
+        btnAniadirProducto.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    aniadirProductoTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (ProductoException e) {
+                    throw new RuntimeException(e);
+                } catch (AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        btnNuevoProducto.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                LimpiarCamposTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+
+        btnActualizarProducto.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                actualizarProductoTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+        btnEliminarProducto.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    eliminarProductoTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
+        configurarEventos();
+
+
 
 
     }
