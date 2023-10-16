@@ -87,4 +87,15 @@ public class Producto implements Serializable {
     public void setAnunciado(Boolean anunciado) {
         estaAnunciado = anunciado;
     }
+
+    @Override
+    public String toString() {
+        return "Producto" +
+                "codigo: '" + codigo +
+                "\nnombre:'" + nombre +
+                "\ndescripcion: '" + descripcion +
+                "\nvalorInicial: '" + valorInicial +
+                "\ntipoProducto: " + tipoProducto +
+                "\nestaAnunciado: " + estaAnunciado ;
+    }
 }

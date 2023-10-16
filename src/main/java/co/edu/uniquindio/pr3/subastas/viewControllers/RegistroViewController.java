@@ -106,8 +106,7 @@ public class RegistroViewController implements Initializable{
 
     private boolean crearAnunciante(String nombre , String apellidos , String id , String edad , String usuario ,
                                     String correo , String password) throws UsuarioException, AnuncianteException {
-        boolean flag = registroController.mfm.crearAnunciante(nombre, apellidos, id, edad, usuario, correo, password);
-        return flag;
+        return registroController.mfm.crearAnunciante(nombre, apellidos, id, edad, usuario, correo, password);
     }
 
 

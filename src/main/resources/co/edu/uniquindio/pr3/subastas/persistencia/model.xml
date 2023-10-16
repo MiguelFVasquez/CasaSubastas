@@ -3,37 +3,33 @@
  <object class="co.edu.uniquindio.pr3.subastas.model.CasaSubasta" id="CasaSubasta0">
   <void property="listaAnunciantes">
    <void method="add">
-    <object class="co.edu.uniquindio.pr3.subastas.model.Anunciante">
+    <object class="co.edu.uniquindio.pr3.subastas.model.Anunciante" id="Anunciante0">
      <void property="apellido">
-      <string>asdasd</string>
+      <string>Ovalle</string>
      </void>
      <void property="contrasenia">
       <string>23</string>
      </void>
      <void property="correo">
-      <string>sasdsd</string>
+      <string>san@gmial</string>
      </void>
      <void property="edad">
-      <string>34</string>
+      <string>19</string>
      </void>
      <void property="identificacion">
-      <string>2323</string>
-     </void>
-     <void property="listaAnuncios">
-      <object class="java.util.ArrayList"/>
-     </void>
-     <void property="listaProductos">
-      <object class="java.util.ArrayList">
-       <void method="add">
-        <object class="co.edu.uniquindio.pr3.subastas.model.Producto"/>
-       </void>
-      </object>
+      <string>01</string>
      </void>
      <void property="nombre">
-      <string>sasd</string>
+      <string>santiago</string>
      </void>
      <void property="nombreUsuario">
       <string>sa</string>
+     </void>
+     <void property="tipoUsuario">
+      <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
+       <class>co.edu.uniquindio.pr3.subastas.model.TipoUsuario</class>
+       <string>ANUNCIANTE</string>
+      </object>
      </void>
     </object>
    </void>
@@ -42,13 +38,13 @@
    <void method="add">
     <object class="co.edu.uniquindio.pr3.subastas.model.Comprador" id="Comprador0">
      <void property="apellido">
-      <string>asdasd</string>
+      <string>Florez</string>
      </void>
      <void property="contrasenia">
       <string>12</string>
      </void>
      <void property="correo">
-      <string>sasdsd</string>
+      <string>jose@gmail.com</string>
      </void>
      <void property="edad">
       <string>34</string>
@@ -57,13 +53,13 @@
       <string>2323</string>
      </void>
      <void property="nombre">
-      <string>sasd</string>
+      <string>Jose</string>
      </void>
      <void property="nombreUsuario">
       <string>sa</string>
      </void>
      <void property="tipoUsuario">
-      <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
+      <object class="java.lang.Enum" id="TipoUsuario1" method="valueOf">
        <class>co.edu.uniquindio.pr3.subastas.model.TipoUsuario</class>
        <string>COMPRADOR</string>
       </object>
@@ -97,7 +93,7 @@
       <string>juan</string>
      </void>
      <void property="tipoUsuario">
-      <object idref="TipoUsuario0"/>
+      <object idref="TipoUsuario1"/>
      </void>
     </object>
    </void>
@@ -105,6 +101,65 @@
   <void property="listaUsuarios">
    <void method="add">
     <object idref="Comprador0"/>
+   </void>
+   <void method="add">
+    <object idref="Anunciante0"/>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.pr3.subastas.model.Usuario">
+     <void property="apellido">
+      <string>Florez</string>
+     </void>
+     <void property="contrasenia">
+      <string>12</string>
+     </void>
+     <void property="correo">
+      <string>jose@gmail.com</string>
+     </void>
+     <void property="edad">
+      <string>34</string>
+     </void>
+     <void property="identificacion">
+      <string>2323</string>
+     </void>
+     <void property="nombre">
+      <string>Jose</string>
+     </void>
+     <void property="nombreUsuario">
+      <string>sa</string>
+     </void>
+     <void property="tipoUsuario">
+      <object idref="TipoUsuario1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.pr3.subastas.model.Usuario">
+     <void property="apellido">
+      <string>Ovalle</string>
+     </void>
+     <void property="contrasenia">
+      <string>23</string>
+     </void>
+     <void property="correo">
+      <string>san@gmial</string>
+     </void>
+     <void property="edad">
+      <string>19</string>
+     </void>
+     <void property="identificacion">
+      <string>01</string>
+     </void>
+     <void property="nombre">
+      <string>santiago</string>
+     </void>
+     <void property="nombreUsuario">
+      <string>sa</string>
+     </void>
+     <void property="tipoUsuario">
+      <object idref="TipoUsuario0"/>
+     </void>
+    </object>
    </void>
   </void>
   <void property="nombre">

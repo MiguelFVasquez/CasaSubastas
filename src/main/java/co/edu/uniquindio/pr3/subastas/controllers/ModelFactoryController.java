@@ -32,6 +32,7 @@ public class ModelFactoryController implements IModelFactoryController {
     private MiProductoViewController miProductoViewController;
     private UsuarioViewController usuarioViewController;
     private CompradorViewController compradorViewController;
+    private AnuncianteViewController anuncianteViewController;
     private Comprador comprador;
     private Anunciante anunciante;
 
@@ -66,6 +67,7 @@ public class ModelFactoryController implements IModelFactoryController {
     //METODOS DE SERIALIZACION
     public ModelFactoryController() {
         //1. inicializar datos y luego guardarlo en archivos
+
         System.out.println("Invocacion clase singleton");
         //inicializarDatos();
         //salvarDatosPrueba();
@@ -74,11 +76,11 @@ public class ModelFactoryController implements IModelFactoryController {
         //cargarDatosDesdeArchivos();
 
         //3. Guardar y Cargar el recurso serializable binario
-        cargarResourceBinario();
+        //cargarResourceBinario();
         //guardarResourceBinario();
 
         //4. Guardar y Cargar el recurso serializable XML
-        //cargarResourceXML();
+        cargarResourceXML();
         guardarResourceXML();
         //Siempre se debe verificar si la raiz del recurso es null
 
@@ -144,6 +146,10 @@ public class ModelFactoryController implements IModelFactoryController {
     public void initCompradorViewController(CompradorViewController compradorViewController){
         this.compradorViewController=compradorViewController;
     }
+    @Override
+    public void initAnuncianteViewController(AnuncianteViewController anuncianteViewController){
+        this.anuncianteViewController=anuncianteViewController;
+    }
 
     //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
@@ -183,8 +189,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
         Anunciante anun = new Anunciante( nombre, apellidos,  id,  edad, usuario,  correo,
                 password, 0);
-        boolean flag = miCasa.crearAnunciante( anun );
-        return flag;
+        return miCasa.crearAnunciante( anun );
     }
 
 
@@ -209,6 +214,15 @@ public class ModelFactoryController implements IModelFactoryController {
         miCuentaViewController.txtContrasenia.setText(comprador.getContrasenia());
         miCuentaViewController.comboBoxTipoUsuario.setValue( TipoUsuario.COMPRADOR );
     }
+    public String getNombreUsuario(){
+        return inicioSesionViewController.getNombreIniciado();
+
+    }
+    public String getPassword(){
+        return inicioSesionViewController.getPasswordIniciada();
+    }
+
+
     public void deshabilitarDatos(){
 
         miCuentaViewController.txtNombre.setEditable( false );
@@ -250,11 +264,16 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
-    public boolean crearProducto(String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException {
-        Anunciante anun = getMiAnunciante();
-        boolean flag = miCasa.crearProducto(anun, nombre, codigo, valor, descrp, tipoProducto, image);
-        return flag;
+    public boolean crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
+        Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario,password);
+        return miCasa.crearProducto(anuncianteAux, nombre, codigo, valor, descrp, tipoProducto, image);
     }
+
+    public boolean eliminarProducto(String nombreUsuario, String password, Producto productoEliminar) throws ProductoException, AnuncianteException {
+        return miCasa.eliminarProducto(nombreUsuario,password,productoEliminar);
+    }
+
+
     public List<Producto> getListaProductosAnunciante() {
         Anunciante anun = getMiAnunciante();
         List<Producto> miA = anun.getListaProductos();
@@ -294,6 +313,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
     //PUNTO 4
     private void cargarResourceXML() {
+        miCasa= Persistencia.cargarRecursoCasaSubastaXML();
     }
 
     private void guardarResourceXML() {

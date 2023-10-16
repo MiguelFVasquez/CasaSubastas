@@ -15,8 +15,8 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
 
     private static final long serialVersionUID = 1l;
     private int cantidadAnuncios;
-    private List<Anuncio> listaAnuncios;
-    private List<Producto> listaProductos;
+    private List<Anuncio> listaAnuncios= new ArrayList<>();
+    private List<Producto> listaProductos= new ArrayList<>();
 
     //Constructores
     public Anunciante() {
@@ -31,12 +31,10 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
 
     public Anunciante(String nombres, String apellidos, String identificacion, String edad,
                       String nombreUsuario, String correo, String contrasenia,
-                      TipoUsuario tipoUsuario, boolean autenticado, int cantidadAnuncios,
-                      List<Anuncio> listaAnuncios, List<Producto> listaProductos) {
+                      TipoUsuario tipoUsuario, boolean autenticado, int cantidadAnuncios) {
         super(nombres, apellidos, identificacion, edad, nombreUsuario, correo, contrasenia, tipoUsuario, autenticado);
         this.cantidadAnuncios = cantidadAnuncios;
-        this.listaAnuncios = listaAnuncios;
-        this.listaProductos = listaProductos;
+
     }
 
     public Anunciante(String nombres, String apellidos, String identificacion, String edad, String nombreUsuario, String correo,
@@ -46,6 +44,8 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
         this.listaProductos = new ArrayList<>();
         this.cantidadAnuncios = cantidadAnuncios;
     }
+
+
     //Getters y Setters
 
     public int getCantidadAnuncios() {
@@ -95,7 +95,6 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
             encontrado=true;
         }
         return encontrado;
-
     }
 
 
@@ -120,7 +119,8 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
      */
     @Override
     public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException,ProductoException {
-        boolean creado= false;
+        boolean creado= true;
+
         if (verificarAnuncio(newAnuncio.getCodigo())){
             throw new AnuncioException("Ya existe un anuncio con el código: "+ newAnuncio.getCodigo());
         }
@@ -132,7 +132,7 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
             creado=true;
             listaAnuncios.add(newAnuncio);
         }
-
+        listaAnuncios.add(newAnuncio);
         return creado;
     }
 
@@ -211,11 +211,12 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
     @Override
     public boolean crearProducto(Producto newProducto) throws ProductoException {
         boolean creado= false;
+
         if (verificarProducto(newProducto.getCodigo())){
             throw new ProductoException("El producto con código: "+ newProducto.getCodigo()+" ya se encuentra registrado");
         }else{
             creado=true;
-            listaProductos.add(newProducto);
+            this.listaProductos.add(newProducto);
         }
         return creado;
     }

@@ -62,6 +62,7 @@ public class  InicioSesionViewController implements Initializable {
 
 
     public String getNombreIniciado() {
+        nombreIniciado= txtInicioNombre.getText();
         return nombreIniciado;
     }
 
@@ -70,6 +71,7 @@ public class  InicioSesionViewController implements Initializable {
     }
 
     public String getPasswordIniciada() {
+        passwordIniciada= txtInicioPassword.getText();
         return passwordIniciada;
     }
 
@@ -77,6 +79,14 @@ public class  InicioSesionViewController implements Initializable {
         this.passwordIniciada = paswordIniciada;
     }
 
+
+    public TextField getTxtInicioNombre() {
+        return txtInicioNombre;
+    }
+
+    public PasswordField getTxtInicioPassword() {
+        return txtInicioPassword;
+    }
 
     //---------------FUNCIONES UTILITARIAS----------------------------------------
     private boolean validarDatos(String nombre , String contraseña) {
@@ -129,8 +139,6 @@ public class  InicioSesionViewController implements Initializable {
     }
 
 //--------------------MANEJO DEL FOCUS DE LOS BOTONES-----------------------------
-
-
 
     private void configurarEventos() {
         btnIniciar.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -195,8 +203,8 @@ public class  InicioSesionViewController implements Initializable {
                 controller.init(stage);
                 stage.show();
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
-                txtInicioPassword.clear();
-                txtInicioNombre.clear();
+                //txtInicioPassword.clear();
+                //txtInicioNombre.clear();
             }else {
                 if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
@@ -210,12 +218,12 @@ public class  InicioSesionViewController implements Initializable {
                     Scene scene = new Scene(anchorPane);
                     Stage stage = new Stage();
                     stage.setScene(scene);
-                    controller.init(stage);
+                    controller.init(stage,this);
                     stage.show();
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
 
-                    txtInicioPassword.clear();
-                    txtInicioNombre.clear();
+                    //txtInicioPassword.clear();
+                    //txtInicioNombre.clear();
                 } else {
                     mostrarMensaje("Notificación", "Usuario no encontrado", "Usuario y/o contraseña incorrecta", Alert.AlertType.INFORMATION);
                     txtInicioPassword.clear();
@@ -256,6 +264,10 @@ public class  InicioSesionViewController implements Initializable {
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
+        inicioSesionController = new InicioSesionController();
+        inicioSesionController.mfm.initInicioSesionViewController(this);
+
+
         btnIniciar.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 try {

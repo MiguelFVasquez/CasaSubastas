@@ -4,14 +4,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.application.App;
-import co.edu.uniquindio.pr3.subastas.model.Anunciante;
-import co.edu.uniquindio.pr3.subastas.model.Comprador;
-import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
-import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
+import co.edu.uniquindio.pr3.subastas.controllers.AnuncianteController;
+import co.edu.uniquindio.pr3.subastas.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -48,24 +49,19 @@ public class AnuncianteViewController implements Initializable {
     private Button btnActualizarInformacion1;
     //------TABLE VIEW----------------
     @FXML
-    private TableView<?> tableViewProductos;
+    private TableView<Producto> tableViewProductos;
     @FXML
-    private TableColumn<?, ?> columCodigo;
-
+    private TableColumn<Producto, String> columTipoProducto;
     @FXML
-    private TableColumn<?, ?> columDescripcion;
-
+    private TableColumn<Producto, Boolean> columnAnunciado;
     @FXML
-    private TableColumn<?, ?> columNombreProducto;
-
+    private TableColumn<Producto, String> columCodigo;
     @FXML
-    private TableColumn<?, ?> columPrecio;
-
+    private TableColumn<Producto, String> columPrecio;
     @FXML
-    private TableColumn<?, ?> columTipoProducto;
-
+    private TableColumn<Producto, String> columDescripcion;
     @FXML
-    private ComboBox<TipoProducto> comboBoxTipoProducto;
+    private TableColumn<Producto, String> columNombreProducto;
 
 
     @FXML
@@ -94,27 +90,54 @@ public class AnuncianteViewController implements Initializable {
     private App aplicacion;
 
     private Stage stage;
-
+    private InicioSesionViewController inicioSesionViewController;
     MiCuentaViewController miCuentaViewController= new MiCuentaViewController();
+    AnuncianteController anuncianteController;
 
-    @FXML
-    void initialize() {
-    }
-
-    public void setAplicacion(App aplicacion) {
-        this.aplicacion = aplicacion;
-
-    }
-    public void init(Stage stage2) {
-        this.stage = stage2;
-    }
+    ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
 
     public void setInfoCuenta(Anunciante anunciante) {
         miCuentaViewController.setInfoCuentaAnunciante(anunciante);
     }
 
+    public String getNombreUsuario(){
+        return inicioSesionViewController.getNombreIniciado();
+
+    }
+    public String getPassword(){
+        return inicioSesionViewController.getPasswordIniciada();
+    }
+
+    private ObservableList<Producto> getListaProductos() {
+        String nombreUsuario= anuncianteController.mfm.getNombreUsuario();
+        String password=  anuncianteController.mfm.getPassword();
+
+        Anunciante anunciante= anuncianteController.mfm.obtenerAnunciante(nombreUsuario,password);
+        listaProductos.addAll(anunciante.getListaProductos());
+
+        return listaProductos;
+    }
+
+
+
+    //-------------Funciones para el inicio de la ventana--------------------------------
+    public void setAplicacion(App aplicacion) {
+        this.aplicacion = aplicacion;
+
+    }
+    public void init(Stage stage2, InicioSesionViewController inicioSesionViewController) {
+        this.inicioSesionViewController=inicioSesionViewController;
+        this.stage = stage2;
+    }
+
+    @FXML
+    void initialize() {
+    }
+
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
+        anuncianteController= new AnuncianteController();
+        anuncianteController.mfm.initAnuncianteViewController(this);
 
     }
 

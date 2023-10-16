@@ -1,9 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
-import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
-import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
-import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
+import co.edu.uniquindio.pr3.subastas.exceptions.*;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.ISubasta;
 import javafx.scene.image.Image;
 
@@ -277,12 +274,35 @@ public class CasaSubasta implements  ISubasta,Serializable {
 
     //--------------------------------------------CRUD PRODUCTO---------------------------------------------------------
 
-    public boolean crearProducto(Anunciante anunciante , String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException {
+    public boolean crearProducto(Anunciante anunciante , String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
+        boolean creado= false;
         Producto producto = new Producto(codigo,nombre,descrp,image, valor, tipoProducto,false );
-        boolean flag = anunciante.crearProducto(producto );
-        return flag;
+        Anunciante anuncianteAux= anunciante;
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El anunciante no se encuentra registrado");
+        }
+        if (anuncianteAux.crearProducto(producto)) {
+            creado = true;
+        }else {
+            throw new ProductoException("El producto no ha podido ser registrado");
+        }
+
+        return creado;
     }
 
+
+    public boolean eliminarProducto(String nombreUsuario, String password, Producto productoEliminar) throws AnuncianteException, ProductoException {
+        boolean eliminado=false;
+        Anunciante anuncianteAux= obtenerAnunciante(nombreUsuario,password);
+        if (anuncianteAux==null){
+            throw new AnuncianteException("El anunciante no se encuentra registrado");
+        }
+        if (anuncianteAux.eliminarProducto(productoEliminar)){
+            eliminado=true;
+            anuncianteAux.getListaProductos().remove(productoEliminar);
+        }
+        return eliminado;
+    }
 
 
 }
