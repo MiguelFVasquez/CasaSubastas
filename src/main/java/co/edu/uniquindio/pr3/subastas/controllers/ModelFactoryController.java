@@ -261,9 +261,9 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
-    public boolean crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
+    public boolean crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image,boolean anunciado) throws ProductoException, AnuncianteException {
         Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario,password);
-        Producto newProducto= new Producto(nombre, codigo, descrp, image, valor, tipoProducto);
+        Producto newProducto= new Producto(codigo, nombre, descrp, image, valor, tipoProducto, anunciado);
         return miCasa.crearProducto(anuncianteAux, newProducto);
     }
 
@@ -283,9 +283,13 @@ public class ModelFactoryController implements IModelFactoryController {
         return miCasa.eliminarAnuncio(anuncianteAux,anuncioEliminar);
     }
 
-    public void setTxtProducto(String producto){
+    public void setInfoAnuncioProducto(String producto, Image imagen, String codigo){
         miAnuncioViewController.txtProducto.appendText(producto);
         miAnuncioViewController.txtProducto.setEditable(false);
+        miAnuncioViewController.ImageViewProductoSeleccionado.setImage(imagen);
+        miAnuncioViewController.txtCodigoAnuncio.setText(codigo);
+        miAnuncioViewController.txtCodigoAnuncio.setEditable(false);
+
     }
 //-------------- SERIALIZACION
 

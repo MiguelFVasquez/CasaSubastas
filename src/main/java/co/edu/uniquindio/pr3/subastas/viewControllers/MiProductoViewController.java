@@ -1,8 +1,8 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.MiProductoController;
@@ -139,6 +139,25 @@ public class MiProductoViewController implements Initializable {
             btnNuevoProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
         });
 
+        btnAnunciarProducto.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // El botón está enfocado
+                btnAnunciarProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill: #0697AE;-fx-cursor: hand");
+            } else {
+                // El botón ha perdido el foco
+                btnAnunciarProducto.setStyle("-fx-background-color:   #0697AE; -fx-text-fill:WHITE");
+            }
+        });
+        //Evento cuando el mouse está sobre el boton
+        btnAnunciarProducto.setOnMouseEntered(event -> {
+            btnAnunciarProducto.setStyle("-fx-background-color: white; -fx-border-color:  #0697AE; -fx-text-fill:  #0697AE");
+        });
+
+        // Evento para cuando el ratón sale del botón
+        btnAnunciarProducto.setOnMouseExited(event -> {
+            btnAnunciarProducto.setStyle("-fx-background-color:   #0697AE; -fx-cursor: hand; -fx-text-fill:WHITE");
+        });
+
         //Animacion del boton "Eliminar"
         btnEliminarProducto.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
@@ -242,6 +261,25 @@ public class MiProductoViewController implements Initializable {
         tableViewProductos.setItems( getListaProductos() );
     }
 
+    private  String mezclarPalabras(String palabra1, String palabra2) {
+        // Concatenar las dos palabras
+        String palabraConcatenada = palabra1 + palabra2;
+
+        // Convertir la palabra concatenada a un array de caracteres
+        char[] caracteres = palabraConcatenada.toCharArray();
+
+        // Usar el algoritmo de Fisher-Yates para mezclar los caracteres
+        Random rand = new Random();
+        for (int i = caracteres.length - 1; i > 0; i--) {
+            int indiceAleatorio = rand.nextInt(i + 1);
+
+            // Intercambiar caracteres
+            char temp = caracteres[i];
+            caracteres[i] = caracteres[indiceAleatorio];
+            caracteres[indiceAleatorio] = temp;
+        }
+        return new String(caracteres);
+    }
     private boolean confirmacionAlert(){
         // Crear una alerta de tipo CONFIRMATION
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -303,12 +341,13 @@ public class MiProductoViewController implements Initializable {
         String descrp = txtDescripcion.getText();
         TipoProducto tipoProducto = comboBoxTipoProducto.getSelectionModel().getSelectedItem();
         Image image  = imageViewPrevisualizacion.getImage();
+        boolean anunciado=false;
         //Datos para obtener el anunciante
         String nombreUsuario= miProductoController.mfm.getNombreUsuario();
         String password=  miProductoController.mfm.getPassword();
 
         if(validarDatos(nombre, codigo, valor, descrp, tipoProducto, image)){
-            crearProducto(nombreUsuario, password,nombre, codigo, valor, descrp, tipoProducto, image);
+            crearProducto(nombreUsuario, password,nombre, codigo, valor, descrp, tipoProducto, image,anunciado);
                 limpiarCampos();
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
@@ -319,9 +358,9 @@ public class MiProductoViewController implements Initializable {
         aniadirProducto(event);
     }
 
-    private void crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image) throws ProductoException, AnuncianteException {
+    private void crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor , String descrp , TipoProducto tipoProducto , Image image, boolean anunciado) throws ProductoException, AnuncianteException {
         try{
-            if (miProductoController.mfm.crearProducto(nombreUsuario, password, nombre, codigo, valor, descrp, tipoProducto, image)){
+            if (miProductoController.mfm.crearProducto(nombreUsuario, password, nombre, codigo, valor, descrp, tipoProducto, image,anunciado)){
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
                 mostrarMensaje( "Notificación", "Producto creado", "El producto ha sido creado y agregado a tu cuenta", Alert.AlertType.INFORMATION );
@@ -335,7 +374,9 @@ public class MiProductoViewController implements Initializable {
     @FXML
     void anunciarProducto(ActionEvent event) {
         if (productoSeleccionado!=null){
-            miProductoController.mfm.setTxtProducto(productoSeleccionado.toString());
+            String codigo=mezclarPalabras(productoSeleccionado.getCodigo(),productoSeleccionado.getNombre());
+            miProductoController.mfm.setInfoAnuncioProducto(productoSeleccionado.toString(),productoSeleccionado.getImagen(),codigo);
+            productoSeleccionado.setAnunciado(true);
             mostrarMensaje("Producto anunciado","Producto anunciado","EL producto está listo para ser anunciado, dirijase a la pestaña 'Anuncios' y finalice el proceso", Alert.AlertType.INFORMATION);
         }else{
             mostrarMensaje("Producto selección","Producto no seleccionado","Por favor, seleccione un producto para anuncciar", Alert.AlertType.WARNING);
@@ -468,6 +509,13 @@ public class MiProductoViewController implements Initializable {
                 }
             }
         });
+
+        btnAnunciarProducto.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                anunciarProductoTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+
 
 
         configurarEventos();

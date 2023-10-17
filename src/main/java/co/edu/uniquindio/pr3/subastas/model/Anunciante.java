@@ -119,7 +119,7 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
      */
     @Override
     public boolean crearAnuncio(Anuncio newAnuncio) throws AnuncioException,ProductoException {
-        boolean creado= true;
+        boolean creado= false;
 
         if (verificarAnuncio(newAnuncio.getCodigo())){
             throw new AnuncioException("Ya existe un anuncio con el código: "+ newAnuncio.getCodigo());
@@ -128,11 +128,15 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
                                                                                         // podra crear un anuncio
             throw new ProductoException("El producto que quiere anunciar no existe");
         }
+        else if (newAnuncio.getProducto().getAnunciado()){
+            throw new ProductoException("El producto ya se encuentra anunciado");//Si el producto ya se encuentra anunciado no se puede volver a anunciar
+        }
         else {
+            newAnuncio.getProducto().setAnunciado(true);
             creado=true;
             listaAnuncios.add(newAnuncio);
         }
-        listaAnuncios.add(newAnuncio);
+
         return creado;
     }
 
@@ -171,6 +175,7 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
             throw new AnuncioException("El anuncio que desea eliminar no se ha sido encontrado");
         }else {
             eliminado=true;
+            anuncioEliminar.getProducto().setAnunciado(false);
             listaAnuncios.remove(anuncioAux);
         }
         return eliminado;

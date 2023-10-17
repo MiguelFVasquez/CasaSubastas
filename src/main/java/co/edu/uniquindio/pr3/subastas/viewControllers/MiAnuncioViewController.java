@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.MiAnuncioController;
@@ -18,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 
 public class MiAnuncioViewController implements Initializable {
 
@@ -46,7 +49,7 @@ public class MiAnuncioViewController implements Initializable {
     @FXML
     private TextField txtNombreAnunciante;
     @FXML
-    private TextField txtCodigoAnuncio;
+    public TextField txtCodigoAnuncio;
     @FXML
     public TextArea txtProducto;
     @FXML
@@ -62,6 +65,9 @@ public class MiAnuncioViewController implements Initializable {
     private Button btnEliminar;
     @FXML
     private Button btnActualizar;
+
+    @FXML
+    public ImageView ImageViewProductoSeleccionado;
     //--------------------Variables auxiliares--------------------
 
     MiAnuncioController miAnuncioController;
@@ -242,10 +248,39 @@ public class MiAnuncioViewController implements Initializable {
         return productoAux;
     }
 
+    private boolean confirmacionAlert(){
+        // Crear una alerta de tipo CONFIRMATION
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("¿Está seguro de que quiere hacer esta acción?");
+
+        // Configurar los botones
+        ButtonType buttonTypeContinuar = new ButtonType("Continuar");
+        ButtonType buttonTypeCancelar = new ButtonType("Cancelar");
+
+        alert.getButtonTypes().setAll(buttonTypeContinuar, buttonTypeCancelar);
+
+        // Mostrar la alerta y esperar a que el usuario haga clic en un botón
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
+    }
+
+    /**
+     * Metodo para obtener el estado del producto, si está anunciado no se puede volver a anunciar
+     * @param productoAnunciar
+     * @return
+     */
+
+    public boolean verificarEstadoProducto(Producto productoAnunciar){
+        return productoAnunciar.getAnunciado();
+    }
+
+
     //--------------------Evento de los botones------------------------
     @FXML
     void limpiarCampos(ActionEvent event) {
-        txtNombreAnunciante.clear();
+        //txtNombreAnunciante.clear();
         txtCodigoAnuncio.clear();
         txtFechaInicio.setValue(null);
         txtFechaFinal.setValue(null);
@@ -275,8 +310,9 @@ public class MiAnuncioViewController implements Initializable {
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
             crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar);
             limpiarCampos(event);
+            tableViewAnuncios.getItems().clear();
+            tableViewAnuncios.setItems(getListaAnuncios());
         }
-
 
     }
 
@@ -288,9 +324,7 @@ public class MiAnuncioViewController implements Initializable {
     private void crearAnuncio(String usuario, String password,String nombreUsuario, String codigo, String fechaInicial, String fechaFinal, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
        try{
            if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto)) {
-           mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
-           tableViewAnuncios.getItems().clear();
-           tableViewAnuncios.setItems(getListaAnuncios());
+               mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
            }
        }catch (AnuncioException anuncioException){
            mostrarMensaje( "Notificación Anuncio", "Anuncio no realizado", anuncioException.getMessage(), Alert.AlertType.INFORMATION );
@@ -309,13 +343,30 @@ public class MiAnuncioViewController implements Initializable {
     }
 
     @FXML
-    void eliminarAnuncio(ActionEvent event) {
+    void eliminarAnuncio(ActionEvent event) throws AnuncioException, AnuncianteException {
+        String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
+        String password= miAnuncioController.mfm.getPassword();
+        
+        if (anuncioSeleccionado!=null){
+            try{
+                if (confirmacionAlert()){
+                    if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioSeleccionado)){
+                        listaAnuncios.remove(anuncioSeleccionado);
+                        mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
+                    }
+                }
+            }catch (AnuncioException anuncioException){
+                mostrarMensaje("Elimininación de anuncio", "Producto no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
+            }
 
+        }else{
+            mostrarMensaje("Selección de anuncio", "Anuncio no seleccionado", "Seleccione primero un anuncio para poder eliminarlo",Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
-    void eliminarAnuncioTecla(ActionEvent event) {
-
+    void eliminarAnuncioTecla(ActionEvent event) throws AnuncioException, AnuncianteException {
+        eliminarAnuncio(event);
     }
 
     @FXML
@@ -347,9 +398,34 @@ public class MiAnuncioViewController implements Initializable {
             }
         });
 
-        //tableViewAnuncios.getItems().clear();
-        //tableViewAnuncios.setItems(getListaAnuncios());
+        tableViewAnuncios.getItems().clear();
+        tableViewAnuncios.setItems(getListaAnuncios());
 
+        btnAnunciar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    anunciarProductoTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (ProductoException | AnuncioException | AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        btnNuevo.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                limpiarCamposTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+
+        btnEliminar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    eliminarAnuncioTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (AnuncioException | AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         configurarEventos();
     }
