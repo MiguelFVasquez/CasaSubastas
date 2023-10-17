@@ -2,6 +2,7 @@ package co.edu.uniquindio.pr3.subastas.controllers;
 
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.exceptions.*;
+import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
@@ -18,7 +19,7 @@ public class ModelFactoryController implements IModelFactoryController {
     CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    //SubastaMapper mapper = SubastaMapper.INSTANCE;
+    SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
