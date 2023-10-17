@@ -98,12 +98,13 @@ public class Producto implements Serializable {
         this.tipoProducto = tipoProducto;
     }
 
-    public Boolean getAnunciado() {
+
+    public Boolean getEstaAnunciado() {
         return estaAnunciado;
     }
 
-    public void setAnunciado(Boolean anunciado) {
-        estaAnunciado = anunciado;
+    public void setEstaAnunciado(Boolean estaAnunciado) {
+        this.estaAnunciado = estaAnunciado;
     }
 
     @Override

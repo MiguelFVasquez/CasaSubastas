@@ -19,7 +19,7 @@ public class ModelFactoryController implements IModelFactoryController {
     CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    SubastaMapper mapper = SubastaMapper.INSTANCE;
+    //SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
@@ -196,7 +196,6 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
 
-
     public boolean crearComprador(String nombre , String apellidos , String id , String edad , String usuario ,
                                   String correo , String password) throws UsuarioException, CompradorException {
         List<Puja> pujas = new ArrayList<>();
@@ -282,6 +281,7 @@ public class ModelFactoryController implements IModelFactoryController {
     public boolean crearAnuncio(String nombreUsuario, String password,String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
         Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario, password);
         Anuncio newAnuncio= new Anuncio(codigo,fechaInicio,fechaFinal,nombreAnunciante,producto);
+
         return miCasa.crearAnuncio(anuncianteAux,newAnuncio);
     }
 
@@ -304,6 +304,9 @@ public class ModelFactoryController implements IModelFactoryController {
         subastaViewController.tableViewAnuncios.setItems(listaAnuncios);
     }
 
+    public void actualizarTableView(){
+        miProductoViewController.tableViewProductos.refresh();
+    }
 
     //---------------SERIALIZACION----------------------------------------
 
@@ -314,6 +317,14 @@ public class ModelFactoryController implements IModelFactoryController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        /*
+        try{
+            Persistencia.guardarAnuncios(getMiCasa().getListaAnuncios());
+            System.out.println("Serializado de anuncios");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+
     }
 
     //PUNTO 2 METODO
@@ -325,6 +336,7 @@ public class ModelFactoryController implements IModelFactoryController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     //PUNTO 3

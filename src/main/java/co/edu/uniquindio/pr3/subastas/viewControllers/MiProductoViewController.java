@@ -12,6 +12,8 @@ import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Producto;
 import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class MiProductoViewController implements Initializable {
 
@@ -40,11 +43,11 @@ public class MiProductoViewController implements Initializable {
 
     //---------Table view-------------------
     @FXML
-    private TableView<Producto> tableViewProductos;
+    public TableView<Producto> tableViewProductos;
     @FXML
     private TableColumn<Producto, String> columTipoProducto;
-    //@FXML
-    //private TableColumn<Producto, Boolean> columnAnunciado;
+    @FXML
+    private TableColumn<Producto, Boolean> columnAnunciado;
     @FXML
     private TableColumn<Producto, String> columCodigo;
     @FXML
@@ -93,6 +96,7 @@ public class MiProductoViewController implements Initializable {
     MiProductoController miProductoController;
 
     ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
+
 
 //--------------------Funciones utilitarias----------------------------------
 
@@ -378,7 +382,8 @@ public class MiProductoViewController implements Initializable {
         if (productoSeleccionado!=null){
             String codigo=mezclarPalabras(productoSeleccionado.getCodigo(),productoSeleccionado.getNombre());
             miProductoController.mfm.setInfoAnuncioProducto(productoSeleccionado.toString(),productoSeleccionado.getImagen(),codigo);
-            productoSeleccionado.setAnunciado(true);
+            productoSeleccionado.setEstaAnunciado(true);
+            //tableViewProductos.refresh();
             mostrarMensaje("Producto anunciado","Producto anunciado","EL producto está listo para ser anunciado, dirijase a la pestaña 'Anuncios' y finalice el proceso", Alert.AlertType.INFORMATION);
         }else{
             mostrarMensaje("Producto selección","Producto no seleccionado","Por favor, seleccione un producto para anuncciar", Alert.AlertType.WARNING);
@@ -448,7 +453,8 @@ public class MiProductoViewController implements Initializable {
         this.columDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         this.columPrecio.setCellValueFactory(new PropertyValueFactory<>("valorInicial"));
         this.columTipoProducto.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
-        //this.columnAnunciado.setCellValueFactory(new PropertyValueFactory<>("estaAnunciado"));
+        this.columnAnunciado.setCellValueFactory(new PropertyValueFactory<>("estaAnunciado"));
+
 
         btnActualizarProducto1.setVisible( false );
         btnEliminarProducto.setVisible( false );
@@ -519,12 +525,7 @@ public class MiProductoViewController implements Initializable {
             }
         });
 
-
-
         configurarEventos();
-
-
-
 
     }
 }

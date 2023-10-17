@@ -25,6 +25,8 @@ public class Persistencia {
     //RUTAS
 
     public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/archivos/archivoUsuarios.txt";
+
+    public static final String RUTA_ARCHIVO_ANUNCIOS= "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/archivos/archivoAnuncios.txt";
     public static final String RUTA_ARCHIVO_LOG = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/log/casaSubastas_Log.txt";
     public static final String RUTA_ARCHIVO_MODELO_CASASUBASTA_BINARIO = "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.dat";
 
@@ -36,9 +38,12 @@ public class Persistencia {
         if (usuariosCargados.size() > 0) {
             casaSubasta.getListaUsuarios().addAll(usuariosCargados);
         }
-
+        /*
         //Cargar archivos de anuncios
-
+        ArrayList<Anuncio> anunciosCargados= cargarAnuncios();
+        if (anunciosCargados.size()>0){
+            casaSubasta.getListaAnuncios().addAll(anunciosCargados);
+        }*/
         //Cargar Archivos de anunciantes
 
         //Cargar Archivos de Compras
@@ -69,6 +74,19 @@ public class Persistencia {
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, false);
     }
+    public static void guardarAnuncios(List<Anuncio> listaAnuncios) throws IOException {
+        String contenido = "";
+        for (Anuncio anuncio : listaAnuncios) {
+            contenido += anuncio.getNombreAnunciante() + "@@"
+                    + anuncio.getCodigo() + "@@"
+                    + anuncio.getFechaInicio() + "@@"
+                    + anuncio.getFechaFinal() + "@@"
+                    + anuncio.getProducto() + "@@"
+                    + anuncio.getListaPujas() + "@@" ;
+        }
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIOS, contenido, false);
+    }
+
 
 
 //	----------------------LOADS------------------------
@@ -93,6 +111,26 @@ public class Persistencia {
             usuarios.add(usuario);
         }
         return usuarios;
+    }
+
+
+    private static ArrayList<Anuncio> cargarAnuncios() throws IOException {
+        ArrayList<Anuncio> anuncios= new ArrayList<>();
+        ArrayList<String> contenido= ArchivoUtil.leerArchivo(RUTA_ARCHIVO_ANUNCIOS);
+        String linea="";
+        for (int i = 0; i < contenido.size(); i++) {
+            linea = contenido.get(i);//
+            Anuncio anuncio= new Anuncio();
+            anuncio.setNombreAnunciante(linea.split("@@")[0]);
+            anuncio.setCodigo(linea.split("@@")[1]);
+            anuncio.setFechaInicio(linea.split("@@")[2]);
+            anuncio.setFechaFinal(linea.split("@@")[3]);
+            anuncio.setProducto(linea.split("@@")[4]);
+            //anuncio.setListaPujas(linea.split("@@")[5]);
+            anuncios.add(anuncio);
+        }
+
+        return anuncios;
     }
 
     public static boolean iniciarSesion(String usuario, String contrasenia) throws FileNotFoundException, IOException, UsuarioException {

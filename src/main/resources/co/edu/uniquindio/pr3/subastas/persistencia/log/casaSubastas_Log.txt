@@ -252,3 +252,53 @@ oct. 17, 2023 11:57:04 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil g
 INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
 oct. 17, 2023 11:57:10 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
+oct. 17, 2023 2:29:33 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:03:28 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:26:11 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:26:56 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:27:22 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:27:54 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:29:32 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:30:28 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 3:30:35 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
+oct. 17, 2023 3:31:47 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:33:58 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:34:30 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:52:01 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 3:52:37 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 3:52:54 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 3:53:14 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 4:06:39 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 4:07:18 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 4:07:38 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 4:12:01 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 4:13:07 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 4:13:21 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 4:13:33 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un producto,Eliminación de producto,2023-10-17
+oct. 17, 2023 4:14:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
+oct. 17, 2023 4:14:42 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17

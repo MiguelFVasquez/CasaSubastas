@@ -273,7 +273,7 @@ public class MiAnuncioViewController implements Initializable {
      */
 
     public boolean verificarEstadoProducto(Producto productoAnunciar){
-        return productoAnunciar.getAnunciado();
+        return productoAnunciar.getEstaAnunciado();
     }
 
 
@@ -285,6 +285,7 @@ public class MiAnuncioViewController implements Initializable {
         txtFechaInicio.setValue(null);
         txtFechaFinal.setValue(null);
         txtProducto.clear();
+        ImageViewProductoSeleccionado.setImage(null);
     }
 
     @FXML
@@ -308,12 +309,17 @@ public class MiAnuncioViewController implements Initializable {
         String password= miAnuncioController.mfm.getPassword();
 
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
-            crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar);
-            limpiarCampos(event);
-            tableViewAnuncios.getItems().clear();
-            tableViewAnuncios.setItems(getListaAnuncios());
-            //Añadimos el anuncio a la table view del comprador
-            //miAnuncioController.mfm.setTableView(getListaAnuncios());
+            if (!productoAnunciar.getEstaAnunciado()){
+                crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar);
+                limpiarCampos(event);
+                tableViewAnuncios.getItems().clear();
+                tableViewAnuncios.setItems(getListaAnuncios());
+                miAnuncioController.mfm.actualizarTableView();
+                //Añadimos el anuncio a la table view del comprador
+                //miAnuncioController.mfm.setTableView(getListaAnuncios());
+            }else {
+                mostrarMensaje("Anuncio de producto", "Producto no anunciado","El producto ya se encuentra anunciado, por lo que no se puede volver a anunciar", Alert.AlertType.WARNING);
+            }
         }
 
     }

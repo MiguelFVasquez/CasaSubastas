@@ -19,6 +19,51 @@
      <void property="identificacion">
       <string>01</string>
      </void>
+     <void property="listaAnuncios">
+      <void method="add">
+       <object class="co.edu.uniquindio.pr3.subastas.model.Anuncio" id="Anuncio0">
+        <void property="codigo">
+         <string>0001</string>
+        </void>
+        <void property="fechaFinal">
+         <string>23/10/2023</string>
+        </void>
+        <void property="fechaInicio">
+         <string>16/10/2023</string>
+        </void>
+        <void property="nombreAnunciante">
+         <string>sa</string>
+        </void>
+        <void property="producto">
+         <object class="co.edu.uniquindio.pr3.subastas.model.Producto" id="Producto0">
+          <void property="codigo">
+           <string>0003</string>
+          </void>
+          <void property="descripcion">
+           <string>una cas lampara</string>
+          </void>
+          <void property="nombre">
+           <string>casa</string>
+          </void>
+          <void property="tipoProducto">
+           <object class="java.lang.Enum" method="valueOf">
+            <class>co.edu.uniquindio.pr3.subastas.model.TipoProducto</class>
+            <string>HOGAR</string>
+           </object>
+          </void>
+          <void property="valorInicial">
+           <string>9000</string>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object idref="Producto0"/>
+      </void>
+     </void>
      <void property="nombre">
       <string>santiago</string>
      </void>
@@ -32,6 +77,11 @@
       </object>
      </void>
     </object>
+   </void>
+  </void>
+  <void property="listaAnuncios">
+   <void method="add">
+    <object idref="Anuncio0"/>
    </void>
   </void>
   <void property="listaCompradores">

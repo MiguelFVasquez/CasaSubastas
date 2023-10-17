@@ -1,0 +1,7 @@
+sa@@0001@@16/10/2023@@23/10/2023@@Producto: 
+codigo: '0003
+nombre:'casa
+descripcion: 'una cas lampara
+valorInicial: '9000
+tipoProducto: HOGAR
+estaAnunciado: null@@null@@

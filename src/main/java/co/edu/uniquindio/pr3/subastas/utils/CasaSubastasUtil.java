@@ -15,7 +15,7 @@ public class CasaSubastasUtil {
 
         Comprador compradorAux= new Comprador("juan","Florez", "1010","19","juan","juan@gmail.com","1234",TipoUsuario.COMPRADOR,true);
 
-        Producto producto = new Producto("0003","casa","una cas lampara",null,"9000",TipoProducto.HOGAR);
+        Producto producto = new Producto("0003","casa","una cas lampara",null,"9000",TipoProducto.HOGAR,false);
 
         Anuncio anuncio= new Anuncio("0001","16/10/2023","23/10/2023","sa",producto);
 

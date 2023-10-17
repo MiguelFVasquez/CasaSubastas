@@ -83,4 +83,7 @@ public class Anuncio implements Serializable {
     public void setListaPujas(List<Puja> listaPujas) {
         this.listaPujas = listaPujas;
     }
+
+    public void setProducto(String s) {
+    }
 }
