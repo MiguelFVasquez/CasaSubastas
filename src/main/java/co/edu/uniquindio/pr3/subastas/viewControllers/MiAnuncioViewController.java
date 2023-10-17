@@ -65,7 +65,6 @@ public class MiAnuncioViewController implements Initializable {
     private Button btnEliminar;
     @FXML
     private Button btnActualizar;
-
     @FXML
     public ImageView ImageViewProductoSeleccionado;
     //--------------------Variables auxiliares--------------------

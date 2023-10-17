@@ -50,7 +50,10 @@ public class CompradorViewController implements Initializable {
 
     @FXML
     private Tab tabMisPujas;
+    @FXML
+    private Tab tabAnunciosDisponibles;
 
+    //-------------CAMPOS DE TEXTO----------------------
     @FXML
     private TextField txtApellidos;
 
@@ -72,12 +75,9 @@ public class CompradorViewController implements Initializable {
     @FXML
     private PasswordField txtContrasenia;
 
-
+    //--------------Variables auxiliares------------------------
     private App aplicacion;
     private Stage stage;
-
-
-    MiCuentaController miCuentaController = new MiCuentaController();
 
     MiCuentaViewController miCuentaViewController = new MiCuentaViewController();
 

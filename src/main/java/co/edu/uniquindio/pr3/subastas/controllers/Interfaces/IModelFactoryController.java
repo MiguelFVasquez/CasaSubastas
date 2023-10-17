@@ -20,4 +20,6 @@ public interface IModelFactoryController {
     void initCompradorViewController(CompradorViewController compradorViewController);
 
     void initAnuncianteViewController(AnuncianteViewController anuncianteViewController);
+
+    void initSubastaViewController(SubastaViewController subastaViewController);
 }
