@@ -12,6 +12,7 @@ import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.*;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -311,6 +312,8 @@ public class MiAnuncioViewController implements Initializable {
             limpiarCampos(event);
             tableViewAnuncios.getItems().clear();
             tableViewAnuncios.setItems(getListaAnuncios());
+            //Añadimos el anuncio a la table view del comprador
+            //miAnuncioController.mfm.setTableView(getListaAnuncios());
         }
 
     }
@@ -324,6 +327,7 @@ public class MiAnuncioViewController implements Initializable {
        try{
            if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto)) {
                mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
+               Persistencia.guardaRegistroLog("Creación de anuncio", 1, "Se ha anunciado un producto");
            }
        }catch (AnuncioException anuncioException){
            mostrarMensaje( "Notificación Anuncio", "Anuncio no realizado", anuncioException.getMessage(), Alert.AlertType.INFORMATION );
@@ -352,6 +356,7 @@ public class MiAnuncioViewController implements Initializable {
                     if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioSeleccionado)){
                         listaAnuncios.remove(anuncioSeleccionado);
                         mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
+                        Persistencia.guardaRegistroLog("Eliminación de anuncio", 1, "Se ha eliminado un anuncio");
                     }
                 }
             }catch (AnuncioException anuncioException){

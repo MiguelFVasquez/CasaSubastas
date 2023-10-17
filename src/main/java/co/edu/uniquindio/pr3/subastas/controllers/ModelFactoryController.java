@@ -6,6 +6,7 @@ import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
@@ -263,6 +264,7 @@ public class ModelFactoryController implements IModelFactoryController {
         miCasa.eliminarAnunciante( obtenerAnunciante( nombreUsu, password ) );
 
     }
+    //----------------------------------------------METODOS DEL ANUNCIANTE----------------------------------------------
 
     //-----------------------------------------------PRODUCTO VIEW------------------------------------------------------
     public boolean crearProducto(String nombreUsuario, String password, String nombre , String codigo , String valor, String descrp, TipoProducto tipoProducto , Image image,boolean anunciado) throws ProductoException, AnuncianteException {
@@ -295,7 +297,14 @@ public class ModelFactoryController implements IModelFactoryController {
         miAnuncioViewController.txtCodigoAnuncio.setEditable(false);
 
     }
-//-------------- SERIALIZACION
+    //-----------------------------METODOS DEL COMPRADOR---------------------------------------------
+    public void setTableView(ObservableList<Anuncio> listaAnuncios){
+        subastaViewController.tableViewAnuncios.getItems().clear();
+        subastaViewController.tableViewAnuncios.setItems(listaAnuncios);
+    }
+
+
+    //---------------SERIALIZACION----------------------------------------
 
     private void salvarDatosPrueba() {
         try {

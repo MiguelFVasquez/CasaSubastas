@@ -222,3 +222,33 @@ oct. 16, 2023 9:10:58 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil gu
 INFO: inicioSesión,Inicio de sesión,2023-10-16
 oct. 16, 2023 9:13:24 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2023-10-16
+oct. 17, 2023 11:38:37 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:41:05 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:46:30 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:47:03 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 11:49:24 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:49:50 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:50:20 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 11:50:52 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 11:51:01 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un producto,Eliminación de producto,2023-10-17
+oct. 17, 2023 11:51:18 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 11:51:37 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
+oct. 17, 2023 11:56:06 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-17
+oct. 17, 2023 11:56:51 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-17
+oct. 17, 2023 11:57:04 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-17
+oct. 17, 2023 11:57:10 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17

@@ -11,6 +11,7 @@ import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Producto;
 import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -364,6 +365,7 @@ public class MiProductoViewController implements Initializable {
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
                 mostrarMensaje( "Notificación", "Producto creado", "El producto ha sido creado y agregado a tu cuenta", Alert.AlertType.INFORMATION );
+                Persistencia.guardaRegistroLog("Creación de producto", 1, "Se ha creado un producto nuevo");
             }
         }catch (ProductoException productoException){
             mostrarMensaje( "Notificación", "Producto no creado", productoException.getMessage(), Alert.AlertType.INFORMATION );
@@ -408,6 +410,7 @@ public class MiProductoViewController implements Initializable {
                     if (miProductoController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
                         listaProductos.remove(productoSeleccionado);
                         mostrarMensaje("Elimininación de producto", "Producto eliminado", "El producto ha sido eliminado con exito",Alert.AlertType.INFORMATION);
+                        Persistencia.guardaRegistroLog("Eliminación de producto", 1, "Se ha eliminado un producto");
                     }
                 }
             }catch (ProductoException productoException){
