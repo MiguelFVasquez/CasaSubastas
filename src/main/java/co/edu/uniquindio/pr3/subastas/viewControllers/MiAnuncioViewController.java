@@ -44,8 +44,20 @@ public class MiAnuncioViewController implements Initializable {
     private TableColumn<Anuncio, String> columFechaInicio;
     @FXML
     private TableColumn<Anuncio, String> columFechaFinal;
+    //------------------Table view Pujas-----------------------
     @FXML
-    private TableColumn<Anuncio, List<Puja>> columPujas;
+    private TableView<Puja> tableViewPujas;
+    @FXML
+    private TableColumn<Puja, String> columCodigoPuja;
+    @FXML
+    private TableColumn<Puja, Comprador> columComprador;
+
+    @FXML
+    private TableColumn<Puja, String> columFechapuja;
+
+    @FXML
+    private TableColumn<Puja, Double> columValor;
+
     //---------------Campos de texto/Fechas--------------------------
     @FXML
     private TextField txtNombreAnunciante;
@@ -67,13 +79,17 @@ public class MiAnuncioViewController implements Initializable {
     @FXML
     private Button btnActualizar;
     @FXML
+    private Button btnAceptar;
+
+    @FXML
     public ImageView ImageViewProductoSeleccionado;
     //--------------------Variables auxiliares--------------------
 
     MiAnuncioController miAnuncioController;
     private Anuncio anuncioSeleccionado;
-
+    private Puja pujaSeleccionada;
     private ObservableList<Anuncio> listaAnuncios= FXCollections.observableArrayList();
+    private ObservableList <Puja> listaPujas= FXCollections.observableArrayList();
 
 
     //-------------------Funciones utilitarias--------------------
@@ -96,7 +112,7 @@ public class MiAnuncioViewController implements Initializable {
         listaAnuncios.addAll(anunciante.getListaAnuncios());
         return listaAnuncios;
     }
-
+    
     private void configurarEventos() {
 
         //Animacion del boton de añadir
@@ -201,7 +217,7 @@ public class MiAnuncioViewController implements Initializable {
 
             txtFechaInicio.setValue(fechaInicial);
             txtFechaFinal.setValue(fechaFin);
-
+            listaPujas.addAll(anuncioSeleccionado.getListaPujas());
 
         }
     }
@@ -380,15 +396,25 @@ public class MiAnuncioViewController implements Initializable {
     }
 
     @FXML
+    void aceptarPuja(ActionEvent event) {
+
+    }
+
+    @FXML
+    void aceptarPujaTecla(ActionEvent event) {
+
+    }
+
+
+    @FXML
     void initialize() {
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        miAnuncioController= new MiAnuncioController();
+        miAnuncioController = new MiAnuncioController();
         miAnuncioController.mfm.initMiAnuncioViewController(this);
-
         txtNombreAnunciante.setText(miAnuncioController.mfm.getNombreUsuario());
         txtNombreAnunciante.setEditable(false);
 
@@ -398,7 +424,7 @@ public class MiAnuncioViewController implements Initializable {
         this.columFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
         this.columFechaFinal.setCellValueFactory(new PropertyValueFactory<>("fechaFinal"));
         this.columProducto.setCellValueFactory(new PropertyValueFactory<>("producto"));
-        this.columPujas.setCellValueFactory(new PropertyValueFactory<>("listaPujas"));
+
         //Obtener un elemento seleccionado de la tabla
 
         tableViewAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -411,6 +437,19 @@ public class MiAnuncioViewController implements Initializable {
         tableViewAnuncios.getItems().clear();
         tableViewAnuncios.setItems(getListaAnuncios());
 
+        //Inicializacion de la tableView de las pujas
+        this.columCodigoPuja.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        this.columComprador.setCellValueFactory(new PropertyValueFactory<>("comprador"));
+        this.columFechapuja.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        this.columValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+
+        tableViewPujas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null){
+                pujaSeleccionada= newSelection;
+            }
+        });
+
+        //Asociacion de los botones a las teclas
         btnAnunciar.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 try {
