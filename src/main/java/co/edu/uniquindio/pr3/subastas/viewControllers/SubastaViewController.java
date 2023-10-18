@@ -99,5 +99,8 @@ public class SubastaViewController implements Initializable {
                 //mostrarInformacionAnuncio();
             }
         });
+        tableViewAnuncios.getItems().clear();
+        tableViewAnuncios.setItems(getListaAnuncios());
+
     }
 }

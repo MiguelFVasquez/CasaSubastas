@@ -88,7 +88,7 @@
    <void method="add">
     <object class="co.edu.uniquindio.pr3.subastas.model.Comprador" id="Comprador0">
      <void property="apellido">
-      <string>Florez</string>
+      <string>Orozco</string>
      </void>
      <void property="contrasenia">
       <string>12</string>
@@ -103,7 +103,7 @@
       <string>2323</string>
      </void>
      <void property="nombre">
-      <string>Jose</string>
+      <string>Santiago</string>
      </void>
      <void property="nombreUsuario">
       <string>sa</string>

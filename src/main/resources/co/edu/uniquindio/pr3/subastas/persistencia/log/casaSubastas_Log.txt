@@ -302,3 +302,17 @@ oct. 17, 2023 4:14:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil gu
 INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
 oct. 17, 2023 4:14:42 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-17
+oct. 18, 2023 9:41:41 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:44:15 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:45:18 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:46:03 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:46:32 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:47:27 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 9:48:41 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
