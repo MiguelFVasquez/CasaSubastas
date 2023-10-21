@@ -22,4 +22,6 @@ public interface IModelFactoryController {
     void initAnuncianteViewController(AnuncianteViewController anuncianteViewController);
 
     void initSubastaViewController(SubastaViewController subastaViewController);
+
+    void initMiPujaViewController(MiPujaViewController miPujaViewController);
 }

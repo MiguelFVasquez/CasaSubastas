@@ -26,7 +26,7 @@
             </Tab>
             <Tab fx:id="tabMisPujas" text="Mis pujas">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <fx:include source="MiPujaView.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabAnunciosDisponibles" text="Anuncios disponibles">

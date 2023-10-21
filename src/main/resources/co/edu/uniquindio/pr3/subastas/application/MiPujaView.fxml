@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiPujaViewController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiPujaViewController">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
+         <children>
+            <Label layoutX="314.0" layoutY="29.0" text="Información de mis pujas" textFill="WHITE">
+               <font>
+                  <Font name="Bookman Old Style" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <SplitPane dividerPositions="0.5" layoutY="86.0" orientation="VERTICAL" prefHeight="522.0" prefWidth="885.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="236.0" prefWidth="874.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Nueva puja información">
+                     <font>
+                        <Font name="Bookman Old Style" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="74.0" text="Código" />
+                  <Label layoutX="32.0" layoutY="141.0" text="Valor" />
+                  <Label layoutX="32.0" layoutY="107.0" text="Fecha" />
+                  <Label layoutX="24.0" layoutY="36.0" text="Nombre usuario" />
+                  <Label layoutX="519.0" layoutY="36.0" text="Anuncio" />
+                  <Separator layoutX="14.0" layoutY="22.0" prefHeight="0.0" prefWidth="826.0" />
+                  <TextField fx:id="txtNombreComprador" layoutX="150.0" layoutY="32.0" prefHeight="25.0" prefWidth="258.0" />
+                  <TextField fx:id="txtCodigo" layoutX="150.0" layoutY="62.0" prefHeight="25.0" prefWidth="258.0" />
+                  <TextField fx:id="txtValor" layoutX="150.0" layoutY="137.0" prefHeight="25.0" prefWidth="258.0" />
+                  <DatePicker fx:id="datePickerFecha" layoutX="150.0" layoutY="103.0" prefHeight="25.0" prefWidth="258.0" />
+                  <TextArea fx:id="txtAnuncio" layoutX="598.0" layoutY="37.0" prefHeight="140.0" prefWidth="236.0" />
+                  <Button fx:id="btnAgregarPuja" layoutX="408.0" layoutY="212.0" mnemonicParsing="false" onAction="#agregarPuja" onKeyPressed="#agregarPujaTecla" style="-fx-background-color: #0697AE;" text="Realizar puja" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="883.0" style="-fx-background-color: white;">
+               <children>
+                  <TableView fx:id="tableViewPuja" layoutX="1.0" layoutY="41.0" prefHeight="175.0" prefWidth="883.0">
+                    <columns>
+                      <TableColumn fx:id="columCodigo" prefWidth="75.0" text="Código" />
+                      <TableColumn fx:id="columFecha" prefWidth="75.0" text="Fecha" />
+                        <TableColumn fx:id="columValor" prefWidth="75.0" text="Valor" />
+                        <TableColumn fx:id="columAnuncio" prefWidth="627.0" text="Anuncio" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnEliminar" layoutX="428.0" layoutY="231.0" mnemonicParsing="false" onAction="#eliminarPuja" onKeyPressed="#eliminarTecla" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" />
+                  <Label layoutX="27.0" layoutY="14.0" text="Mis pujas">
+                     <font>
+                        <Font name="Bookman Old Style" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

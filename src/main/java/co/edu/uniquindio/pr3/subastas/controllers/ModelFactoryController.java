@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ModelFactoryController implements IModelFactoryController {
@@ -30,6 +32,7 @@ public class ModelFactoryController implements IModelFactoryController {
     private MiProductoViewController miProductoViewController;
     private SubastaViewController subastaViewController;
     private UsuarioViewController usuarioViewController;
+    private MiPujaViewController miPujaViewController;
     private CompradorViewController compradorViewController;
     private AnuncianteViewController anuncianteViewController;
     private Comprador comprador;
@@ -152,6 +155,10 @@ public class ModelFactoryController implements IModelFactoryController {
     @Override
     public void initSubastaViewController(SubastaViewController subastaViewController){
         this.subastaViewController=subastaViewController;
+    }
+    @Override
+    public void initMiPujaViewController(MiPujaViewController miPujaViewController){
+        this.miPujaViewController= miPujaViewController;
     }
 
     //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
@@ -278,9 +285,9 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //----------------------------------------------ANUNCIO VIEW---------------------------------------------------
-    public boolean crearAnuncio(String nombreUsuario, String password,String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
+    public boolean crearAnuncio(String nombreUsuario, String password,String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto, List<Puja> pujasAnuncio) throws ProductoException, AnuncioException, AnuncianteException {
         Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario, password);
-        Anuncio newAnuncio= new Anuncio(codigo,fechaInicio,fechaFinal,nombreAnunciante,producto);
+        Anuncio newAnuncio= new Anuncio(codigo,fechaInicio,fechaFinal,nombreAnunciante,producto,pujasAnuncio);
 
         return miCasa.crearAnuncio(anuncianteAux,newAnuncio);
     }
@@ -307,6 +314,28 @@ public class ModelFactoryController implements IModelFactoryController {
     public void actualizarTableView(){
         miProductoViewController.tableViewProductos.refresh();
     }
+
+    //-----------------------------METODOS PARA LAS PUJAS-------------------------------
+    public void setInfoMiPujaView(Anuncio anuncioSeleccionado, String codigo){
+        miPujaViewController.datePickerFecha.setValue(LocalDate.now());
+        miPujaViewController.datePickerFecha.setEditable(false);
+        miPujaViewController.txtAnuncio.setText(anuncioSeleccionado.toString());
+        miPujaViewController.txtAnuncio.setEditable(false);
+        miPujaViewController.txtCodigo.setText(codigo);
+        miPujaViewController.txtCodigo.setEditable(false);
+    }
+
+    public boolean crearPuja(String nombreUsuario, String password, Anuncio anuncio, Double valor, LocalDate fecha, String codigo) throws PujaException, AnuncioException, CompradorException {
+        Comprador compradoAux= miCasa.obtenerComprador(nombreUsuario,password);
+        Puja newPuja= new Puja(anuncio,compradoAux,valor,fecha,codigo);
+        return miCasa.crearPuja(compradoAux, newPuja);
+    }
+    public boolean eliminarPuja(String nombreUsuario, String password, Puja pujaElimnar) throws PujaException, CompradorException {
+        Comprador compradorAux= miCasa.obtenerComprador(nombreUsuario,password);
+        return miCasa.eliminarPuja(compradorAux,pujaElimnar);
+    }
+
+
 
     //---------------SERIALIZACION----------------------------------------
 

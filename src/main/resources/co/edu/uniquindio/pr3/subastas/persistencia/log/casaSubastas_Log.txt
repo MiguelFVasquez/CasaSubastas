@@ -316,3 +316,45 @@ oct. 18, 2023 9:47:27 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil gu
 INFO: inicioSesión,Inicio de sesión,2023-10-18
 oct. 18, 2023 9:48:41 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 5:16:11 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 5:16:40 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-18
+oct. 18, 2023 5:16:56 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-18
+oct. 18, 2023 5:17:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-18
+oct. 18, 2023 5:28:59 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 5:57:26 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-18
+oct. 18, 2023 5:58:14 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-18
+oct. 20, 2023 2:28:17 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 20, 2023 2:31:16 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 20, 2023 2:35:46 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 20, 2023 2:36:39 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 20, 2023 2:39:00 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-20
+oct. 20, 2023 2:39:27 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-20
+oct. 20, 2023 2:39:47 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-10-20
+oct. 20, 2023 4:39:49 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 20, 2023 4:59:50 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-20
+oct. 21, 2023 6:17:43 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-21
+oct. 21, 2023 6:18:58 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-21
+oct. 21, 2023 6:21:01 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-10-21
+oct. 21, 2023 6:21:30 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-10-21
+oct. 21, 2023 6:21:45 P. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-10-21

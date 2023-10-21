@@ -1,6 +1,8 @@
 package co.edu.uniquindio.pr3.subastas.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Puja implements Serializable {
@@ -8,13 +10,13 @@ public class Puja implements Serializable {
     private Anuncio anuncio;
     private Comprador comprador;
     private Double valor;
-    private String fecha;
+    private LocalDate fecha;
     private String codigo;
 
     public Puja() {
     }
 
-    public Puja(Anuncio anuncio, Comprador comprador, Double valor, String fecha, String codigo) {
+    public Puja(Anuncio anuncio, Comprador comprador, Double valor, LocalDate fecha, String codigo) {
         this.anuncio = anuncio;
         this.comprador = comprador;
         this.valor = valor;
@@ -47,11 +49,11 @@ public class Puja implements Serializable {
         this.valor = valor;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

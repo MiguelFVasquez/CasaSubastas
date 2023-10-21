@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.pr3.subastas.controllers.SubastaController;
@@ -62,17 +63,42 @@ public class SubastaViewController implements Initializable {
         listaAnuncios.addAll(subastaController.mfm.getMiCasa().getListaAnuncios());
         return listaAnuncios;
     }
+    private  String mezclarPalabras(String palabra1, String palabra2) {
+        // Concatenar las dos palabras
+        String palabraConcatenada = palabra1 + palabra2;
+
+        // Convertir la palabra concatenada a un array de caracteres
+        char[] caracteres = palabraConcatenada.toCharArray();
+
+        // Usar el algoritmo de Fisher-Yates para mezclar los caracteres
+        Random rand = new Random();
+        for (int i = caracteres.length - 1; i > 0; i--) {
+            int indiceAleatorio = rand.nextInt(i + 1);
+
+            // Intercambiar caracteres
+            char temp = caracteres[i];
+            caracteres[i] = caracteres[indiceAleatorio];
+            caracteres[indiceAleatorio] = temp;
+        }
+        return new String(caracteres);
+    }
 
     //---------------------Eventos de los botones--------------
 
     @FXML
     void pujarPorProducto(ActionEvent event) {
-
+        if (anuncioSeleccionado!=null){
+            String codigo= mezclarPalabras(anuncioSeleccionado.getCodigo(),anuncioSeleccionado.getNombreAnunciante());
+            subastaController.mfm.setInfoMiPujaView(anuncioSeleccionado,codigo);
+            mostrarMensaje("Finalizar puja","Finalice la puja","Para finalizar la puja dirijase a la pestaña mis pujas y termine de llenar la información", Alert.AlertType.INFORMATION);
+        }else {
+            mostrarMensaje("Selección de anuncio", "Anuncio no seleccionado","Seleccione un anuncio por el cual pujar", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
     void pujarPorProductoTecla(ActionEvent event) {
-
+        pujarPorProducto(event);
     }
 
     @FXML

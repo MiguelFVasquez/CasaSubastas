@@ -92,6 +92,7 @@ public class Comprador extends Usuario implements IComprador, Serializable {
         }else if (newPuja.getAnuncio()==null){
             throw new AnuncioException("El anuncio por el que desea pujar ya no existe");
         }else {
+            newPuja.getAnuncio().getListaPujas().add(newPuja);
             creado=true;
             listaPujas.add(newPuja);
         }
@@ -105,6 +106,7 @@ public class Comprador extends Usuario implements IComprador, Serializable {
         if (pujaAux==null){
             throw new PujaException("La puja que desea eliminar no ha sido encontrada");
         }else {
+            pujaEliminar.getAnuncio().getListaPujas().remove(pujaEliminar);
             eliminado=true;
             listaPujas.remove(pujaAux);
         }

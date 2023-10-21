@@ -3,6 +3,7 @@ package co.edu.uniquindio.pr3.subastas.viewControllers;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -323,10 +324,11 @@ public class MiAnuncioViewController implements Initializable {
         //Informacion del anunciante
         String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
         String password= miAnuncioController.mfm.getPassword();
-
+        //Lista vacia para la creacion del anuncio
+        List<Puja> pujasAnunciadas= new ArrayList<>();
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
             if (!productoAnunciar.getEstaAnunciado()){
-                crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar);
+                crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar,pujasAnunciadas);
                 limpiarCampos(event);
                 tableViewAnuncios.getItems().clear();
                 tableViewAnuncios.setItems(getListaAnuncios());
@@ -345,9 +347,9 @@ public class MiAnuncioViewController implements Initializable {
         anunciarProducto(event);
     }
 
-    private void crearAnuncio(String usuario, String password,String nombreUsuario, String codigo, String fechaInicial, String fechaFinal, Producto producto) throws ProductoException, AnuncioException, AnuncianteException {
+    private void crearAnuncio(String usuario, String password,String nombreUsuario, String codigo, String fechaInicial, String fechaFinal, Producto producto, List<Puja> pujasAnuncio) throws ProductoException, AnuncioException, AnuncianteException {
        try{
-           if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto)) {
+           if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto,pujasAnuncio)) {
                mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
                Persistencia.guardaRegistroLog("Creación de anuncio", 1, "Se ha anunciado un producto");
            }

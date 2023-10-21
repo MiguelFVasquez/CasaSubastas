@@ -86,4 +86,14 @@ public class Anuncio implements Serializable {
 
     public void setProducto(String s) {
     }
+
+    @Override
+    public String toString() {
+        return "Anuncio: " +
+                "\ncodigo='" + codigo + '\'' +
+                "\nfechaInicio:'" + fechaInicio + '\'' +
+                "\nfechaFinal:'" + fechaFinal + '\'' +
+                "\nnombreAnunciante:'" + nombreAnunciante + '\'' +
+                "\nproducto:" + producto ;
+    }
 }

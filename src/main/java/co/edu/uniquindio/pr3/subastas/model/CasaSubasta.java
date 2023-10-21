@@ -329,7 +329,31 @@ public class CasaSubasta implements  ISubasta,Serializable {
         }
         return eliminado;
     }
-
+    //----------------------------CRUD DE LAS PUJAS----------------------------------------------------
+    public boolean crearPuja(Comprador compradorAux, Puja newPuja) throws CompradorException, PujaException, AnuncioException {
+        boolean creado = false;
+        if (compradorAux == null) {
+            throw new CompradorException("El comprador no se encuentra registrado");
+        }
+        if (compradorAux.crearPuja(newPuja)) {
+            creado = true;
+        }else {
+            throw new PujaException("La puja no se ha podido realizar");
+        }
+        return creado;
+    }
+    public boolean eliminarPuja(Comprador compradorAux, Puja pujaEliminar) throws CompradorException, PujaException {
+        boolean eliminado= false;
+        if (compradorAux==null){
+            throw new CompradorException("El usaurio no se encuentra registrado");
+        }
+        if (compradorAux.eliminarPuja(pujaEliminar)){
+            eliminado=true;
+        }else {
+            throw new PujaException("La puja no se ha podido eliminar");
+        }
+        return eliminado;
+    }
 
 
 }
