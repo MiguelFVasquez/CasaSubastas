@@ -4,12 +4,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import co.edu.uniquindio.pr3.subastas.controllers.MiPujaController;
-import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
-import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
-import co.edu.uniquindio.pr3.subastas.exceptions.PujaException;
+import co.edu.uniquindio.pr3.subastas.exceptions.*;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 
 public class MiPujaViewController implements Initializable {
 
@@ -59,6 +61,8 @@ public class MiPujaViewController implements Initializable {
     MiPujaController miPujaController;
     private Puja pujaSeleccionada;
     private ObservableList<Puja> listaPujas = FXCollections.observableArrayList();
+    String nombreUsuario;
+    String password;
 
     //----------Funciones utilitarias-----------------------
     public void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertype) {
@@ -94,19 +98,22 @@ public class MiPujaViewController implements Initializable {
         return listaPujas;
     }
 
-    private Producto obtenerProducto(String producto){
-        // Proceso de parsing
-        String[] lineas = producto.split("\n");
-        String codigo = lineas[1].split(":")[1].trim().replace("'", "");
-        String nombre = lineas[2].split(":")[1].trim().replace("'", "");
-        String descripcion = lineas[3].split(":")[1].trim().replace("'", "");
-        String valorInicial = lineas[4].split(":")[1].trim().replace("'", "");
-        TipoProducto tipoProducto = TipoProducto.valueOf(lineas[5].split(":")[1].trim().replace("'", ""));
-        boolean estaAnunciado = Boolean.parseBoolean(lineas[6].split(":")[1].trim());
+    public static Producto parseProducto(String productoTexto) {
+        Producto producto = new Producto();
 
-        // Crear instancia de Producto
-        Producto productoAux = new Producto(codigo, nombre, descripcion, valorInicial, tipoProducto, estaAnunciado);
-        return productoAux;
+        Pattern pattern = Pattern.compile("codigo: '(\\d+)'\\s+nombre: '(.*?)'\\s+descripcion: '(.*?)'\\s+valorInicial: '(\\d+)'\\s+tipoProducto: (\\w+)\\s+estaAnunciado: (\\w+|null)");
+        Matcher matcher = pattern.matcher(productoTexto);
+
+        if (matcher.find()) {
+            producto.setCodigo(matcher.group(1));
+            producto.setNombre(matcher.group(2));
+            producto.setDescripcion(matcher.group(3));
+            producto.setValorInicial(String.valueOf(Integer.parseInt(matcher.group(4))));
+            producto.setTipoProducto(TipoProducto.valueOf(matcher.group(5)));
+            producto.setEstaAnunciado(Boolean.valueOf(matcher.group(6)));
+        }
+
+        return producto;
     }
 
 
@@ -122,7 +129,7 @@ public class MiPujaViewController implements Initializable {
         String fechaFinal = extraerValor(lineas[3], "fechaFinal:'");
         String nombreAnunciante = extraerValor(lineas[4], "nombreAnunciante:'");
         String producto = extraerValor(lineas[5], "producto:");
-        Producto productoAux = obtenerProducto(producto);//Obtengo el producto a partir del texto
+        Producto productoAux = parseProducto(producto);//Obtengo el producto a partir del texto
         // Crear instancia de la clase Anuncio
         Anuncio anuncioAux = new Anuncio(codigo, fechaInicio, fechaFinal, nombreAnunciante, productoAux);
 
@@ -179,6 +186,31 @@ public class MiPujaViewController implements Initializable {
         });
     }
 
+    private void asociarProductosBotones(){
+        //Asociacion de los botones a las teclas
+        btnAgregarPuja.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    agregarPujaTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (AnuncioException e) {
+                    throw new RuntimeException(e);
+                } catch (CompradorException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        btnEliminar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    eliminarTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (CompradorException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
     private void mostrarInformacionPuja(){
         if (pujaSeleccionada!=null){
             txtCodigo.setText(pujaSeleccionada.getCodigo());
@@ -186,7 +218,29 @@ public class MiPujaViewController implements Initializable {
             txtAnuncio.setText(pujaSeleccionada.getAnuncio()+"");
         }
     }
+    private void limpiarCampos(){
+        txtCodigo.clear();
+        txtAnuncio.clear();
+        txtValor.clear();
+        datePickerFecha.setValue(null);
+    }
+    private boolean confirmacionAlert(){
+        // Crear una alerta de tipo CONFIRMATION
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("¿Está seguro de que quiere hacer esta acción?");
 
+        // Configurar los botones
+        ButtonType buttonTypeContinuar = new ButtonType("Continuar");
+        ButtonType buttonTypeCancelar = new ButtonType("Cancelar");
+
+        alert.getButtonTypes().setAll(buttonTypeContinuar, buttonTypeCancelar);
+
+        // Mostrar la alerta y esperar a que el usuario haga clic en un botón
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
+    }
 
     @FXML
     void agregarPuja(ActionEvent event) throws AnuncioException, CompradorException {
@@ -196,16 +250,13 @@ public class MiPujaViewController implements Initializable {
         LocalDate fecha= datePickerFecha.getValue();
         Double valor= Double.parseDouble(txtValor.getText());
         Anuncio anuncioAux= obtenerAnuncio(anuncio);//Obtengo el anuncio a partir del texto
-        //Credenciales del usuario
-        String nombreUsuario= miPujaController.mfm.getNombreUsuario();
-        String password= miPujaController.mfm.getPassword();
 
         if (validarDatos(codigo,fecha, anuncioAux,valor)){
             crearPuja(nombreUsuario,password,codigo,fecha,anuncioAux,valor);
+            limpiarCampos();
             tableViewPuja.getItems().clear();
             tableViewPuja.setItems(getListaPujas());
         }
-
     }
 
     private void crearPuja(String nombreUsuario, String password, String codigo, LocalDate fecha , Anuncio anuncio, Double valor) throws AnuncioException, CompradorException {
@@ -227,13 +278,27 @@ public class MiPujaViewController implements Initializable {
     }
 
     @FXML
-    void eliminarPuja(ActionEvent event) {
-
+    void eliminarPuja(ActionEvent event) throws CompradorException {
+        if (pujaSeleccionada!=null){
+            try {
+                if(confirmacionAlert()){
+                    if (miPujaController.mfm.eliminarPuja(nombreUsuario,password,pujaSeleccionada)){
+                        listaPujas.remove(pujaSeleccionada);
+                        mostrarMensaje("Elimininación de puja", "Puja eliminada", "La puja ha sido eliminada con exito",Alert.AlertType.INFORMATION);
+                        Persistencia.guardaRegistroLog("Eliminación de puja", 1, "Se ha eliminado una puja");
+                    }
+                }
+            }catch (PujaException pujaException){
+                mostrarMensaje("Elimininación de puja", "Puja no eliminada", pujaException.getMessage(),Alert.AlertType.INFORMATION);
+            }
+        }else {
+            mostrarMensaje("Selección de Puja", "Puja no seleccionada", "Seleccione primero una puja para poder eliminarla",Alert.AlertType.WARNING);
+        }
     }
 
 
     @FXML
-    void eliminarTecla(ActionEvent event) {
+    void eliminarTecla(ActionEvent event) throws CompradorException {
         eliminarPuja(event);
     }
 
@@ -245,6 +310,10 @@ public class MiPujaViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         miPujaController= new MiPujaController();
         miPujaController.mfm.initMiPujaViewController(this);
+
+        nombreUsuario= miPujaController.mfm.getNombreUsuario();
+        password= miPujaController.mfm.getPassword();
+
 
         txtNombreComprador.setText(miPujaController.mfm.getNombreUsuario());
         txtNombreComprador.setEditable(false);
@@ -260,7 +329,7 @@ public class MiPujaViewController implements Initializable {
                 mostrarInformacionPuja();
             }
         });
-
+        asociarProductosBotones();
         configurarEventos();
     }
 }

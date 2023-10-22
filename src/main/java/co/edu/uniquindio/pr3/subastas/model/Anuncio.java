@@ -2,6 +2,7 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Anuncio implements Serializable {
@@ -11,7 +12,7 @@ public class Anuncio implements Serializable {
     private String fechaFinal;
     private String nombreAnunciante;
     private Producto producto;
-    private List<Puja> listaPujas;
+    private List<Puja> listaPujas= new ArrayList<>();
 
     public Anuncio() {
     }
@@ -32,7 +33,7 @@ public class Anuncio implements Serializable {
         this.fechaFinal = fechaFinal;
         this.nombreAnunciante = nombreAnunciante;
         this.producto = producto;
-        this.listaPujas = listaPujas;
+        this.listaPujas = new ArrayList<>();
     }
 
 

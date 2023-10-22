@@ -113,7 +113,10 @@ public class MiAnuncioViewController implements Initializable {
         listaAnuncios.addAll(anunciante.getListaAnuncios());
         return listaAnuncios;
     }
-    
+    private ObservableList<Puja> getListaPujas(){
+        listaPujas.addAll(anuncioSeleccionado.getListaPujas());
+        return listaPujas;
+    }
     private void configurarEventos() {
 
         //Animacion del boton de añadir
@@ -208,6 +211,10 @@ public class MiAnuncioViewController implements Initializable {
             txtNombreAnunciante.setText(anuncioSeleccionado.getNombreAnunciante());
             txtCodigoAnuncio.setText(anuncioSeleccionado.getCodigo());
             txtProducto.setText(anuncioSeleccionado.getProducto().toString());
+            //tableView
+            listaPujas.addAll(anuncioSeleccionado.getListaPujas());
+            tableViewPujas.getItems().clear();
+            tableViewPujas.setItems(getListaPujas());
             //Fechas
             String fechaInicio= anuncioSeleccionado.getFechaInicio();
             String fechaFinal= anuncioSeleccionado.getFechaFinal();
@@ -215,10 +222,8 @@ public class MiAnuncioViewController implements Initializable {
             // Convertir la cadena de fecha a LocalDate
             LocalDate fechaInicial = LocalDate.parse(fechaInicio, formato);
             LocalDate fechaFin = LocalDate.parse(fechaFinal, formato);
-
             txtFechaInicio.setValue(fechaInicial);
             txtFechaFinal.setValue(fechaFin);
-            listaPujas.addAll(anuncioSeleccionado.getListaPujas());
 
         }
     }
@@ -250,7 +255,7 @@ public class MiAnuncioViewController implements Initializable {
         return true;
     }
 
-    private Producto obtenerProducto(String producto){
+    public Producto obtenerProducto(String producto){
         // Proceso de parsing
         String[] lineas = producto.split("\n");
         String codigo = lineas[1].split(":")[1].trim().replace("'", "");
@@ -281,6 +286,34 @@ public class MiAnuncioViewController implements Initializable {
         Optional<ButtonType> resultado = alert.showAndWait();
 
         return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
+    }
+
+    private void asosiacionBotonesTecla(){
+        btnAnunciar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    anunciarProductoTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (ProductoException | AnuncioException | AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        btnNuevo.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                limpiarCamposTecla(new ActionEvent()); // Llama a tu método actual
+            }
+        });
+
+        btnEliminar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    eliminarAnuncioTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (AnuncioException | AnuncianteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     /**
@@ -325,6 +358,7 @@ public class MiAnuncioViewController implements Initializable {
         String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
         String password= miAnuncioController.mfm.getPassword();
         //Lista vacia para la creacion del anuncio
+
         List<Puja> pujasAnunciadas= new ArrayList<>();
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
             if (!productoAnunciar.getEstaAnunciado()){
@@ -448,36 +482,12 @@ public class MiAnuncioViewController implements Initializable {
         tableViewPujas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if(newSelection != null){
                 pujaSeleccionada= newSelection;
+
             }
         });
 
         //Asociacion de los botones a las teclas
-        btnAnunciar.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    anunciarProductoTecla(new ActionEvent()); // Llama a tu método actual
-                } catch (ProductoException | AnuncioException | AnuncianteException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        btnNuevo.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                limpiarCamposTecla(new ActionEvent()); // Llama a tu método actual
-            }
-        });
-
-        btnEliminar.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    eliminarAnuncioTecla(new ActionEvent()); // Llama a tu método actual
-                } catch (AnuncioException | AnuncianteException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
+        asosiacionBotonesTecla();
         configurarEventos();
     }
 }

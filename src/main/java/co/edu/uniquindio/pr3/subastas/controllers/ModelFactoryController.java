@@ -205,11 +205,8 @@ public class ModelFactoryController implements IModelFactoryController {
 
     public boolean crearComprador(String nombre , String apellidos , String id , String edad , String usuario ,
                                   String correo , String password) throws UsuarioException, CompradorException {
-        List<Puja> pujas = new ArrayList<>();
-        List<Integer> vecesPujas = new ArrayList<>();
-        Comprador comprador = new Comprador(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.COMPRADOR, false,pujas, vecesPujas );
-        boolean flag = miCasa.crearComprador( comprador );
-        return flag;
+        Comprador comprador = new Comprador(nombre, apellidos, id, edad, usuario, correo, password, TipoUsuario.COMPRADOR, false);
+        return miCasa.crearComprador(comprador);
     }
 
     //-------------------------------------------MI CUENTA VIEW---------------------------------------------------------
@@ -285,8 +282,14 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //----------------------------------------------ANUNCIO VIEW---------------------------------------------------
+
+    public Producto obtenerProductoTexto(String productoTexto){
+        return miAnuncioViewController.obtenerProducto(productoTexto);
+    }
+
     public boolean crearAnuncio(String nombreUsuario, String password,String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, Producto producto, List<Puja> pujasAnuncio) throws ProductoException, AnuncioException, AnuncianteException {
         Anunciante anuncianteAux= miCasa.obtenerAnunciante(nombreUsuario, password);
+
         Anuncio newAnuncio= new Anuncio(codigo,fechaInicio,fechaFinal,nombreAnunciante,producto,pujasAnuncio);
 
         return miCasa.crearAnuncio(anuncianteAux,newAnuncio);

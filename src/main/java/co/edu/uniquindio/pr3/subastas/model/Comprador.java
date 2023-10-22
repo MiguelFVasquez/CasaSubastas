@@ -5,13 +5,14 @@ import co.edu.uniquindio.pr3.subastas.exceptions.PujaException;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IComprador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Comprador extends Usuario implements IComprador, Serializable {
     private static final long serialVersionUID = 1l;
-    private List<Puja> listaPujas;
+    private List<Puja> listaPujas= new ArrayList<>();
     private List<Integer> cantidadDeVecesPujada;
 
 
@@ -19,21 +20,18 @@ public class Comprador extends Usuario implements IComprador, Serializable {
     }
 
     public Comprador(List<Puja> listaPujas, List<Integer> cantidadDeVecesPujada) {
-        this.listaPujas = listaPujas;
-        this.cantidadDeVecesPujada = cantidadDeVecesPujada;
+        this.listaPujas = new ArrayList<>();
+        this.cantidadDeVecesPujada = new ArrayList<>();
     }
 
     public Comprador(String nombre , String apellidos , String id , String edad , String usuario ,
-                     String correo , String password , TipoUsuario tipoUsuario , boolean autenticado , List<Puja> pujas , List<Integer> vecesPujas) {
+                     String correo , String password , TipoUsuario tipoUsuario , boolean autenticado) {
+
         super(nombre, apellidos, id, edad, usuario, correo, password, tipoUsuario, autenticado);
-        this.listaPujas = pujas;
-        this.cantidadDeVecesPujada = vecesPujas;
+        this.listaPujas = new ArrayList<>();
+        this.cantidadDeVecesPujada = new ArrayList<>();
     }
 
-    public Comprador(String nombre , String apellidos , String id , String edad , String usuario , String correo , String password ,
-                     TipoUsuario tipoUsuario , boolean autenticado) {
-        super(nombre, apellidos, id, edad, usuario, correo, password, tipoUsuario, autenticado);
-    }
 
     public List<Puja> getListaPujas() {
         return listaPujas;
@@ -62,7 +60,7 @@ public class Comprador extends Usuario implements IComprador, Serializable {
      */
     public boolean verificarPuja(String codigo){
         boolean encontrado= false;
-        List<Puja> pujasIguales= this.listaPujas.stream()
+        List<Puja> pujasIguales= listaPujas.stream()
                 .filter(p->p.getCodigo().equals(codigo))
                 .collect(Collectors.toList());
 

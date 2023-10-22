@@ -31,7 +31,7 @@ public class  InicioSesionViewController implements Initializable {
     private URL location;
 
     @FXML
-    private TextField txtInicioNombre;
+    public TextField txtInicioNombre;
 
     @FXML
     private Button btnRecuperarCuenta;
@@ -43,7 +43,7 @@ public class  InicioSesionViewController implements Initializable {
     private Button btnIniciar;
 
     @FXML
-    private PasswordField txtInicioPassword;
+    public PasswordField txtInicioPassword;
 
     InicioSesionController inicioSesionController = new InicioSesionController();
 
@@ -62,8 +62,7 @@ public class  InicioSesionViewController implements Initializable {
 
 
     public String getNombreIniciado() {
-        nombreIniciado= txtInicioNombre.getText();
-        return nombreIniciado;
+        return txtInicioNombre.getText();
     }
 
     public void setNombreIniciado(String nombreIniciado) {
@@ -71,8 +70,7 @@ public class  InicioSesionViewController implements Initializable {
     }
 
     public String getPasswordIniciada() {
-        passwordIniciada= txtInicioPassword.getText();
-        return passwordIniciada;
+        return txtInicioPassword.getText();
     }
 
     public void setPasswordIniciada(String paswordIniciada) {
@@ -203,8 +201,8 @@ public class  InicioSesionViewController implements Initializable {
                 controller.init(stage);
                 stage.show();
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
-                txtInicioPassword.clear();
-                txtInicioNombre.clear();
+                //txtInicioPassword.clear();
+                //txtInicioNombre.clear();
             }else {
                 if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
@@ -279,11 +277,7 @@ public class  InicioSesionViewController implements Initializable {
         });
         btnCrearCuenta.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    iniciarSesionTecla(new ActionEvent()); // Llama a tu método actual
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                crearCuentaNuevaTecla(new ActionEvent()); // Llama a tu método actual
             }
         });
         configurarEventos();
