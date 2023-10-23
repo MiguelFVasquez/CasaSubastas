@@ -25,9 +25,9 @@
          </image>
       </ImageView>
       <Label layoutX="508.0" layoutY="192.0" text="Nombre de usuario" />
-      <TextField fx:id="txtInicioNombre" layoutX="635.0" layoutY="188.0" promptText="Nombre de usuario" />
+      <TextField fx:id="txtInicioNombre" layoutX="635.0" layoutY="188.0" promptText="Nombre de usuario" style="-fx-border-color: #0697AE; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparente;" />
       <Label layoutX="508.0" layoutY="251.0" text="Contraseña" />
-      <PasswordField fx:id="txtInicioPassword" layoutX="635.0" layoutY="247.0" promptText="Contraseña" />
+      <PasswordField fx:id="txtInicioPassword" layoutX="635.0" layoutY="247.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-color: #0697AE; -fx-border-width: 0px 0px 2px 0px;" />
       <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" onKeyPressed="#iniciarSesionTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE">
          <font>
             <Font size="14.0" />

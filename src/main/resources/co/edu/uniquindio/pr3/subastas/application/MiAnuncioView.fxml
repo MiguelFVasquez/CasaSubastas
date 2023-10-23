@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,50 +9,80 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiAnuncioViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="961.0" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiAnuncioViewController">
    <children>
       <TabPane layoutX="8.0" prefHeight="607.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Informacion Anuncio">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="text-field-custom">
                      <children>
-                        <Label layoutX="38.0" layoutY="119.0" text="Nombre del anunciante" />
-                        <Label layoutX="38.0" layoutY="156.0" text="Código" />
-                        <Label layoutX="38.0" layoutY="196.0" text="Fecha de publicación" />
-                        <Label layoutX="38.0" layoutY="234.0" text="Fecha Final" />
-                        <Label layoutX="43.0" layoutY="271.0" text="Producto" />
+                        <AnchorPane layoutX="-1.0" layoutY="72.0" prefHeight="478.0" prefWidth="191.0" style="-fx-background-color: #AEB5B6;" />
+                        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+                        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+                        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="214.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+                        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="269.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+                        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="323.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+                        <Label layoutX="38.0" layoutY="173.0" text="Código" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="228.0" text="Fecha de publicación" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="38.0" layoutY="281.0" text="Fecha Final" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Pane layoutY="-3.0" prefHeight="76.0" prefWidth="961.0" style="-fx-background-color: #0697AE;">
                            <children>
-                              <Label layoutX="307.0" layoutY="24.0" text="Información del anuncio" textFill="WHITE">
+                              <Label layoutX="337.0" layoutY="24.0" text="Información del anuncio" textFill="WHITE">
                                  <font>
                                     <Font name="Bookman Old Style" size="24.0" />
                                  </font>
                               </Label>
                            </children>
                         </Pane>
-                        <TextField fx:id="txtNombreAnunciante" layoutX="209.0" layoutY="115.0" prefHeight="25.0" prefWidth="286.0" />
-                        <TextField fx:id="txtCodigoAnuncio" layoutX="209.0" layoutY="144.0" prefHeight="25.0" prefWidth="286.0" />
-                        <DatePicker fx:id="txtFechaInicio" layoutX="209.0" layoutY="192.0" prefHeight="25.0" prefWidth="285.0" />
-                        <DatePicker fx:id="txtFechaFinal" layoutX="210.0" layoutY="230.0" prefHeight="25.0" prefWidth="285.0" />
-                        <ImageView fx:id="ImageViewProductoSeleccionado" fitHeight="219.0" fitWidth="210.0" layoutX="579.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnNuevo" layoutX="266.0" layoutY="463.0" mnemonicParsing="false" onAction="#limpiarCampos" onKeyPressed="#limpiarCamposTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Nuevo" textFill="#0697ae">
+                        <TextField fx:id="txtNombreAnunciante" layoutX="264.0" layoutY="114.0" prefHeight="25.0" prefWidth="286.0" styleClass="text-field-custom" />
+                        <TextField fx:id="txtCodigoAnuncio" layoutX="264.0" layoutY="168.0" prefHeight="25.0" prefWidth="286.0" styleClass="text-field-custom" />
+                        <DatePicker fx:id="txtFechaInicio" layoutX="265.0" layoutY="223.0" prefHeight="25.0" prefWidth="285.0" style="-fx-border-color: #0697AE;" />
+                        <DatePicker fx:id="txtFechaFinal" layoutX="265.0" layoutY="276.0" prefHeight="25.0" prefWidth="285.0" style="-fx-border-color: #0697AE;" />
+                        <ImageView fx:id="ImageViewProductoSeleccionado" fitHeight="256.0" fitWidth="322.0" layoutX="590.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ImageStock.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnNuevo" layoutX="266.0" layoutY="475.0" mnemonicParsing="false" onAction="#limpiarCampos" onKeyPressed="#limpiarCamposTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Nuevo" textFill="#0697ae">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAnunciar" layoutX="428.0" layoutY="463.0" mnemonicParsing="false" onAction="#anunciarProducto" onKeyPressed="#anunciarProductoTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Anunciar" textFill="WHITE">
+                        <Button fx:id="btnAnunciar" layoutX="428.0" layoutY="475.0" mnemonicParsing="false" onAction="#anunciarProducto" onKeyPressed="#anunciarProductoTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Anunciar" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnActualizar" layoutX="592.0" layoutY="463.0" mnemonicParsing="false" onAction="#actualizarAnuncio" onKeyPressed="#actualizarAnuncioTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697ae">
+                        <Button fx:id="btnActualizar" layoutX="592.0" layoutY="475.0" mnemonicParsing="false" onAction="#actualizarAnuncio" onKeyPressed="#actualizarAnuncioTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697ae">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TextArea fx:id="txtProducto" layoutX="202.0" layoutY="271.0" prefHeight="137.0" prefWidth="308.0" />
-                        <Label layoutX="579.0" layoutY="107.0" text="Imagen del producto" />
+                        <TextArea fx:id="txtProducto" layoutX="265.0" layoutY="323.0" prefHeight="137.0" prefWidth="308.0" />
+                        <Label layoutX="691.0" layoutY="160.0" text="Imagen del producto">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="38.0" layoutY="119.0" style="-fx-background-size: 10px 30px 10px 30px;" text="Nombre del anunciante" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="39.0" layoutY="336.0" text="Producto" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>

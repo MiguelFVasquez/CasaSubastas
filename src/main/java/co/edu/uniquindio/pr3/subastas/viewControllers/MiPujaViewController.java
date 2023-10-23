@@ -55,6 +55,8 @@ public class MiPujaViewController implements Initializable {
     @FXML
     private Button btnAgregarPuja;
     @FXML
+    private Button btnNuevo;
+    @FXML
     private Button btnEliminar;
 
     //----------Variables auxiliares-------------
@@ -300,6 +302,12 @@ public class MiPujaViewController implements Initializable {
     @FXML
     void eliminarTecla(ActionEvent event) throws CompradorException {
         eliminarPuja(event);
+    }
+
+
+    @FXML
+    void limpiarCampos(ActionEvent event) {
+        limpiarCampos();
     }
 
     @FXML

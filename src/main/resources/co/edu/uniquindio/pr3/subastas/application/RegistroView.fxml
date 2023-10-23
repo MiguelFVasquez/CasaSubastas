@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="885.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.RegistroViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="885.0" style="-fx-background-color: white;" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.RegistroViewController">
    <children>
       <Pane prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
          <opaqueInsets>
@@ -42,19 +42,19 @@
          </font></Label>
       <Label layoutX="63.0" layoutY="267.0" text="Identificación:" />
       <Button fx:id="btnRegistrar" layoutX="151.0" layoutY="479.0" mnemonicParsing="false" onAction="#aniadirUsuario" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Registrarse" textFill="WHITE" />
-      <TextField fx:id="txtNombre" layoutX="171.0" layoutY="183.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su (s) nombre (s)" />
-      <TextField fx:id="txtApellido" layoutX="171.0" layoutY="226.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese sus apellidos " />
-      <TextField fx:id="txtIdentificacion" layoutX="171.0" layoutY="263.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su identificación" />
-      <TextField fx:id="txtEdad" layoutX="171.0" layoutY="297.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su edad" />
-      <TextField fx:id="txtUsuario" layoutX="171.0" layoutY="340.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese un nombre de usuario">
+      <TextField fx:id="txtNombre" layoutX="171.0" layoutY="183.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su (s) nombre (s)" styleClass="text-field-custom" />
+      <TextField fx:id="txtApellido" layoutX="171.0" layoutY="226.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese sus apellidos " styleClass="text-field-custom" />
+      <TextField fx:id="txtIdentificacion" layoutX="171.0" layoutY="263.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su identificación" styleClass="text-field-custom" />
+      <TextField fx:id="txtEdad" layoutX="171.0" layoutY="297.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese su edad" styleClass="text-field-custom" />
+      <TextField fx:id="txtUsuario" layoutX="171.0" layoutY="340.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese un nombre de usuario" styleClass="text-field-custom">
          <font>
             <Font size="11.0" />
          </font></TextField>
-      <TextField fx:id="txtCorreo" layoutX="171.0" layoutY="379.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese un correo electronico">
+      <TextField fx:id="txtCorreo" layoutX="171.0" layoutY="379.0" prefHeight="25.0" prefWidth="166.0" promptText="Ingrese un correo electronico" styleClass="text-field-custom">
          <font>
             <Font size="11.0" />
          </font></TextField>
-      <TextField fx:id="txtContrasenia" layoutX="171.0" layoutY="421.0" prefHeight="25.0" prefWidth="166.0" promptText="Digite una contraseña" />
+      <TextField fx:id="txtContrasenia" layoutX="171.0" layoutY="421.0" prefHeight="25.0" prefWidth="166.0" promptText="Digite una contraseña" styleClass="text-field-custom" />
       <Label layoutX="52.0" layoutY="522.0" text="Si ya tienes una cuenta: " />
       <Button fx:id="btnInico" layoutX="198.0" layoutY="518.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Iniciar sesión" textFill="#5900ff" />
       <Separator layoutX="37.0" layoutY="461.0" prefHeight="2.0" prefWidth="318.0" />

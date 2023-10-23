@@ -33,9 +33,6 @@ public class VentanaPrincipalViewController implements Initializable {
     private Tab usuarioTab;
 
     @FXML
-    private Tab tabSubastas;
-
-    @FXML
     private Tab usuarioTabC;
 
     @FXML
@@ -78,7 +75,6 @@ public class VentanaPrincipalViewController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
