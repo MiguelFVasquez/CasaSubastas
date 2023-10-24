@@ -8,7 +8,11 @@ import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -160,6 +164,45 @@ public class ModelFactoryController implements IModelFactoryController {
     public void initMiPujaViewController(MiPujaViewController miPujaViewController){
         this.miPujaViewController= miPujaViewController;
     }
+    //------------------FUNCIONES DE NAVEGABILIDAD------------------------
+    public TabPane getTabPane(){
+        return miAnuncioViewController.tabPaneAnuncios;
+    }
+
+    public Tab encontrarTabPorNombre(String nombre) {
+        for (Tab tab : miAnuncioViewController.tabPaneAnuncios.getTabs()) {
+            if (tab.getText().equals(nombre)) {
+                return tab;
+            }
+        }
+        return null; // Devuelve null si no se encuentra el tab
+    }
+    //..............NAVEGABILIDAD DEL COMPRADOR.....................
+
+    public AnchorPane getAnchorPane(){
+        return compradorViewController.anchorPaneContenedor;
+    }
+
+    public Tab encontrarTabPorNombreComprador(String nombre) {
+        for (Tab tab : compradorViewController.tabPaneCompador.getTabs()) {
+            if (tab.getText().equals(nombre)) {
+                return tab;
+            }
+        }
+        return null; // Devuelve null si no se encuentra el tab
+    }
+    public TabPane getTabePaneComprador(AnchorPane anchorPane){
+        Scene scene = anchorPane.getScene();
+        if (scene != null) {
+            for (javafx.scene.Node node : scene.getRoot().getChildrenUnmodifiable()) {
+                if (node instanceof TabPane) {
+                    return (TabPane) node;
+                }
+            }
+        }
+        return null; // Devuelve null si no se encuentra el TabPane
+    }
+
 
     //--------------------------FUNCIONES DE TAB INICIO SESION----------------------------------------------------------
     public void mover() {
@@ -300,12 +343,14 @@ public class ModelFactoryController implements IModelFactoryController {
         return miCasa.eliminarAnuncio(anuncianteAux,anuncioEliminar);
     }
 
-    public void setInfoAnuncioProducto(String producto, Image imagen, String codigo){
+    public void setInfoAnuncioProducto(String producto, Image imagen, String codigo, LocalDate fecha){
         miAnuncioViewController.txtProducto.appendText(producto);
         miAnuncioViewController.txtProducto.setEditable(false);
         miAnuncioViewController.ImageViewProductoSeleccionado.setImage(imagen);
         miAnuncioViewController.txtCodigoAnuncio.setText(codigo);
         miAnuncioViewController.txtCodigoAnuncio.setEditable(false);
+        miAnuncioViewController.txtFechaInicio.setValue(fecha);
+        miAnuncioViewController.txtFechaInicio.setEditable(false);
 
     }
     //-----------------------------METODOS DEL COMPRADOR---------------------------------------------

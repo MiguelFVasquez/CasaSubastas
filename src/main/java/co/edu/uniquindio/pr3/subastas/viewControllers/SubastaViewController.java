@@ -11,11 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 public class SubastaViewController implements Initializable {
 
@@ -87,9 +85,16 @@ public class SubastaViewController implements Initializable {
 
     @FXML
     void pujarPorProducto(ActionEvent event) {
-        if (anuncioSeleccionado!=null){
-            String codigo= mezclarPalabras(anuncioSeleccionado.getCodigo(),anuncioSeleccionado.getNombreAnunciante());
-            subastaController.mfm.setInfoMiPujaView(anuncioSeleccionado,codigo);
+        if (anuncioSeleccionado!=null) {
+            String codigo = mezclarPalabras(anuncioSeleccionado.getCodigo(), anuncioSeleccionado.getNombreAnunciante());
+            subastaController.mfm.setInfoMiPujaView(anuncioSeleccionado, codigo);
+            AnchorPane anchorPane = subastaController.mfm.getAnchorPane();
+            TabPane tabPane = subastaController.mfm.getTabePaneComprador(anchorPane);
+            // Obtener la referencia al tab "Mis anuncios"
+            Tab misAnunciosTab = subastaController.mfm.encontrarTabPorNombreComprador("Anuncios disponibles");
+            if (misAnunciosTab != null) {
+                tabPane.getSelectionModel().select(misAnunciosTab);
+            }
             mostrarMensaje("Finalizar puja","Finalice la puja","Para finalizar la puja dirijase a la pestaña mis pujas y termine de llenar la información", Alert.AlertType.INFORMATION);
         }else {
             mostrarMensaje("Selección de anuncio", "Anuncio no seleccionado","Seleccione un anuncio por el cual pujar", Alert.AlertType.WARNING);

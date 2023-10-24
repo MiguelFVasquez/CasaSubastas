@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -380,10 +381,15 @@ public class MiProductoViewController implements Initializable {
     @FXML
     void anunciarProducto(ActionEvent event) {
         if (productoSeleccionado!=null){
+
             String codigo=mezclarPalabras(productoSeleccionado.getCodigo(),productoSeleccionado.getNombre());
-            miProductoController.mfm.setInfoAnuncioProducto(productoSeleccionado.toString(),productoSeleccionado.getImagen(),codigo);
+            LocalDate fecha= LocalDate.now();
+            miProductoController.mfm.setInfoAnuncioProducto(productoSeleccionado.toString(),productoSeleccionado.getImagen(),codigo,fecha);
             productoSeleccionado.setEstaAnunciado(true);
-            //tableViewProductos.refresh();
+            Tab misAnunciosTab= miProductoController.mfm.encontrarTabPorNombre("Informacion Anuncio");
+            if (misAnunciosTab != null) {
+                miProductoController.mfm.getTabPane().getSelectionModel().select(misAnunciosTab);
+            }
             mostrarMensaje("Producto anunciado","Producto anunciado","EL producto está listo para ser anunciado, dirijase a la pestaña 'Anuncios' y finalice el proceso", Alert.AlertType.INFORMATION);
         }else{
             mostrarMensaje("Producto selección","Producto no seleccionado","Por favor, seleccione un producto para anuncciar", Alert.AlertType.WARNING);

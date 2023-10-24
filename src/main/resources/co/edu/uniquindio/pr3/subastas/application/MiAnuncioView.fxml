@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="961.0" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiAnuncioViewController">
    <children>
-      <TabPane layoutX="8.0" prefHeight="607.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPaneAnuncios" layoutX="8.0" prefHeight="607.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Informacion Anuncio">
+          <Tab fx:id="tabInfoAnuncio" text="Informacion Anuncio">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="text-field-custom">
                      <children>
@@ -87,7 +87,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Mis anuncios">
+          <Tab fx:id="tabMisAnuncios" text="Mis anuncios">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

@@ -31,6 +31,14 @@ public class MiAnuncioViewController implements Initializable {
 
     @FXML
     private URL location;
+    //--------------TABSA----------------------
+
+    @FXML
+    public TabPane tabPaneAnuncios;
+    @FXML
+    public Tab tabMisAnuncios;
+    @FXML
+    public Tab tabInfoAnuncio;
 
     //-----------------Table view Anuncios--------------------------
     @FXML
@@ -67,7 +75,7 @@ public class MiAnuncioViewController implements Initializable {
     @FXML
     public TextArea txtProducto;
     @FXML
-    private DatePicker txtFechaInicio;
+    public DatePicker txtFechaInicio;
     @FXML
     private DatePicker txtFechaFinal;
     //---------------BOTONES---------------------------------

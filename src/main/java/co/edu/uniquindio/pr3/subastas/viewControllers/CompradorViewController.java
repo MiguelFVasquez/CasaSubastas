@@ -25,6 +25,8 @@ public class CompradorViewController implements Initializable {
 
     CompradorController compradorController;
 
+
+
     @FXML
     private ResourceBundle resources;
 
@@ -46,10 +48,13 @@ public class CompradorViewController implements Initializable {
     private ComboBox<TipoUsuario> comboBoxTipoUsuario;
 
     @FXML
-    private Tab tabMicuenta;
-
+    public  TabPane tabPaneCompador;
     @FXML
-    private Tab tabMisPujas;
+    public AnchorPane anchorPaneContenedor;
+    @FXML
+    private Tab tabMicuenta;
+    @FXML
+    public Tab tabMisPujas;
     @FXML
     private Tab tabAnunciosDisponibles;
 
@@ -109,7 +114,6 @@ public class CompradorViewController implements Initializable {
     public void initialize(URL url , ResourceBundle resourceBundle) {
         compradorController= new CompradorController();
         compradorController.mfm.initCompradorViewController(this);
-
     }
     public void close() {
     }
