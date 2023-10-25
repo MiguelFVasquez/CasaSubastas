@@ -25,7 +25,7 @@ public class ModelFactoryController implements IModelFactoryController {
     CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    SubastaMapper mapper = SubastaMapper.INSTANCE;
+    //SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
@@ -376,7 +376,11 @@ public class ModelFactoryController implements IModelFactoryController {
     public boolean crearPuja(String nombreUsuario, String password, Anuncio anuncio, Double valor, LocalDate fecha, String codigo) throws PujaException, AnuncioException, CompradorException {
         Comprador compradoAux= miCasa.obtenerComprador(nombreUsuario,password);
         Puja newPuja= new Puja(anuncio,compradoAux,valor,fecha,codigo);
-        return miCasa.crearPuja(compradoAux, newPuja);
+        if (miCasa.crearPuja(compradoAux,newPuja)){
+            newPuja.getAnuncio().getListaPujas().add(newPuja);
+            return true;
+        }
+        return false;
     }
     public boolean eliminarPuja(String nombreUsuario, String password, Puja pujaElimnar) throws PujaException, CompradorException {
         Comprador compradorAux= miCasa.obtenerComprador(nombreUsuario,password);

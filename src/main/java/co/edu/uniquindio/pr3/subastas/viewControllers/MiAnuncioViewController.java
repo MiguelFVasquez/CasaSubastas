@@ -220,18 +220,20 @@ public class MiAnuncioViewController implements Initializable {
             txtCodigoAnuncio.setText(anuncioSeleccionado.getCodigo());
             txtProducto.setText(anuncioSeleccionado.getProducto().toString());
             //tableView
-            listaPujas.addAll(anuncioSeleccionado.getListaPujas());
             tableViewPujas.getItems().clear();
             tableViewPujas.setItems(getListaPujas());
+            System.out.println("Lista pujas: "+listaPujas.toString());
+
             //Fechas
-            String fechaInicio= anuncioSeleccionado.getFechaInicio();
-            String fechaFinal= anuncioSeleccionado.getFechaFinal();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            //String fechaInicio= anuncioSeleccionado.getFechaInicio();
+            //String fechaFinal= anuncioSeleccionado.getFechaFinal();
+            //DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
             // Convertir la cadena de fecha a LocalDate
-            LocalDate fechaInicial = LocalDate.parse(fechaInicio, formato);
-            LocalDate fechaFin = LocalDate.parse(fechaFinal, formato);
-            txtFechaInicio.setValue(fechaInicial);
-            txtFechaFinal.setValue(fechaFin);
+            //LocalDate fechaInicial = LocalDate.parse(fechaInicio, formato);
+            //LocalDate fechaFin = LocalDate.parse(fechaFinal, formato);
+            //txtFechaInicio.setValue(fechaInicial);
+            //txtFechaFinal.setValue(fechaFin);
 
         }
     }
@@ -426,7 +428,7 @@ public class MiAnuncioViewController implements Initializable {
                     }
                 }
             }catch (AnuncioException anuncioException){
-                mostrarMensaje("Elimininación de anuncio", "Producto no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
+                mostrarMensaje("Elimininación de anuncio", "Anuncio no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
             }
 
         }else{
@@ -440,8 +442,25 @@ public class MiAnuncioViewController implements Initializable {
     }
 
     @FXML
-    void aceptarPuja(ActionEvent event) {
+    void aceptarPuja(ActionEvent event) throws AnuncioException, AnuncianteException {
+        String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
+        String password= miAnuncioController.mfm.getPassword();
+        if (pujaSeleccionada!=null){
+            Anuncio anuncioAceptado= pujaSeleccionada.getAnuncio();
+            Producto productoSeleccionado= pujaSeleccionada.getAnuncio().getProducto();
+            try {
+                if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioAceptado) && miAnuncioController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
+                    listaAnuncios.remove(anuncioAceptado);
+                }
+            }catch (AnuncioException anuncioException){
+                mostrarMensaje("Elimininación de anuncio", "Anuncio no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
+            } catch (ProductoException productoException) {
+                mostrarMensaje("Elimininación de Producto", "Producto no eliminado", productoException.getMessage(),Alert.AlertType.INFORMATION);
+            }
 
+        }else{
+            mostrarMensaje("Selección de puja","Puja no seleccionada","Seleccione primero una puja antes de aceotarla", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
