@@ -117,6 +117,8 @@ public class MiCuentaViewController implements Initializable {
     @FXML
     void cerrarSesion(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+        miCuentaController.mfm.setMiAnunciante(null);
+        miCuentaController.mfm.setMiComprador(null);
         // Cerrar la ventana
         stage.close();
     }
@@ -154,6 +156,8 @@ public class MiCuentaViewController implements Initializable {
 
                 }
             }
+            miCuentaController.mfm.guardarResourceXML();
+
         }
     }
 
@@ -167,6 +171,7 @@ public class MiCuentaViewController implements Initializable {
         if(confirmacionAlert()){
             if(tipoUsuario.equals( TipoUsuario.COMPRADOR )){
                 miCuentaController.mfm.eliminarCuentaComprador(txtUsuario.getText(), txtContrasenia.getText());
+                miCuentaController.mfm.guardarResourceXML();
                 mostrarMensaje( "Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION );
                 cerrarSesion(  event );
             }else{
@@ -356,10 +361,12 @@ public class MiCuentaViewController implements Initializable {
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
+
         miCuentaController= new MiCuentaController();
         miCuentaController.mfm.initMiCuentaViewController(this);
         btnActualizarInformacion1.setVisible( false );
         comboBoxTipoUsuario.setEditable( false );
+
 
         //Asociacion de los botones a la tecla ENTER
         btnActualizarInformacion.setOnKeyPressed(event -> {

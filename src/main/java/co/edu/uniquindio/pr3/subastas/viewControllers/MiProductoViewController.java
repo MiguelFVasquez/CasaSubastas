@@ -355,6 +355,7 @@ public class MiProductoViewController implements Initializable {
         if(validarDatos(nombre, codigo, valor, descrp, tipoProducto, image)){
             crearProducto(nombreUsuario, password,nombre, codigo, valor, descrp, tipoProducto, image,anunciado);
                 limpiarCampos();
+                miProductoController.mfm.guardarResourceXML();
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
         }
@@ -421,6 +422,7 @@ public class MiProductoViewController implements Initializable {
                     if (miProductoController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
                         listaProductos.remove(productoSeleccionado);
                         mostrarMensaje("Elimininación de producto", "Producto eliminado", "El producto ha sido eliminado con exito",Alert.AlertType.INFORMATION);
+                        miProductoController.mfm.guardarResourceXML();
                         Persistencia.guardaRegistroLog("Eliminación de producto", 1, "Se ha eliminado un producto");
                     }
                 }

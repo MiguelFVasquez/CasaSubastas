@@ -264,6 +264,7 @@ public class MiPujaViewController implements Initializable {
     private void crearPuja(String nombreUsuario, String password, String codigo, LocalDate fecha , Anuncio anuncio, Double valor) throws AnuncioException, CompradorException {
         try{
             if(miPujaController.mfm.crearPuja(nombreUsuario,password,anuncio,valor,fecha,codigo)){
+                miPujaController.mfm.guardarResourceXML();
                 mostrarMensaje("Notificación puja", "Puja por producto", "Puja por producto realizada", Alert.AlertType.INFORMATION);
                 Persistencia.guardaRegistroLog("Creación de puja", 1, "Se ha generado la puja de un producto");
             }
@@ -286,6 +287,7 @@ public class MiPujaViewController implements Initializable {
                 if(confirmacionAlert()){
                     if (miPujaController.mfm.eliminarPuja(nombreUsuario,password,pujaSeleccionada)){
                         listaPujas.remove(pujaSeleccionada);
+                        miPujaController.mfm.guardarResourceXML();
                         mostrarMensaje("Elimininación de puja", "Puja eliminada", "La puja ha sido eliminada con exito",Alert.AlertType.INFORMATION);
                         Persistencia.guardaRegistroLog("Eliminación de puja", 1, "Se ha eliminado una puja");
                     }

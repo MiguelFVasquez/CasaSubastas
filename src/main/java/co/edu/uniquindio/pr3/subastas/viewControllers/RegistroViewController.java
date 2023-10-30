@@ -76,6 +76,7 @@ public class RegistroViewController implements Initializable{
                 if(crearAnunciante(nombre, apellidos, id, edad, usuario, correo, password)){
                     mostrarMensaje( "Notificación", "Usuario registrado" ,
                             "El usuario ha sido registrado con éxito" + "\n" + "Ahora inicie sesión", Alert.AlertType.INFORMATION );
+                    registroController.mfm.guardarResourceXML();
                     limpiarCampos();
                 }
                 else{
@@ -89,6 +90,8 @@ public class RegistroViewController implements Initializable{
                     mostrarMensaje( "Notificación", "Usuario registrado" ,
                             "El usuario ha sido registrado con éxito" + "\n" + "Ahora inicie sesión", Alert.AlertType.INFORMATION );
                     limpiarCampos();
+                    registroController.mfm.guardarResourceXML();
+
                 }
                 else{
                     mostrarMensaje( "Notificación", "Usuario no registrado",
@@ -206,6 +209,7 @@ public class RegistroViewController implements Initializable{
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle) {
+        registroController.mfm.initRegistroViewController(this);
         comboBoxTipoUsuario.getItems().addAll(TipoUsuario.values());
     }
 }

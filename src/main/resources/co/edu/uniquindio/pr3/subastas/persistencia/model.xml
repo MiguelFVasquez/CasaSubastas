@@ -65,10 +65,10 @@
       </void>
      </void>
      <void property="nombre">
-      <string>santiago</string>
+      <string>San</string>
      </void>
      <void property="nombreUsuario">
-      <string>sa</string>
+      <string>ovalle</string>
      </void>
      <void property="tipoUsuario">
       <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">

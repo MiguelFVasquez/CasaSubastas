@@ -373,6 +373,7 @@ public class MiAnuncioViewController implements Initializable {
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
             if (!productoAnunciar.getEstaAnunciado()){
                 crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar,pujasAnunciadas);
+                miAnuncioController.mfm.guardarResourceXML();
                 limpiarCampos(event);
                 tableViewAnuncios.getItems().clear();
                 tableViewAnuncios.setItems(getListaAnuncios());
@@ -424,6 +425,7 @@ public class MiAnuncioViewController implements Initializable {
                     if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioSeleccionado)){
                         listaAnuncios.remove(anuncioSeleccionado);
                         mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
+                        miAnuncioController.mfm.guardarResourceXML();
                         Persistencia.guardaRegistroLog("Eliminación de anuncio", 1, "Se ha eliminado un anuncio");
                     }
                 }

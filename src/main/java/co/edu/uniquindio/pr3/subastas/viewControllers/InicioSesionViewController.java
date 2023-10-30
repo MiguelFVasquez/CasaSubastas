@@ -236,7 +236,6 @@ public class  InicioSesionViewController implements Initializable {
         iniciarSesion(event);
     }
 
-
     @FXML
     void recuperarContrasenia(ActionEvent event) {
 
@@ -281,6 +280,8 @@ public class  InicioSesionViewController implements Initializable {
             }
         });
         configurarEventos();
+
+        txtInicioPassword.setOnAction(event -> btnIniciar.fire());
     }
 
 }

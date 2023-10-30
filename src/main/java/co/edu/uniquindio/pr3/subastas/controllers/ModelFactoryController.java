@@ -25,7 +25,7 @@ public class ModelFactoryController implements IModelFactoryController {
     CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    //SubastaMapper mapper = SubastaMapper.INSTANCE;
+    SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
@@ -434,7 +434,7 @@ public class ModelFactoryController implements IModelFactoryController {
         miCasa= Persistencia.cargarRecursoCasaSubastaXML();
     }
 
-    private void guardarResourceXML() {
+    public void guardarResourceXML() {
         Persistencia.guardarRecursoCasaSubastaXML(miCasa);
     }
 
