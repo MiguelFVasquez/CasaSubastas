@@ -89,7 +89,9 @@ public class Comprador extends Usuario implements IComprador, Serializable {
             throw new PujaException("Ya existe una puja con el mismo códgo");
         }else if (newPuja.getAnuncio()==null){
             throw new AnuncioException("El anuncio por el que desea pujar ya no existe");
-        }else {
+        } else if (newPuja.tamanioLista()==3) {
+            throw new PujaException("Solo es posible tener tres pujas activas, las cuales ya tiene");
+        } else {
             newPuja.getAnuncio().getListaPujas().add(newPuja);
             creado=true;
             listaPujas.add(newPuja);

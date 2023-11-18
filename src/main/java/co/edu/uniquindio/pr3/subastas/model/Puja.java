@@ -78,6 +78,10 @@ public class Puja implements Serializable {
         return Objects.hash(anuncio, comprador, valor, fecha);
     }
 
+    public int tamanioLista(){
+        return getComprador().getListaPujas().size();
+    }
+
     @Override
     public String toString() {
         return "Puja{" +

@@ -339,6 +339,9 @@ public class MiPujaViewController implements Initializable {
                 mostrarInformacionPuja();
             }
         });
+
+        tableViewPuja.getItems().clear();
+        tableViewPuja.setItems(getListaPujas());
         asociarProductosBotones();
         configurarEventos();
     }

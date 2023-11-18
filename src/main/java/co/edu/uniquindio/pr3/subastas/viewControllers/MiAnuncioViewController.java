@@ -121,8 +121,8 @@ public class MiAnuncioViewController implements Initializable {
         listaAnuncios.addAll(anunciante.getListaAnuncios());
         return listaAnuncios;
     }
-    private ObservableList<Puja> getListaPujas(){
-        listaPujas.addAll(anuncioSeleccionado.getListaPujas());
+    private ObservableList<Puja> getListaPujas(Anuncio anuncioSeleccion){
+        listaPujas.addAll(anuncioSeleccion.getListaPujas());
         return listaPujas;
     }
     private void configurarEventos() {
@@ -221,8 +221,8 @@ public class MiAnuncioViewController implements Initializable {
             txtProducto.setText(anuncioSeleccionado.getProducto().toString());
             //tableView
             tableViewPujas.getItems().clear();
-            tableViewPujas.setItems(getListaPujas());
-            System.out.println("Lista pujas: "+listaPujas.toString());
+            tableViewPujas.setItems(getListaPujas(anuncioSeleccionado));
+            System.out.println("Lista pujas: "+getListaPujas(anuncioSeleccionado));
 
             //Fechas
             //String fechaInicio= anuncioSeleccionado.getFechaInicio();

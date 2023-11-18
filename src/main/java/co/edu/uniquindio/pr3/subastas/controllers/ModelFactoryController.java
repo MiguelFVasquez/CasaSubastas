@@ -1,5 +1,8 @@
 package co.edu.uniquindio.pr3.subastas.controllers;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloCargaBinario;
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloCargarArchivos;
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloCargarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.Interfaces.IModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.exceptions.*;
 import co.edu.uniquindio.pr3.subastas.mapping.mappers.SubastaMapper;
@@ -22,10 +25,10 @@ import java.util.List;
 
 public class ModelFactoryController implements IModelFactoryController {
     //Clase global de la subasta
-    CasaSubasta miCasa;
+    static CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
-    SubastaMapper mapper = SubastaMapper.INSTANCE;
+    //SubastaMapper mapper = SubastaMapper.INSTANCE;
     //Datos para el manejo de cada controlador
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
@@ -75,7 +78,11 @@ public class ModelFactoryController implements IModelFactoryController {
         //1. inicializar datos y luego guardarlo en archivos
 
         System.out.println("Invocacion clase singleton");
-        //inicializarDatos();
+        try {
+            inicializarDatos();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         //salvarDatosPrueba();
 
         //2. Cargar los datos de los archivos
@@ -86,8 +93,8 @@ public class ModelFactoryController implements IModelFactoryController {
         //guardarResourceBinario();
 
         //4. Guardar y Cargar el recurso serializable XML
-        cargarResourceXML();
-        guardarResourceXML();
+        //cargarResourceXML();
+        //guardarResourceXML();
         //Siempre se debe verificar si la raiz del recurso es null
 
         if(miCasa == null){
@@ -98,8 +105,24 @@ public class ModelFactoryController implements IModelFactoryController {
 
     }
 
-    private void inicializarDatos() {
-        miCasa = CasaSubastasUtil.inicializarDatos();
+    private void inicializarDatos() throws InterruptedException{
+        //miCasa = CasaSubastasUtil.inicializarDatos();
+        //Cargar datos desde archivos
+        HiloCargarArchivos cargarArchivos= new HiloCargarArchivos();
+        cargarArchivos.start();
+        cargarArchivos.join();
+
+        //Carga datos desde el xml
+        HiloCargarXML cargarXML= new HiloCargarXML();
+        cargarXML.start();
+        cargarXML.join();
+        /*
+        //Carga datos desde el binario
+        HiloCargaBinario cargaBinario= new HiloCargaBinario();
+        cargaBinario.start();
+        cargaBinario.join();*/
+
+
     }
 
     // Getter y setter de la casa de subastas
@@ -391,7 +414,7 @@ public class ModelFactoryController implements IModelFactoryController {
 
     //---------------SERIALIZACION----------------------------------------
 
-    private void salvarDatosPrueba() {
+    public void salvarDatosPrueba() {
         try {
             Persistencia.guardarUsuarios(getMiCasa().getListaUsuarios());
             System.out.println("Serializado de usuarios");
@@ -409,7 +432,7 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //PUNTO 2 METODO
-    private void cargarDatosDesdeArchivos() {
+    public static void cargarDatosDesdeArchivos() {
         miCasa = CasaSubastasUtil.inicializarDatos();
         try {
             Persistencia.cargarDatosArchivos(miCasa);
@@ -421,24 +444,24 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     //PUNTO 3
-    private void guardarResourceBinario() {
+    public static void guardarResourceBinario() {
         Persistencia.guardarRecursoCasaSubastaBinario(miCasa);
     }
 
-    private void cargarResourceBinario() {
+    public static void cargarResourceBinario() {
         miCasa= Persistencia.cargarRecursoCasaSubastaBinario();
     }
 
     //PUNTO 4
-    private void cargarResourceXML() {
+    public static void cargarResourceXML() {
         miCasa= Persistencia.cargarRecursoCasaSubastaXML();
     }
 
-    public void guardarResourceXML() {
+    public static void guardarResourceXML() {
         Persistencia.guardarRecursoCasaSubastaXML(miCasa);
     }
 
-    private void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+    public static void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
