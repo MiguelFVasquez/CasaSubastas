@@ -251,8 +251,7 @@ public class MiPujaViewController implements Initializable {
         String anuncio = txtAnuncio.getText();
         LocalDate fecha= datePickerFecha.getValue();
         Double valor= Double.parseDouble(txtValor.getText());
-        Anuncio anuncioAux= obtenerAnuncio(anuncio);//Obtengo el anuncio a partir del texto
-
+        Anuncio anuncioAux= miPujaController.mfm.getAnuncioPujar();
         if (validarDatos(codigo,fecha, anuncioAux,valor)){
             crearPuja(nombreUsuario,password,codigo,fecha,anuncioAux,valor);
             limpiarCampos();

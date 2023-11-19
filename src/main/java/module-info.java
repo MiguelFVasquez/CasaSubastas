@@ -3,6 +3,7 @@ module com.example.casasubastas {
     requires javafx.fxml;
     requires javafx.controls;
     requires javafx.base;
+    requires com.rabbitmq.client;
 
     requires org.mapstruct;
     requires java.desktop;

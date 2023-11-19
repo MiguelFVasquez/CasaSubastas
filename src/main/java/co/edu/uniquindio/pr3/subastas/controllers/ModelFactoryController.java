@@ -346,6 +346,9 @@ public class ModelFactoryController implements IModelFactoryController {
     public boolean eliminarProducto(String nombreUsuario, String password, Producto productoEliminar) throws ProductoException, AnuncianteException {
         return miCasa.eliminarProducto(nombreUsuario,password,productoEliminar);
     }
+    public ObservableList<Producto> getListaProductos(){
+        return miProductoViewController.listaProductos;
+    }
 
     //----------------------------------------------ANUNCIO VIEW---------------------------------------------------
 
@@ -399,15 +402,15 @@ public class ModelFactoryController implements IModelFactoryController {
     public boolean crearPuja(String nombreUsuario, String password, Anuncio anuncio, Double valor, LocalDate fecha, String codigo) throws PujaException, AnuncioException, CompradorException {
         Comprador compradoAux= miCasa.obtenerComprador(nombreUsuario,password);
         Puja newPuja= new Puja(anuncio,compradoAux,valor,fecha,codigo);
-        if (miCasa.crearPuja(compradoAux,newPuja)){
-            newPuja.getAnuncio().getListaPujas().add(newPuja);
-            return true;
-        }
-        return false;
+        return miCasa.crearPuja(compradoAux, newPuja);
     }
     public boolean eliminarPuja(String nombreUsuario, String password, Puja pujaElimnar) throws PujaException, CompradorException {
         Comprador compradorAux= miCasa.obtenerComprador(nombreUsuario,password);
         return miCasa.eliminarPuja(compradorAux,pujaElimnar);
+    }
+
+    public Anuncio getAnuncioPujar(){
+        return subastaViewController.anuncioSeleccionado;
     }
 
 

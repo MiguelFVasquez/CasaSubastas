@@ -96,7 +96,7 @@ public class MiProductoViewController implements Initializable {
 
     MiProductoController miProductoController;
 
-    ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
+    public ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
 
 
 //--------------------Funciones utilitarias----------------------------------

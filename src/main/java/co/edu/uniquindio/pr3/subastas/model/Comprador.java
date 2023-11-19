@@ -2,6 +2,7 @@ package co.edu.uniquindio.pr3.subastas.model;
 
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.PujaException;
+import co.edu.uniquindio.pr3.subastas.model.Interfaces.IAnunciante;
 import co.edu.uniquindio.pr3.subastas.model.Interfaces.IComprador;
 
 import java.io.Serializable;
@@ -89,10 +90,8 @@ public class Comprador extends Usuario implements IComprador, Serializable {
             throw new PujaException("Ya existe una puja con el mismo códgo");
         }else if (newPuja.getAnuncio()==null){
             throw new AnuncioException("El anuncio por el que desea pujar ya no existe");
-        } else if (newPuja.tamanioLista()==3) {
-            throw new PujaException("Solo es posible tener tres pujas activas, las cuales ya tiene");
-        } else {
-            newPuja.getAnuncio().getListaPujas().add(newPuja);
+        }else{
+            newPuja.getAnuncio().agregarPuja(newPuja);
             creado=true;
             listaPujas.add(newPuja);
         }

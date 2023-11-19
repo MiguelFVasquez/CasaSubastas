@@ -142,10 +142,9 @@ public class RegistroViewController implements Initializable{
             notificacion += "Ingrese su edad\n";
         } else if ( !esNumero( edad ) ) {
             notificacion += "La edad ingresada debe ser numérica\n";
-            if(Integer.parseInt(edad)<18){
-                notificacion+="Para registrarse debe ser mayor de edad";
-            }
-
+        }
+        if(Integer.parseInt(edad)<18){
+            notificacion+="Para registrarse debe ser mayor de edad";
         }
         if ( usuario == null || usuario.isEmpty() ) {
             notificacion += "Ingrese como quiere ser llamado en la App\n";

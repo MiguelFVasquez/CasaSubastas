@@ -44,7 +44,7 @@ public class SubastaViewController implements Initializable {
     public Button btnPuja;
     //---------------------Variables auxiliares----------------
     SubastaController subastaController;
-    private Anuncio anuncioSeleccionado;
+    public Anuncio anuncioSeleccionado;
 
     private ObservableList<Anuncio> listaAnuncios= FXCollections.observableArrayList();
     //-----------------------FUNCIONES UTILITARIAS-----------------------------

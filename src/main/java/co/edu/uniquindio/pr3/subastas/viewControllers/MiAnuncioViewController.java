@@ -298,6 +298,23 @@ public class MiAnuncioViewController implements Initializable {
         return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
     }
 
+    private boolean confirmarPuja(){
+        // Crear una alerta de tipo CONFIRMATION
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("Al aceptar la puja, el anuncio sera eliminado, ¿desea continuar con está acción?");
+
+        // Configurar los botones
+        ButtonType buttonTypeContinuar = new ButtonType("Continuar");
+        ButtonType buttonTypeCancelar = new ButtonType("Cancelar");
+
+        alert.getButtonTypes().setAll(buttonTypeContinuar, buttonTypeCancelar);
+
+        // Mostrar la alerta y esperar a que el usuario haga clic en un botón
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
+    }
     private void asosiacionBotonesTecla(){
         btnAnunciar.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -426,6 +443,7 @@ public class MiAnuncioViewController implements Initializable {
                         listaAnuncios.remove(anuncioSeleccionado);
                         mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
                         miAnuncioController.mfm.guardarResourceXML();
+                        anuncioSeleccionado.getProducto().setEstaAnunciado(false);
                         Persistencia.guardaRegistroLog("Eliminación de anuncio", 1, "Se ha eliminado un anuncio");
                     }
                 }
@@ -451,8 +469,13 @@ public class MiAnuncioViewController implements Initializable {
             Anuncio anuncioAceptado= pujaSeleccionada.getAnuncio();
             Producto productoSeleccionado= pujaSeleccionada.getAnuncio().getProducto();
             try {
-                if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioAceptado) && miAnuncioController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
-                    listaAnuncios.remove(anuncioAceptado);
+                if (confirmarPuja()){
+                    if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioAceptado) && miAnuncioController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
+                        listaAnuncios.remove(anuncioAceptado);
+                        miAnuncioController.mfm.getListaProductos().remove(productoSeleccionado);
+                        tableViewPujas.getItems().clear();
+                        mostrarMensaje("Producto vendido","Puja aceptada", "La puja por anuncio ha sido aceptada, contacte con el comprador y termine el proceso de compra.", Alert.AlertType.INFORMATION);
+                    }
                 }
             }catch (AnuncioException anuncioException){
                 mostrarMensaje("Elimininación de anuncio", "Anuncio no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);

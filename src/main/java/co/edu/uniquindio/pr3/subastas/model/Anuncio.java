@@ -88,6 +88,10 @@ public class Anuncio implements Serializable {
     public void setProducto(String s) {
     }
 
+    public void  agregarPuja(Puja newPuja){
+        getListaPujas().add(newPuja);
+    }
+
     @Override
     public String toString() {
         return "Anuncio: " +
@@ -98,3 +102,4 @@ public class Anuncio implements Serializable {
                 "\nproducto:" + producto ;
     }
 }
+
