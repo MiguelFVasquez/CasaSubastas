@@ -10,13 +10,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiAnuncioViewController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="960.0" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiAnuncioViewController">
    <children>
       <TabPane fx:id="tabPaneAnuncios" layoutX="8.0" prefHeight="607.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="tabInfoAnuncio" text="Informacion Anuncio">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="text-field-custom">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="text-field-custom">
                      <children>
                         <AnchorPane layoutX="-1.0" layoutY="67.0" prefHeight="515.0" prefWidth="194.0" style="-fx-background-color: #AEB5B6;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="67.0" />
                         <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#0697ae" height="42.0" layoutX="-18.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
@@ -55,17 +55,17 @@
                               <Image url="@../images/ImageStock.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnNuevo" layoutX="265.0" layoutY="515.0" mnemonicParsing="false" onAction="#limpiarCampos" onKeyPressed="#limpiarCamposTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Nuevo" textFill="#0697ae" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="265.0">
+                        <Button fx:id="btnNuevo" layoutX="269.0" layoutY="494.0" mnemonicParsing="false" onAction="#limpiarCampos" onKeyPressed="#limpiarCamposTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Nuevo" textFill="#0697ae" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="269.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAnunciar" layoutX="427.0" layoutY="515.0" mnemonicParsing="false" onAction="#anunciarProducto" onKeyPressed="#anunciarProductoTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Anunciar" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="427.0">
+                        <Button fx:id="btnAnunciar" layoutX="431.0" layoutY="494.0" mnemonicParsing="false" onAction="#anunciarProducto" onKeyPressed="#anunciarProductoTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Anunciar" textFill="WHITE" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="431.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnActualizar" layoutX="591.0" layoutY="515.0" mnemonicParsing="false" onAction="#actualizarAnuncio" onKeyPressed="#actualizarAnuncioTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697ae" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="591.0">
+                        <Button fx:id="btnActualizar" layoutX="595.0" layoutY="494.0" mnemonicParsing="false" onAction="#actualizarAnuncio" onKeyPressed="#actualizarAnuncioTecla" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: #0697AE; -fx-cursor: hand;" text="Actualizar" textFill="#0697ae" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="595.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -107,7 +107,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <TableView fx:id="tableViewAnuncios" layoutX="1.0" layoutY="87.0" prefHeight="375.0" prefWidth="564.0">
+                        <TableView fx:id="tableViewAnuncios" layoutX="7.0" layoutY="88.0" prefHeight="375.0" prefWidth="564.0">
                            <columns>
                               <TableColumn fx:id="columNombreUsuario" prefWidth="120.0" text="Nombre usuario" />
                               <TableColumn fx:id="columCodigoAnuncio" prefWidth="86.0" text="Código" />

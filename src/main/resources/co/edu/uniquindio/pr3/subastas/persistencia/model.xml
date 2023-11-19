@@ -185,6 +185,31 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.pr3.subastas.model.Anunciante" id="Anunciante1">
+     <void property="apellido">
+      <string>Florez</string>
+     </void>
+     <void property="contrasenia">
+      <string>0000</string>
+     </void>
+     <void property="correo">
+      <string>juan@gmail.com</string>
+     </void>
+     <void property="edad">
+      <string>19</string>
+     </void>
+     <void property="identificacion">
+      <string>10101</string>
+     </void>
+     <void property="nombre">
+      <string>Juan Miguel</string>
+     </void>
+     <void property="nombreUsuario">
+      <string>juanmi</string>
+     </void>
+    </object>
+   </void>
   </void>
   <void property="listaAnuncios">
    <void method="add">
@@ -243,7 +268,7 @@
          </object>
         </void>
         <void property="codigo">
-         <string>00s1a0</string>
+         <string>100a0s</string>
         </void>
         <void property="comprador">
          <object idref="Comprador0"/>
@@ -258,46 +283,6 @@
         <void property="anuncio">
          <object class="co.edu.uniquindio.pr3.subastas.model.Anuncio" id="Anuncio3">
           <void property="codigo">
-           <string>0001</string>
-          </void>
-          <void property="fechaFinal">
-           <string>23/10/2023</string>
-          </void>
-          <void property="fechaInicio">
-           <string>16/10/2023</string>
-          </void>
-          <void property="listaPujas">
-           <void method="add">
-            <object idref="Puja1"/>
-           </void>
-           <void method="add">
-            <object idref="Puja1"/>
-           </void>
-          </void>
-          <void property="nombreAnunciante">
-           <string>sa</string>
-          </void>
-          <void property="producto">
-           <object class="co.edu.uniquindio.pr3.subastas.model.Producto"/>
-          </void>
-         </object>
-        </void>
-        <void property="codigo">
-         <string>100a0s</string>
-        </void>
-        <void property="comprador">
-         <object idref="Comprador0"/>
-        </void>
-        <void property="valor">
-         <double>312.0</double>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.pr3.subastas.model.Puja" id="Puja2">
-        <void property="anuncio">
-         <object class="co.edu.uniquindio.pr3.subastas.model.Anuncio" id="Anuncio4">
-          <void property="codigo">
            <string>luoce231c</string>
           </void>
           <void property="fechaFinal">
@@ -308,10 +293,10 @@
           </void>
           <void property="listaPujas">
            <void method="add">
-            <object idref="Puja2"/>
+            <object idref="Puja1"/>
            </void>
            <void method="add">
-            <object idref="Puja2"/>
+            <object idref="Puja1"/>
            </void>
           </void>
           <void property="nombreAnunciante">
@@ -442,6 +427,9 @@
       <object idref="TipoUsuario0"/>
      </void>
     </object>
+   </void>
+   <void method="add">
+    <object idref="Anunciante1"/>
    </void>
   </void>
   <void property="nombre">

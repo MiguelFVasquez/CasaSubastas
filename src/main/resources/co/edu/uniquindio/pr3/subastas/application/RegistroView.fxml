@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="885.0" style="-fx-background-color: white;" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.RegistroViewController">
    <children>
-      <Pane prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: #0697AE;">
+      <Pane prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: #0697AE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -23,7 +23,7 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="499.0" fitWidth="488.0" layoutX="367.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="499.0" fitWidth="488.0" layoutX="367.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="30.0">
          <image>
             <Image url="@../images/Martillo.jpeg" />
          </image>
@@ -36,7 +36,7 @@
       <Label layoutX="63.0" layoutY="301.0" text="Edad:" />
       <Label layoutX="63.0" layoutY="230.0" text="Apellidos:" />
       <Label layoutX="63.0" layoutY="187.0" text="Nombre(s):" />
-      <Label layoutX="166.0" layoutY="51.0" text="Registrate">
+      <Label layoutX="150.0" layoutY="57.0" text="Registrate">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font></Label>
@@ -57,8 +57,8 @@
       <TextField fx:id="txtContrasenia" layoutX="171.0" layoutY="421.0" prefHeight="25.0" prefWidth="166.0" promptText="Digite una contraseña" styleClass="text-field-custom" />
       <Label layoutX="52.0" layoutY="522.0" text="Si ya tienes una cuenta: " />
       <Button fx:id="btnInico" layoutX="198.0" layoutY="518.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Iniciar sesión" textFill="#5900ff" />
-      <Separator layoutX="37.0" layoutY="461.0" prefHeight="2.0" prefWidth="318.0" />
-      <Label layoutX="113.0" layoutY="81.0" text="De una manera muy facil y sencilla" />
+      <Separator layoutX="30.0" layoutY="470.0" prefHeight="2.0" prefWidth="318.0" />
+      <Label layoutX="97.0" layoutY="87.0" text="De una manera muy facil y sencilla" />
       <Separator layoutX="26.0" layoutY="112.0" prefHeight="3.0" prefWidth="312.0" />
    </children>
 </AnchorPane>

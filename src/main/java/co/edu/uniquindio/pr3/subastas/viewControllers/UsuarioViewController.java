@@ -37,16 +37,13 @@ public class UsuarioViewController implements Initializable {
 
     @FXML
     void initialize() {
-        System.out.println("aca");
+
     }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        registroTab.setDisable(true);
+        //registroTab.setDisable(true);
         TabPanePrincipal = new TabPane();
 
         usuarioController = new UsuarioController();

@@ -2,7 +2,7 @@
 
 .text-field-custom {
     -fx-text-fill: black;
-    -fx-font-size: 0.8em;
+    -fx-font-size: 12s em;
     -fx-border-color: transparent;
     -fx-border-width: 5px;
     -fx-border-radius: 0.5em;

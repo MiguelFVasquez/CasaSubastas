@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.InicioSesionViewController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="885.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.InicioSesionViewController">
    <children>
       <Pane prefHeight="62.0" prefWidth="885.0" style="-fx-background-color: #0697AE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -25,16 +25,14 @@
             <Image url="@../images/Martillo.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="508.0" layoutY="192.0" text="Nombre de usuario" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="274.0" />
-      <TextField fx:id="txtInicioNombre" alignment="CENTER" layoutX="635.0" layoutY="188.0" prefHeight="25.0" prefWidth="170.0" promptText="Ingrese su nombre de usuario" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle2.css" AnchorPane.leftAnchor="635.0" AnchorPane.rightAnchor="80.0" />
-      <Label layoutX="508.0" layoutY="251.0" text="Contraseña" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="317.0" />
-      <PasswordField fx:id="txtInicioPassword" alignment="CENTER" layoutX="635.0" layoutY="247.0" prefHeight="25.0" prefWidth="170.0" promptText="Ingrese su Contraseña" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle2.css" AnchorPane.leftAnchor="635.0" AnchorPane.rightAnchor="80.0" />
-      <Button fx:id="btnIniciar" layoutX="624.0" layoutY="366.0" mnemonicParsing="false" onAction="#iniciarSesion" onKeyPressed="#iniciarSesionTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="158.0">
+      <Label layoutX="520.0" layoutY="208.0" text="Nombre de usuario" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="262.0" />
+      <TextField fx:id="txtInicioNombre" alignment="CENTER" layoutX="647.0" layoutY="204.0" prefHeight="33.0" prefWidth="202.0" promptText="Ingrese su nombre de usuario" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle2.css" AnchorPane.leftAnchor="647.0" AnchorPane.rightAnchor="36.0" />
+      <Label layoutX="517.0" layoutY="285.0" text="Contraseña" AnchorPane.leftAnchor="517.0" AnchorPane.rightAnchor="308.0" />
+      <PasswordField fx:id="txtInicioPassword" alignment="CENTER" layoutX="649.0" layoutY="274.0" prefHeight="33.0" prefWidth="195.0" promptText="Ingrese su Contraseña" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle2.css" AnchorPane.leftAnchor="649.0" AnchorPane.rightAnchor="41.0" />
+      <Button fx:id="btnIniciar" layoutX="618.0" layoutY="383.0" mnemonicParsing="false" onAction="#iniciarSesion" onKeyPressed="#iniciarSesionTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Iniciar Sesión" textFill="WHITE" AnchorPane.leftAnchor="618.0" AnchorPane.rightAnchor="164.0">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnRecuperarCuenta" layoutX="692.0" layoutY="291.0" mnemonicParsing="false" onAction="#recuperarContrasenia" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Recuperar" textFill="#5900ff" AnchorPane.leftAnchor="692.0" AnchorPane.rightAnchor="123.0" />
-      <Label layoutX="484.0" layoutY="295.0" prefHeight="17.0" prefWidth="195.0" text="¿Olvido su contraseña? Ingrese aqui:" AnchorPane.leftAnchor="484.0" AnchorPane.rightAnchor="206.0" />
       <Label layoutX="635.0" layoutY="79.0" prefHeight="25.0" prefWidth="103.0" text="Bienvenido " textAlignment="CENTER" AnchorPane.leftAnchor="635.0" AnchorPane.rightAnchor="147.0">
          <font>
             <Font name="Bookman Old Style" size="16.0" />
@@ -43,14 +41,14 @@
          <font>
             <Font name="Bookman Old Style" size="15.0" />
          </font></Label>
-      <Label layoutX="672.0" layoutY="412.0" text="0" AnchorPane.leftAnchor="672.0" AnchorPane.rightAnchor="206.0" />
-      <Button fx:id="btnCrearCuenta" layoutX="625.0" layoutY="444.0" mnemonicParsing="false" onAction="#crearCuentaNueva" onKeyPressed="#crearCuentaNuevaTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="158.0">
+      <Label layoutX="666.0" layoutY="429.0" text="0" AnchorPane.leftAnchor="666.0" AnchorPane.rightAnchor="212.0" />
+      <Button fx:id="btnCrearCuenta" layoutX="618.0" layoutY="461.0" mnemonicParsing="false" onAction="#crearCuentaNueva" onKeyPressed="#crearCuentaNuevaTecla" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #0697AE; -fx-cursor: hand;" text="Crear cuenta" textFill="WHITE" AnchorPane.leftAnchor="618.0" AnchorPane.rightAnchor="164.0">
          <font>
             <Font size="14.0" />
          </font></Button>
       <Separator layoutX="488.0" layoutY="135.0" prefHeight="0.0" prefWidth="355.0" AnchorPane.leftAnchor="488.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="135.0" />
-      <Separator layoutX="501.0" layoutY="349.0" prefHeight="3.0" prefWidth="339.0" AnchorPane.leftAnchor="501.0" AnchorPane.rightAnchor="45.0" />
-      <Separator layoutX="501.0" layoutY="420.0" prefHeight="3.0" prefWidth="154.0" AnchorPane.leftAnchor="501.0" AnchorPane.rightAnchor="230.0" />
-      <Separator layoutX="689.0" layoutY="419.0" prefHeight="3.0" prefWidth="154.0" AnchorPane.leftAnchor="689.0" AnchorPane.rightAnchor="42.0" />
+      <Separator layoutX="495.0" layoutY="366.0" prefHeight="3.0" prefWidth="339.0" AnchorPane.leftAnchor="495.0" AnchorPane.rightAnchor="51.0" />
+      <Separator layoutX="495.0" layoutY="437.0" prefHeight="3.0" prefWidth="154.0" AnchorPane.leftAnchor="495.0" AnchorPane.rightAnchor="236.0" />
+      <Separator layoutX="683.0" layoutY="436.0" prefHeight="3.0" prefWidth="154.0" AnchorPane.leftAnchor="683.0" AnchorPane.rightAnchor="48.0" />
    </children>
 </AnchorPane>

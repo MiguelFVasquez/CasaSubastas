@@ -34,9 +34,6 @@ public class  InicioSesionViewController implements Initializable {
     public TextField txtInicioNombre;
 
     @FXML
-    private Button btnRecuperarCuenta;
-
-    @FXML
     private Button btnCrearCuenta;
 
     @FXML
@@ -236,11 +233,7 @@ public class  InicioSesionViewController implements Initializable {
         iniciarSesion(event);
     }
 
-    @FXML
-    void recuperarContrasenia(ActionEvent event) {
 
-
-    }
 
     @FXML
     void crearCuentaNueva(ActionEvent event) {

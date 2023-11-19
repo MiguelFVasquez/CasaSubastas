@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="885.0" style="-fx-background-color: white;" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiCuentaViewController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="960.0" style="-fx-background-color: white;" styleClass="text-field-custom" stylesheets="@../styles/TxtStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastas.viewControllers.MiCuentaViewController">
    <children>
-      <Pane prefHeight="49.0" prefWidth="885.0" style="-fx-background-color: #0697AE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Pane prefHeight="49.0" prefWidth="960.0" style="-fx-background-color: #0697AE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/LogoUsuario.png" />
@@ -42,32 +42,32 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombre" layoutX="557.0" layoutY="126.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <TextField fx:id="txtApellidos" layoutX="557.0" layoutY="161.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <TextField fx:id="txtEdad" layoutX="557.0" layoutY="197.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <TextField fx:id="txtIdentificacion" layoutX="557.0" layoutY="232.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <TextField fx:id="txtUsuario" layoutX="557.0" layoutY="268.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <TextField fx:id="txtCorreo" layoutX="557.0" layoutY="308.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
-      <PasswordField fx:id="txtContrasenia" layoutX="557.0" layoutY="350.0" prefHeight="25.0" prefWidth="230.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="98.0" />
+      <TextField fx:id="txtNombre" layoutX="557.0" layoutY="126.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <TextField fx:id="txtApellidos" layoutX="557.0" layoutY="161.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <TextField fx:id="txtEdad" layoutX="557.0" layoutY="197.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <TextField fx:id="txtIdentificacion" layoutX="557.0" layoutY="232.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <TextField fx:id="txtUsuario" layoutX="557.0" layoutY="268.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <TextField fx:id="txtCorreo" layoutX="557.0" layoutY="308.0" prefHeight="27.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
+      <PasswordField fx:id="txtContrasenia" layoutX="557.0" layoutY="350.0" prefHeight="25.0" prefWidth="356.0" styleClass="text-field-custom" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="47.0" />
       <ComboBox fx:id="comboBoxTipoUsuario" layoutX="175.0" layoutY="331.0" prefHeight="25.0" prefWidth="178.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="329.0" />
-      <Separator layoutX="48.0" layoutY="431.0" prefHeight="7.0" prefWidth="800.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="37.0" />
-      <Label layoutX="423.0" layoutY="93.0" text="Puede ver y modificar la información de su cuenta" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="197.0" />
-      <Button fx:id="btnActualizarInformacion1" layoutX="672.0" layoutY="398.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" onKeyPressed="#guardarCambiosActualizarTecla" prefHeight="17.0" prefWidth="138.0" style="-fx-background-color: #008000; -fx-cursor: hand;" text="Guardar cambios" textFill="WHITE" AnchorPane.leftAnchor="672.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="398.0">
+      <Separator layoutX="49.0" layoutY="493.0" prefHeight="7.0" prefWidth="800.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="36.0" />
+      <Label layoutX="423.0" layoutY="93.0" text="Puede ver y modificar la información de su cuenta" textAlignment="CENTER" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="197.0" />
+      <Button fx:id="btnActualizarInformacion1" layoutX="681.0" layoutY="457.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" onKeyPressed="#guardarCambiosActualizarTecla" prefHeight="17.0" prefWidth="138.0" style="-fx-background-color: #008000; -fx-cursor: hand;" text="Guardar cambios" textFill="WHITE" AnchorPane.leftAnchor="681.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="457.0">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnActualizarInformacion" layoutX="244.0" layoutY="448.0" mnemonicParsing="false" onAction="#actualizarUsuario" onKeyPressed="#actualizarUsuarioTecla" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
+      <Button fx:id="btnActualizarInformacion" layoutX="239.0" layoutY="523.0" mnemonicParsing="false" onAction="#actualizarUsuario" onKeyPressed="#actualizarUsuarioTecla" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #0697AE;" text="Actualizar informacion" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnCerrarSesion" layoutX="444.0" layoutY="448.0" mnemonicParsing="false" onAction="#cerrarSesion" onKeyPressed="#cerrarSesionTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
+      <Button fx:id="btnCerrarSesion" layoutX="439.0" layoutY="523.0" mnemonicParsing="false" onAction="#cerrarSesion" onKeyPressed="#cerrarSesionTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Cerrar Sesión" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnEliminarCuenta" layoutX="630.0" layoutY="448.0" mnemonicParsing="false" onAction="#eliminarUsuario" onKeyPressed="#eliminarUsuarioTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
+      <Button fx:id="btnEliminarCuenta" layoutX="625.0" layoutY="523.0" mnemonicParsing="false" onAction="#eliminarUsuario" onKeyPressed="#eliminarUsuarioTecla" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>

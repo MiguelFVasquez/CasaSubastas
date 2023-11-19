@@ -9,6 +9,7 @@ import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,6 +78,7 @@ public class RegistroViewController implements Initializable{
                     mostrarMensaje( "Notificación", "Usuario registrado" ,
                             "El usuario ha sido registrado con éxito" + "\n" + "Ahora inicie sesión", Alert.AlertType.INFORMATION );
                     registroController.mfm.guardarResourceXML();
+                    Persistencia.guardaRegistroLog("Registro de anunciante en la plataforma",1,"Registro cliente");
                     limpiarCampos();
                 }
                 else{
@@ -91,6 +93,7 @@ public class RegistroViewController implements Initializable{
                             "El usuario ha sido registrado con éxito" + "\n" + "Ahora inicie sesión", Alert.AlertType.INFORMATION );
                     limpiarCampos();
                     registroController.mfm.guardarResourceXML();
+                    Persistencia.guardaRegistroLog("Registro de comprador en la plataforma",1,"Registro cliente");
 
                 }
                 else{
@@ -103,8 +106,7 @@ public class RegistroViewController implements Initializable{
 
     private boolean crearComprador(String nombre , String apellidos , String id , String edad , String usuario ,
                                    String correo , String password) throws UsuarioException, CompradorException {
-        boolean flag = registroController.mfm.crearComprador( nombre , apellidos , id , edad , usuario , correo , password );
-        return flag;
+        return registroController.mfm.crearComprador( nombre , apellidos , id , edad , usuario , correo , password );
     }
 
     private boolean crearAnunciante(String nombre , String apellidos , String id , String edad , String usuario ,
@@ -138,10 +140,12 @@ public class RegistroViewController implements Initializable{
         }
         if ( edad == null || edad.isEmpty() ) {
             notificacion += "Ingrese su edad\n";
-        } else {
-            if ( !esNumero( edad ) ) {
-                notificacion += "La edad ingresada debe ser numérica\n";
+        } else if ( !esNumero( edad ) ) {
+            notificacion += "La edad ingresada debe ser numérica\n";
+            if(Integer.parseInt(edad)<18){
+                notificacion+="Para registrarse debe ser mayor de edad";
             }
+
         }
         if ( usuario == null || usuario.isEmpty() ) {
             notificacion += "Ingrese como quiere ser llamado en la App\n";

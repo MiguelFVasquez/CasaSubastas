@@ -9,12 +9,14 @@ import java.util.zip.ZipOutputStream;
 
 import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.MiCuentaController;
+import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -171,14 +173,17 @@ public class MiCuentaViewController implements Initializable {
         if(confirmacionAlert()){
             if(tipoUsuario.equals( TipoUsuario.COMPRADOR )){
                 miCuentaController.mfm.eliminarCuentaComprador(txtUsuario.getText(), txtContrasenia.getText());
-                miCuentaController.mfm.guardarResourceXML();
+                ModelFactoryController.guardarResourceXML();
                 mostrarMensaje( "Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION );
+                Persistencia.guardaRegistroLog("Se ha eliminado un comprador del sistema", 1, "Usuario eliminado");
                 cerrarSesion(  event );
             }else{
                 if(tipoUsuario.equals( TipoUsuario.ANUNCIANTE )){
                     miCuentaController.mfm.eliminarCuentaAnunciante( txtUsuario.getText(), txtContrasenia.getText() );
+                    ModelFactoryController.guardarResourceXML();
                     mostrarMensaje( "Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION );
-                    cerrarSesion(  event );
+                    Persistencia.guardaRegistroLog("Se ha eliminado un anunciante del sistema", 1, "Usuario eliminado");
+                    cerrarSesion(event);
                 }
                 else{
                     mostrarMensaje( "Notificación", "Cuenta no encontrada", "La cuenta no ha sido encontrada", Alert.AlertType.INFORMATION );
