@@ -217,4 +217,20 @@ public class RegistroViewController implements Initializable{
         registroController.mfm.initRegistroViewController(this);
         comboBoxTipoUsuario.getItems().addAll(TipoUsuario.values());
     }
+//---------------- RABBIT MQ---------------------------------
+
+    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        //Se manda el mensaje a la cola
+        registroController.producirMensaje(mensajeProductor);
+    }
 }

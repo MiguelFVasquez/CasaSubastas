@@ -23,7 +23,27 @@ public class App extends Application {
         VentanaPrincipalViewController controller = loader.getController();
         controller.setStage(primaryStage);
         primaryStage.show();
+        /*
+        Log.configurarLogger();
+        //        //Se realiza la copia de respaldo para los archivos
+        //        CopiasRespaldoThread copiasRespaldoThread = new CopiasRespaldoThread();
+        //        copiasRespaldoThread.start();
+        //
+        //        //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
+        WriteBackupObjectsThread objectsThread = new WriteBackupObjectsThread();
+        objectsThread.start();
+
+        //Se inicializa el hilo consumidor de rabbitmq
+        ModelFactoryController.getInstance().consumirMensajes();
+
+        //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
+        WriteBackupObjectsThread objectsThread = new WriteBackupObjectsThread();
+        objectsThread.start();
+        */
+        //Se inicializa el hilo consumidor de rabbitmq
+        ModelFactoryController.getInstance().consumirMensajes();
     }
+
 
     @Override
     public void stop() throws Exception {
@@ -37,7 +57,9 @@ public class App extends Application {
         guardarXML.start();
         guardarXML.join();
 
-
+        //Se detiene el hilo consumidor
+        ModelFactoryController.getInstance().detenerConsumidor();
+        System.out.println("Mensajes consumidos");
     }
 
     public static void main(String[] args) {

@@ -9,4 +9,9 @@ public class MiCuentaController {
         System.out.println("Llamado al singleton desde Mi cuenta");
         mfm=  ModelFactoryController.getInstance();
     }
+
+    public void producirMensaje (String message) {
+        mfm.producirMensaje(message);
+    }
+
 }

@@ -17,6 +17,8 @@ import co.edu.uniquindio.pr3.subastas.model.Anunciante;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,19 +97,20 @@ public class MiCuentaViewController implements Initializable {
 
     //--------------------------------------------Actions events--------------------------------------------------------
     @FXML
-    void actualizarUsuario(ActionEvent event) {
-        setUsuarioIniciado( txtUsuario.getText() );
-        setPasswordIniciada( txtContrasenia.getText() );
+    void actualizarUsuario(ActionEvent event) throws IOException {
+        setUsuarioIniciado(txtUsuario.getText());
+        setPasswordIniciada(txtContrasenia.getText());
 
-        txtNombre.setEditable( true );
-        txtApellidos.setEditable( true);
-        txtEdad.setEditable( true);
+        txtNombre.setEditable(true);
+        txtApellidos.setEditable(true);
+        txtEdad.setEditable(true);
 
-        txtUsuario.setEditable( true);
-        txtCorreo.setEditable( true);
-        txtContrasenia.setEditable( true);
-        mostrarMensaje( "Notificación", "Actualice la información", "Cambie la información que desee", Alert.AlertType.INFORMATION );
-        btnActualizarInformacion1.setVisible( true );
+        txtUsuario.setEditable(true);
+        txtCorreo.setEditable(true);
+        txtContrasenia.setEditable(true);
+        mostrarMensaje("Notificación", "Actualice la información", "Cambie la información que desee", Alert.AlertType.INFORMATION);
+        btnActualizarInformacion1.setVisible(true);
+        manejoMultiAplicacion();
 
     }
 
@@ -116,6 +119,7 @@ public class MiCuentaViewController implements Initializable {
     void actualizarUsuarioTecla(ActionEvent event) throws IOException {
         actualizarUsuario(event);
     }
+
     @FXML
     void cerrarSesion(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
@@ -140,21 +144,21 @@ public class MiCuentaViewController implements Initializable {
         String correo = txtCorreo.getText();
         String password = txtContrasenia.getText();
 
-        if(validarDatos(nombre,apellidos, edad, nombreUsu, correo, password)){
-            if(miCuentaController.mfm.actualizarInforComprador( miCuentaController.mfm.obtenerComprador( getUsuarioIniciado(), getPasswordIniciada()),nombre,apellidos,
-                    edad, nombreUsu, correo, password)){
-                setUsuarioIniciado( nombreUsu );
-                setPasswordIniciada( password );
-                setInfoCuentaComprador(miCuentaController.mfm.obtenerComprador( nombreUsu, password ));
-                mostrarMensaje( "Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION );
-                btnActualizarInformacion1.setVisible( false );
-            }else {
-                if(miCuentaController.mfm.actualizarInforAnunciante(miCuentaController.mfm.getMiAnunciante(),nombre,apellidos,
-                        edad, nombreUsu, correo, password)){
-                    miCuentaController.mfm.setMiAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password));
-                    setInfoCuentaAnunciante( miCuentaController.mfm.obtenerAnunciante(nombreUsu, password) );
-                    mostrarMensaje( "Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION );
-                    btnActualizarInformacion1.setVisible( false );
+        if (validarDatos(nombre, apellidos, edad, nombreUsu, correo, password)) {
+            if (miCuentaController.mfm.actualizarInforComprador(miCuentaController.mfm.obtenerComprador(getUsuarioIniciado(), getPasswordIniciada()), nombre, apellidos,
+                    edad, nombreUsu, correo, password)) {
+                setUsuarioIniciado(nombreUsu);
+                setPasswordIniciada(password);
+                setInfoCuentaComprador(miCuentaController.mfm.obtenerComprador(nombreUsu, password));
+                mostrarMensaje("Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION);
+                btnActualizarInformacion1.setVisible(false);
+            } else {
+                if (miCuentaController.mfm.actualizarInforAnunciante(miCuentaController.mfm.getMiAnunciante(), nombre, apellidos,
+                        edad, nombreUsu, correo, password)) {
+                    miCuentaController.mfm.setMiAnunciante(miCuentaController.mfm.obtenerAnunciante(nombreUsu, password));
+                    setInfoCuentaAnunciante(miCuentaController.mfm.obtenerAnunciante(nombreUsu, password));
+                    mostrarMensaje("Notificación", "Información actualizada", "Los datos se han actualizado correctamente", Alert.AlertType.INFORMATION);
+                    btnActualizarInformacion1.setVisible(false);
 
                 }
             }
@@ -167,26 +171,26 @@ public class MiCuentaViewController implements Initializable {
     void guardarCambiosActualizarTecla(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException, IOException {
         guardarCambiosActualizar(event);
     }
+
     @FXML
     void eliminarUsuario(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException, IOException {
         TipoUsuario tipoUsuario = comboBoxTipoUsuario.getValue();
-        if(confirmacionAlert()){
-            if(tipoUsuario.equals( TipoUsuario.COMPRADOR )){
+        if (confirmacionAlert()) {
+            if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
                 miCuentaController.mfm.eliminarCuentaComprador(txtUsuario.getText(), txtContrasenia.getText());
                 ModelFactoryController.guardarResourceXML();
-                mostrarMensaje( "Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION );
+                mostrarMensaje("Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION);
                 Persistencia.guardaRegistroLog("Se ha eliminado un comprador del sistema", 1, "Usuario eliminado");
-                cerrarSesion(  event );
-            }else{
-                if(tipoUsuario.equals( TipoUsuario.ANUNCIANTE )){
-                    miCuentaController.mfm.eliminarCuentaAnunciante( txtUsuario.getText(), txtContrasenia.getText() );
+                cerrarSesion(event);
+            } else {
+                if (tipoUsuario.equals(TipoUsuario.ANUNCIANTE)) {
+                    miCuentaController.mfm.eliminarCuentaAnunciante(txtUsuario.getText(), txtContrasenia.getText());
                     ModelFactoryController.guardarResourceXML();
-                    mostrarMensaje( "Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION );
+                    mostrarMensaje("Notificación", "Cuenta eliminada", "La cuenta ha sido eliminada", Alert.AlertType.INFORMATION);
                     Persistencia.guardaRegistroLog("Se ha eliminado un anunciante del sistema", 1, "Usuario eliminado");
                     cerrarSesion(event);
-                }
-                else{
-                    mostrarMensaje( "Notificación", "Cuenta no encontrada", "La cuenta no ha sido encontrada", Alert.AlertType.INFORMATION );
+                } else {
+                    mostrarMensaje("Notificación", "Cuenta no encontrada", "La cuenta no ha sido encontrada", Alert.AlertType.INFORMATION);
                 }
             }
 
@@ -200,13 +204,13 @@ public class MiCuentaViewController implements Initializable {
     }
 
     //----------------------------------------FUNCIONES DE INFORMACIÓN -------------------------------------------------
-    public  void setInfoCuentaComprador(Comprador comprador) {
+    public void setInfoCuentaComprador(Comprador comprador) throws IOException {
         miCuentaController.mfm.mostrarInfoComprador(comprador);
         miCuentaController.mfm.deshabilitarDatos();
         manejoMultiAplicacion();
     }
 
-    public  void setInfoCuentaAnunciante(Anunciante anunciante) {
+    public void setInfoCuentaAnunciante(Anunciante anunciante) throws IOException {
         miCuentaController.mfm.mostrarInfoAnunciante(anunciante);
         miCuentaController.mfm.deshabilitarDatos();
         manejoMultiAplicacion();
@@ -222,14 +226,15 @@ public class MiCuentaViewController implements Initializable {
     }
 
     private boolean esNumero(String string) {
-        try {Float.parseFloat(string);
+        try {
+            Float.parseFloat(string);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    private boolean confirmacionAlert(){
+    private boolean confirmacionAlert() {
         // Crear una alerta de tipo CONFIRMATION
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmación");
@@ -247,7 +252,7 @@ public class MiCuentaViewController implements Initializable {
         return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
     }
 
-    private boolean validarDatos(String nombre , String apellidos ,  String edad , String usuario , String correo ,
+    private boolean validarDatos(String nombre, String apellidos, String edad, String usuario, String correo,
                                  String password) {
         String notificacion = "";
 
@@ -255,39 +260,40 @@ public class MiCuentaViewController implements Initializable {
 		además se valida que sea numérico para su correcta conversión */
 
 
-        if ( nombre == null || nombre.isEmpty() ) {
+        if (nombre == null || nombre.isEmpty()) {
             notificacion += "Ingrese su nombre\n";
         }
 
-        if ( apellidos == null || apellidos.isEmpty() ) {
+        if (apellidos == null || apellidos.isEmpty()) {
             notificacion += "Ingrese su contraseña\n";
         }
-        if ( edad == null || edad.isEmpty() ) {
+        if (edad == null || edad.isEmpty()) {
             notificacion += "Ingrese su edad\n";
         } else {
-            if ( !esNumero( edad ) ) {
+            if (!esNumero(edad)) {
                 notificacion += "La edad ingresada debe ser numérica\n";
             }
         }
-        if ( usuario == null || usuario.isEmpty() ) {
+        if (usuario == null || usuario.isEmpty()) {
             notificacion += "Ingrese como quiere ser llamado en la App\n";
         }
-        if ( correo == null || correo.isEmpty() ) {
+        if (correo == null || correo.isEmpty()) {
             notificacion += "Ingrese su correo\n";
         }
-        if ( password == null || password.isEmpty() ) {
+        if (password == null || password.isEmpty()) {
             notificacion += "Ingrese su contraseña\n";
         }
 
-        if ( !notificacion.isEmpty() ) {
-            mostrarMensaje( "Notificación" , "Registro fallido" ,
+        if (!notificacion.isEmpty()) {
+            mostrarMensaje("Notificación", "Registro fallido",
                     notificacion
-                    , Alert.AlertType.WARNING );
+                    , Alert.AlertType.WARNING);
             return false;
         }
 
         return true;
     }
+
     private void configurarEventos() {
 
         //Boton de actualizar información
@@ -367,12 +373,12 @@ public class MiCuentaViewController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url , ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        miCuentaController= new MiCuentaController();
+        miCuentaController = new MiCuentaController();
         miCuentaController.mfm.initMiCuentaViewController(this);
-        btnActualizarInformacion1.setVisible( false );
-        comboBoxTipoUsuario.setEditable( false );
+        btnActualizarInformacion1.setVisible(false);
+        comboBoxTipoUsuario.setEditable(false);
 
 
         //Asociacion de los botones a la tecla ENTER
@@ -429,7 +435,26 @@ public class MiCuentaViewController implements Initializable {
         this.aplicacion = aplicacion;
 
     }
-    public void init(Stage stage2) {
+
+    public void init(Stage stage2) throws IOException {
         this.stage = stage2;
     }
+
+//------------------- RABBIT MQ -----------------------------------------
+
+//Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = ArchivoUtil.cargarRecursoSerializadoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml" ).toString();
+        //Se manda el mensaje a la cola
+        miCuentaController.producirMensaje(mensajeProductor);
+    }
+
 }
