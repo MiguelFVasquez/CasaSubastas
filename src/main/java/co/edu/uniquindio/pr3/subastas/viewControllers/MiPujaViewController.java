@@ -1,18 +1,19 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.MiPujaController;
 import co.edu.uniquindio.pr3.subastas.exceptions.*;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -99,44 +100,9 @@ public class MiPujaViewController implements Initializable {
         listaPujas.addAll(comprador.getListaPujas());
         return listaPujas;
     }
-
-    public static Producto parseProducto(String productoTexto) {
-        Producto producto = new Producto();
-
-        Pattern pattern = Pattern.compile("codigo: '(\\d+)'\\s+nombre: '(.*?)'\\s+descripcion: '(.*?)'\\s+valorInicial: '(\\d+)'\\s+tipoProducto: (\\w+)\\s+estaAnunciado: (\\w+|null)");
-        Matcher matcher = pattern.matcher(productoTexto);
-
-        if (matcher.find()) {
-            producto.setCodigo(matcher.group(1));
-            producto.setNombre(matcher.group(2));
-            producto.setDescripcion(matcher.group(3));
-            producto.setValorInicial(String.valueOf(Integer.parseInt(matcher.group(4))));
-            producto.setTipoProducto(TipoProducto.valueOf(matcher.group(5)));
-            producto.setEstaAnunciado(Boolean.valueOf(matcher.group(6)));
-        }
-
-        return producto;
-    }
-
-
-    public Anuncio obtenerAnuncio(String anuncio) {
-        // Obtén el texto del TextField
-
-        // Dividir la cadena en líneas
-        String[] lineas = anuncio.split("\n");
-
-        // Extraer los valores de las líneas
-        String codigo = extraerValor(lineas[1], "codigo='");
-        String fechaInicio = extraerValor(lineas[2], "fechaInicio:'");
-        String fechaFinal = extraerValor(lineas[3], "fechaFinal:'");
-        String nombreAnunciante = extraerValor(lineas[4], "nombreAnunciante:'");
-        String producto = extraerValor(lineas[5], "producto:");
-        Producto productoAux = parseProducto(producto);//Obtengo el producto a partir del texto
-        // Crear instancia de la clase Anuncio
-        Anuncio anuncioAux = new Anuncio(codigo, fechaInicio, fechaFinal, nombreAnunciante, productoAux);
-
-        // Hacer algo con la instancia de Anuncio (por ejemplo, mostrar en la consola)
-        return anuncioAux;
+    public void setListaPujas(ObservableList<Puja> listaPujas){
+        this.listaPujas = listaPujas;
+        this.tableViewPuja.setItems(this.listaPujas);
     }
 
     private String extraerValor(String linea, String prefijo) {
@@ -243,7 +209,22 @@ public class MiPujaViewController implements Initializable {
 
         return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
     }
+    //---------------RABBIT------------------
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        //Se manda el mensaje a la cola
+        miPujaController.producirMensaje(mensajeProductor);
+    }
 
+    //.............EVENTOS DE LOS BOTONES.......................
     @FXML
     void agregarPuja(ActionEvent event) throws AnuncioException, CompradorException {
         //Informacion de la puja
@@ -265,10 +246,13 @@ public class MiPujaViewController implements Initializable {
             if(miPujaController.mfm.crearPuja(nombreUsuario,password,anuncio,valor,fecha,codigo)){
                 miPujaController.mfm.guardarResourceXML();
                 mostrarMensaje("Notificación puja", "Puja por producto", "Puja por producto realizada", Alert.AlertType.INFORMATION);
+                manejoMultiAplicacion();
                 Persistencia.guardaRegistroLog("Creación de puja", 1, "Se ha generado la puja de un producto");
             }
         }catch (PujaException pujaException){
             mostrarMensaje("Notifación puja","Puja no realizada", pujaException.getMessage(), Alert.AlertType.INFORMATION);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -288,11 +272,14 @@ public class MiPujaViewController implements Initializable {
                         listaPujas.remove(pujaSeleccionada);
                         miPujaController.mfm.guardarResourceXML();
                         mostrarMensaje("Elimininación de puja", "Puja eliminada", "La puja ha sido eliminada con exito",Alert.AlertType.INFORMATION);
+                        manejoMultiAplicacion();
                         Persistencia.guardaRegistroLog("Eliminación de puja", 1, "Se ha eliminado una puja");
                     }
                 }
             }catch (PujaException pujaException){
                 mostrarMensaje("Elimininación de puja", "Puja no eliminada", pujaException.getMessage(),Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }else {
             mostrarMensaje("Selección de Puja", "Puja no seleccionada", "Seleccione primero una puja para poder eliminarla",Alert.AlertType.WARNING);

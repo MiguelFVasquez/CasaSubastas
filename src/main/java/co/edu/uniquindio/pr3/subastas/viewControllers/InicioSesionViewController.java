@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.application.App;
 import co.edu.uniquindio.pr3.subastas.controllers.InicioSesionController;
 import co.edu.uniquindio.pr3.subastas.controllers.ModelFactoryController;
+import co.edu.uniquindio.pr3.subastas.model.Anunciante;
+import co.edu.uniquindio.pr3.subastas.model.Anuncio;
 import co.edu.uniquindio.pr3.subastas.model.Comprador;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -177,6 +182,20 @@ public class  InicioSesionViewController implements Initializable {
 
     }
 
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        //Se manda el mensaje a la cola
+        inicioSesionController.producirMensaje(mensajeProductor);
+    }
+
 
 //--------------------FUNCIONES DE LOS BOTONES (EVENT)
     @FXML
@@ -186,6 +205,7 @@ public class  InicioSesionViewController implements Initializable {
 
         if(validarDatos(nombre, password)){
             if(verificarComprador(nombre, password)){
+                Comprador compradorAux=  inicioSesionController.mfm.obtenerComprador(nombre,password);
                 System.out.println("SI llegas");
                 FXMLLoader loader= new FXMLLoader();
                 loader.setLocation(App.class.getResource("CompradorView.fxml"));
@@ -197,13 +217,16 @@ public class  InicioSesionViewController implements Initializable {
                 stage.setScene(scene);
                 controller.init(stage);
                 stage.show();
+                inicioSesionController.mfm.setMiComprador(compradorAux);
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
                 //txtInicioPassword.clear();
                 //txtInicioNombre.clear();
+                manejoMultiAplicacion();
+
             }else {
                 if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
-
+                    Anunciante anuncianteAux= inicioSesionController.mfm.obtenerAnunciante(nombre,password);
                     inicioSesionController.mfm.setMiAnunciante(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(App.class.getResource("AnuncianteView.fxml"));
@@ -215,8 +238,9 @@ public class  InicioSesionViewController implements Initializable {
                     stage.setScene(scene);
                     controller.init(stage,this);
                     stage.show();
+                    inicioSesionController.mfm.setMiAnunciante(anuncianteAux);
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
-
+                    manejoMultiAplicacion();
                     //txtInicioPassword.clear();
                     //txtInicioNombre.clear();
                 } else {

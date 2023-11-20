@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.RegistroController;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastas.exceptions.UsuarioException;
 import co.edu.uniquindio.pr3.subastas.model.TipoUsuario;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

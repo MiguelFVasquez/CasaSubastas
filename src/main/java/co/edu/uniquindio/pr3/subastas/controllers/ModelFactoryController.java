@@ -10,6 +10,12 @@ import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import co.edu.uniquindio.pr3.subastas.utils.CasaSubastasUtil;
 import co.edu.uniquindio.pr3.subastas.viewControllers.*;
+import co.edu.uniquindio.pr3.subastas.rabbitmq.config.RabbitFactory;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -18,18 +24,32 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ModelFactoryController implements IModelFactoryController {
+import static co.edu.uniquindio.pr3.subastas.rabbitmq.utils.Constantes.QUEUE_CONSUMIDOR;
+import static co.edu.uniquindio.pr3.subastas.rabbitmq.utils.Constantes.QUEUE_PRODUCTOR;
+
+public class ModelFactoryController implements IModelFactoryController,Runnable {
     //Clase global de la subasta
     static CasaSubasta miCasa;
     //Para la creacion de un CRUD en la aplicacion
     //DTO
     //SubastaMapper mapper = SubastaMapper.INSTANCE;
+
+
+    //Rabbitmq
+    RabbitFactory rabbitFactory;
+    ConnectionFactory connectionFactory;
+    //Hilos para consumidor
+    Thread hiloServicioConsumer;
+
     //Datos para el manejo de cada controlador
+
+
     private VentanaPrincipalViewController ventanaPrincipalViewController;
     private RegistroViewController registroViewController;
     private InicioSesionViewController inicioSesionViewController;
@@ -60,6 +80,7 @@ public class ModelFactoryController implements IModelFactoryController {
         return anunciante;
     }
 
+
     //Singleton (Garantiza instancia unica)
     private static class SingletonHolder {
         // El constructor de Singleton puede ser llamado desde aquí al ser protected
@@ -83,6 +104,7 @@ public class ModelFactoryController implements IModelFactoryController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        initRabbitConnection();
         //salvarDatosPrueba();
 
         //2. Cargar los datos de los archivos
@@ -108,6 +130,7 @@ public class ModelFactoryController implements IModelFactoryController {
     private void inicializarDatos() throws InterruptedException{
         //miCasa = CasaSubastasUtil.inicializarDatos();
         //Cargar datos desde archivos
+
         HiloCargarArchivos cargarArchivos= new HiloCargarArchivos();
         cargarArchivos.start();
         cargarArchivos.join();
@@ -247,7 +270,7 @@ public class ModelFactoryController implements IModelFactoryController {
         boolean flag = miCasa.verificarUsuario( nombre );
         return flag;
     }
-    /*Esto no estaba*/
+
     public Comprador obtenerComprador(String usuario, String contrasenia){
         return miCasa.obtenerComprador(usuario,contrasenia);
     }
@@ -470,6 +493,116 @@ public class ModelFactoryController implements IModelFactoryController {
 
     private void cargarDatosBase() {
 
+    }
+//--------------------- METODOS RABBIT MQ ---------------------------------------------------
+
+    @Override
+    public void run() {
+        Thread currentThread = Thread.currentThread();
+        if(currentThread == hiloServicioConsumer){
+            consumirXML();
+        }
+    }
+
+    /*
+    Inicializar conexion a rabitmq
+     */
+    private void initRabbitConnection() {
+        rabbitFactory = new RabbitFactory();
+        connectionFactory = rabbitFactory.getConnectionFactory();
+        System.out.println("conexion establecidad");
+    }
+
+    //Productor
+    public void producirMensaje(String message) {
+        String queue = QUEUE_PRODUCTOR;
+        try (Connection connection = connectionFactory.newConnection();
+             Channel channel = connection.createChannel()) {
+            channel.queueDeclare(queue, false, false, false, null);
+            channel.basicPublish("", queue, null, message.getBytes(StandardCharsets.UTF_8));
+            System.out.println(" [x] Message Sent ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Consumidor
+
+    public void consumirMensajes(){
+        hiloServicioConsumer = new Thread(this);
+        hiloServicioConsumer.start();
+    }
+    public void detenerConsumidor(){
+        try {
+            hiloServicioConsumer.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void consumirXML() {
+        try {
+            Connection connection = connectionFactory.newConnection();
+            Channel channel = connection.createChannel();
+            channel.queueDeclare(QUEUE_CONSUMIDOR, false, false, false, null);
+
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                String message = new String(delivery.getBody());
+                System.out.println("Mensaje recibido");
+                //actualizarEstado(message);
+
+                //Se carga la informacion XML en el archivo SubastasUQ.xml
+                //Se escribe la informacion obtenida desde rabbitmq en el archivo (.xml)
+                Persistencia.escribirArchivoXML(message, "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+                //Se carga la informacion del nuevo archivo SubastasUQ.xml
+                HiloCargarXML cargarXMLThread = new HiloCargarXML();
+                cargarXMLThread.start();
+                try {
+                    cargarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                //Se refresca la informacion de la interfaz de usuario
+                //se setean los anuncios en SubastasViewController
+                ObservableList<Anuncio> listaSubastas = FXCollections.observableArrayList();
+                listaSubastas.addAll(miCasa.getListaAnuncios());
+                this.subastaViewController.setListaAnuncios(listaSubastas);
+
+                //Caso Anunciante autenticado: Se carga la informacion del anunciante
+                if(this.anunciante!=null){
+                    //se añaden los productos segun el anunciante
+                    ObservableList<Producto> listaProductos = FXCollections.observableArrayList();
+                    listaProductos.addAll(miCasa.getListaProductos());
+                    this.miProductoViewController.setListaProductos(listaProductos);
+
+                    //se añaden los anuncios segun el anunciante
+                    ObservableList<Anuncio> listaAnuncios = FXCollections.observableArrayList();
+                    listaAnuncios.addAll(anunciante.getListaAnuncios());
+                    this.miAnuncioViewController.setListaAnuncios(listaAnuncios);
+                    //se añaden los productos segun el anunciante
+                    this.miProductoViewController.setListaProductos(listaProductos);
+                    //se añaden las pujas segun el anunciante
+                    //this.misAnunciosViewController.setListaPujasDTO(FXCollections.observableArrayList());
+                }
+                //Caso Comprador autenticado: Se carga la informacion del comprador
+                if(this.comprador!=null){
+                    //se setean las Pujas en misPujasViewController
+                    ObservableList<Puja> listaPujasDTO = FXCollections.observableArrayList();
+                    listaPujasDTO.addAll(comprador.getListaPujas());
+                    this.miPujaViewController.setListaPujas(listaPujasDTO);
+                    ObservableList<Anuncio> listaSubastasC = FXCollections.observableArrayList();
+                    listaSubastas.addAll(miCasa.getListaAnuncios());
+                    this.subastaViewController.setListaAnuncios(listaSubastasC);
+                    this.subastaViewController.tableViewAnuncios.refresh();
+                }
+            };
+            while (true) {
+                channel.basicConsume(QUEUE_CONSUMIDOR, true, deliverCallback, consumerTag -> { });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

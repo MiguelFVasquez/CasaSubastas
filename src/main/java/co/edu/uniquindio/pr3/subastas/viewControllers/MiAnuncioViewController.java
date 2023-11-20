@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,12 +9,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.MiAnuncioController;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.*;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -124,6 +127,10 @@ public class MiAnuncioViewController implements Initializable {
     private ObservableList<Puja> getListaPujas(Anuncio anuncioSeleccion){
         listaPujas.addAll(anuncioSeleccion.getListaPujas());
         return listaPujas;
+    }
+    public void setListaAnuncios(ObservableList<Anuncio> listaAnuncios){
+        this.listaAnuncios = listaAnuncios;
+        this.tableViewAnuncios.setItems(this.listaAnuncios);
     }
     private void configurarEventos() {
 
@@ -353,6 +360,20 @@ public class MiAnuncioViewController implements Initializable {
         return productoAnunciar.getEstaAnunciado();
     }
 
+    //-----FUNCIONES PARA RABBIT---------
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        //Se manda el mensaje a la cola
+        miAnuncioController.producirMensaje(mensajeProductor);
+    }
 
     //--------------------Evento de los botones------------------------
     @FXML
@@ -390,7 +411,6 @@ public class MiAnuncioViewController implements Initializable {
         if (validarDatos(nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,producto)){
             if (!productoAnunciar.getEstaAnunciado()){
                 crearAnuncio(nombreUsuario,password,nombreUsuarioAnuncio,codigo,fechaInicial,fechaFinal,productoAnunciar,pujasAnunciadas);
-                miAnuncioController.mfm.guardarResourceXML();
                 limpiarCampos(event);
                 tableViewAnuncios.getItems().clear();
                 tableViewAnuncios.setItems(getListaAnuncios());
@@ -412,11 +432,15 @@ public class MiAnuncioViewController implements Initializable {
     private void crearAnuncio(String usuario, String password,String nombreUsuario, String codigo, String fechaInicial, String fechaFinal, Producto producto, List<Puja> pujasAnuncio) throws ProductoException, AnuncioException, AnuncianteException {
        try{
            if (miAnuncioController.mfm.crearAnuncio(usuario,password,codigo,fechaInicial,fechaFinal,nombreUsuario,producto,pujasAnuncio)) {
+               miAnuncioController.mfm.guardarResourceXML();
                mostrarMensaje( "Notificación Anuncio", "Anuncio realizado", "El anuncio se ha realizado con exito", Alert.AlertType.INFORMATION );
                Persistencia.guardaRegistroLog("Creación de anuncio", 1, "Se ha anunciado un producto");
+               manejoMultiAplicacion();
            }
        }catch (AnuncioException anuncioException){
            mostrarMensaje( "Notificación Anuncio", "Anuncio no realizado", anuncioException.getMessage(), Alert.AlertType.INFORMATION );
+       } catch (IOException e) {
+           throw new RuntimeException(e);
        }
 
     }
@@ -444,11 +468,14 @@ public class MiAnuncioViewController implements Initializable {
                         mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
                         miAnuncioController.mfm.guardarResourceXML();
                         anuncioSeleccionado.getProducto().setEstaAnunciado(false);
+                        manejoMultiAplicacion();
                         Persistencia.guardaRegistroLog("Eliminación de anuncio", 1, "Se ha eliminado un anuncio");
                     }
                 }
             }catch (AnuncioException anuncioException){
                 mostrarMensaje("Elimininación de anuncio", "Anuncio no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
         }else{
@@ -474,13 +501,18 @@ public class MiAnuncioViewController implements Initializable {
                         listaAnuncios.remove(anuncioAceptado);
                         miAnuncioController.mfm.getListaProductos().remove(productoSeleccionado);
                         tableViewPujas.getItems().clear();
+                        miAnuncioController.mfm.guardarResourceXML();
                         mostrarMensaje("Producto vendido","Puja aceptada", "La puja por anuncio ha sido aceptada, contacte con el comprador y termine el proceso de compra.", Alert.AlertType.INFORMATION);
+                        manejoMultiAplicacion();
+                        Persistencia.guardaRegistroLog("Puja aceptada", 1, "La puja ha sido aceptada y el producto ha sido vendido");
                     }
                 }
             }catch (AnuncioException anuncioException){
                 mostrarMensaje("Elimininación de anuncio", "Anuncio no eliminado", anuncioException.getMessage(),Alert.AlertType.INFORMATION);
             } catch (ProductoException productoException) {
                 mostrarMensaje("Elimininación de Producto", "Producto no eliminado", productoException.getMessage(),Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
         }else{

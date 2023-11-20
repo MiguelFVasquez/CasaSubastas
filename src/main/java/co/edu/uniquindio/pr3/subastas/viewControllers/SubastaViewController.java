@@ -1,11 +1,14 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.SubastaController;
 import co.edu.uniquindio.pr3.subastas.model.Anuncio;
+import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,6 +64,11 @@ public class SubastaViewController implements Initializable {
         listaAnuncios.addAll(subastaController.mfm.getMiCasa().getListaAnuncios());
         return listaAnuncios;
     }
+    public void setListaAnuncios(ObservableList<Anuncio> listaAnuncios){
+        this.listaAnuncios = listaAnuncios;
+        this.tableViewAnuncios.setItems(this.listaAnuncios);
+    }
+
     private  String mezclarPalabras(String palabra1, String palabra2) {
         // Concatenar las dos palabras
         String palabraConcatenada = palabra1 + palabra2;
@@ -79,6 +87,20 @@ public class SubastaViewController implements Initializable {
             caracteres[indiceAleatorio] = temp;
         }
         return new String(caracteres);
+    }
+
+    public void manejoMultiAplicacion() throws IOException {
+        HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        //Se manda el mensaje a la cola
+        subastaController.producirMensaje(mensajeProductor);
     }
 
     //---------------------Eventos de los botones--------------
@@ -132,6 +154,7 @@ public class SubastaViewController implements Initializable {
         });
         tableViewAnuncios.getItems().clear();
         tableViewAnuncios.setItems(getListaAnuncios());
+        tableViewAnuncios.refresh();
 
     }
 }

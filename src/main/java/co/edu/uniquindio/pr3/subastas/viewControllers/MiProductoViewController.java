@@ -1,18 +1,22 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.MiProductoController;
 import co.edu.uniquindio.pr3.subastas.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastas.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastas.model.Anunciante;
+import co.edu.uniquindio.pr3.subastas.model.Anuncio;
 import co.edu.uniquindio.pr3.subastas.model.Producto;
 import co.edu.uniquindio.pr3.subastas.model.TipoProducto;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -262,7 +266,10 @@ public class MiProductoViewController implements Initializable {
         listaProductos.addAll(anunciante.getListaProductos());
         return listaProductos;
     }
-
+    public void setListaProductos(ObservableList<Producto> listaProductos){
+        this.listaProductos = listaProductos;
+        this.tableViewProductos.setItems(this.listaProductos);
+    }
     void refrescarTableView() throws AnuncianteException {
         tableViewProductos.setItems( getListaProductos() );
     }
@@ -303,6 +310,20 @@ public class MiProductoViewController implements Initializable {
 
         return resultado.filter(buttonType -> buttonType == buttonTypeContinuar).isPresent();
     }
+//---------------------RABBIT----------------------
+public void manejoMultiAplicacion() throws IOException {
+    HiloGuardarXML guardarXMLThread = new HiloGuardarXML();
+    guardarXMLThread.start();
+    try {
+        guardarXMLThread.join();
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
+    //Se obtiene el mensaje que se va a enviar a la cola
+    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+    //Se manda el mensaje a la cola
+    miProductoController.producirMensaje(mensajeProductor);
+}
 
 //---------ACCIONES DE LOS BOTONES(EVENT)-----------------------------------
 
@@ -371,10 +392,13 @@ public class MiProductoViewController implements Initializable {
                 tableViewProductos.getItems().clear();
                 tableViewProductos.setItems(getListaProductos());
                 mostrarMensaje( "Notificación", "Producto creado", "El producto ha sido creado y agregado a tu cuenta", Alert.AlertType.INFORMATION );
+                manejoMultiAplicacion();
                 Persistencia.guardaRegistroLog("Creación de producto", 1, "Se ha creado un producto nuevo");
             }
         }catch (ProductoException productoException){
             mostrarMensaje( "Notificación", "Producto no creado", productoException.getMessage(), Alert.AlertType.INFORMATION );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -423,11 +447,14 @@ public class MiProductoViewController implements Initializable {
                         listaProductos.remove(productoSeleccionado);
                         mostrarMensaje("Elimininación de producto", "Producto eliminado", "El producto ha sido eliminado con exito",Alert.AlertType.INFORMATION);
                         miProductoController.mfm.guardarResourceXML();
+                        manejoMultiAplicacion();
                         Persistencia.guardaRegistroLog("Eliminación de producto", 1, "Se ha eliminado un producto");
                     }
                 }
             }catch (ProductoException productoException){
                 mostrarMensaje("Elimininación de producto", "Producto eliminado", productoException.getMessage(),Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }else {
             mostrarMensaje("Selección de producto", "Producto no seleccionado", "Seleccione primero un producto para poder eliminarlo",Alert.AlertType.WARNING);

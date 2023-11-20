@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastas.viewControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -96,7 +97,7 @@ public class AnuncianteViewController implements Initializable {
 
     ObservableList<Producto> listaProductos= FXCollections.observableArrayList();
 
-    public void setInfoCuenta(Anunciante anunciante) {
+    public void setInfoCuenta(Anunciante anunciante) throws IOException {
         miCuentaViewController.setInfoCuentaAnunciante(anunciante);
     }
 

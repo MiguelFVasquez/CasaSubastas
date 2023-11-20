@@ -113,7 +113,7 @@ public class MiCuentaViewController implements Initializable {
 
 
     @FXML
-    void actualizarUsuarioTecla(ActionEvent event) {
+    void actualizarUsuarioTecla(ActionEvent event) throws IOException {
         actualizarUsuario(event);
     }
     @FXML
@@ -131,7 +131,7 @@ public class MiCuentaViewController implements Initializable {
     }
 
     @FXML
-    void guardarCambiosActualizar(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException {
+    void guardarCambiosActualizar(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException, IOException {
         String nombre = txtNombre.getText();
         String apellidos = txtApellidos.getText();
         String edad = txtEdad.getText();
@@ -164,7 +164,7 @@ public class MiCuentaViewController implements Initializable {
     }
 
     @FXML
-    void guardarCambiosActualizarTecla(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException {
+    void guardarCambiosActualizarTecla(ActionEvent event) throws UsuarioException, CompradorException, AnuncianteException, IOException {
         guardarCambiosActualizar(event);
     }
     @FXML
@@ -203,11 +203,13 @@ public class MiCuentaViewController implements Initializable {
     public  void setInfoCuentaComprador(Comprador comprador) {
         miCuentaController.mfm.mostrarInfoComprador(comprador);
         miCuentaController.mfm.deshabilitarDatos();
+        manejoMultiAplicacion();
     }
 
     public  void setInfoCuentaAnunciante(Anunciante anunciante) {
         miCuentaController.mfm.mostrarInfoAnunciante(anunciante);
         miCuentaController.mfm.deshabilitarDatos();
+        manejoMultiAplicacion();
     }
 
     //----------------------------------------FUNCIONES UTILITARIAS-----------------------------------------------------
@@ -376,7 +378,11 @@ public class MiCuentaViewController implements Initializable {
         //Asociacion de los botones a la tecla ENTER
         btnActualizarInformacion.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                actualizarUsuarioTecla(new ActionEvent()); // Llama a tu método actual
+                try {
+                    actualizarUsuarioTecla(new ActionEvent()); // Llama a tu método actual
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         btnCerrarSesion.setOnKeyPressed(event -> {
@@ -409,6 +415,8 @@ public class MiCuentaViewController implements Initializable {
                     throw new RuntimeException(e);
                 } catch (AnuncianteException e) {
                     throw new RuntimeException(e);
+                } catch (IOException e) {
+
                 }
             }
         });

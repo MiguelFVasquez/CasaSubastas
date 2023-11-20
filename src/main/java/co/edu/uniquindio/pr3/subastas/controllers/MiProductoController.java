@@ -7,4 +7,8 @@ public class MiProductoController {
         System.out.println("Llamando al singleton desde MiProductoController");
         mfm = ModelFactoryController.getInstance();
     }
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
+
 }

@@ -7,4 +7,8 @@ public class SubastaController {
         System.out.println("Llamando al singleton desde mi subastaController");
         mfm = ModelFactoryController.getInstance();
     }
+
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
 }

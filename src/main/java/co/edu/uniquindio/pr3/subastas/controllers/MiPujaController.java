@@ -7,4 +7,7 @@ public class MiPujaController {
         System.out.println("Llamando al singleton desde mi puja controller");
         mfm = ModelFactoryController.getInstance();
     }
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
 }

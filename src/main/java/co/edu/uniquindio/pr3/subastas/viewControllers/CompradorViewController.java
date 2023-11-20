@@ -104,10 +104,10 @@ public class CompradorViewController implements Initializable {
         stage.show();
 
     }
-    public  void setInfoCuentaComprador(Comprador comprador) {
+    public  void setInfoCuentaComprador(Comprador comprador) throws IOException {
         miCuentaViewController.setInfoCuentaComprador(comprador);
     }
-    public void setInfoCuentaAnunciante(Anunciante anunciante){
+    public void setInfoCuentaAnunciante(Anunciante anunciante) throws IOException {
         miCuentaViewController.setInfoCuentaAnunciante(anunciante);
     }
     @Override
