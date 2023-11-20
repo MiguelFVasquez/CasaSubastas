@@ -9,6 +9,7 @@ import co.edu.uniquindio.pr3.subastas.Hilos.HiloGuardarXML;
 import co.edu.uniquindio.pr3.subastas.controllers.SubastaController;
 import co.edu.uniquindio.pr3.subastas.model.Anuncio;
 import co.edu.uniquindio.pr3.subastas.persistencia.Persistencia;
+import co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -98,7 +99,7 @@ public class SubastaViewController implements Initializable {
             throw new RuntimeException(e);
         }
         //Se obtiene el mensaje que se va a enviar a la cola
-        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         subastaController.producirMensaje(mensajeProductor);
     }

@@ -320,7 +320,7 @@ public void manejoMultiAplicacion() throws IOException {
         throw new RuntimeException(e);
     }
     //Se obtiene el mensaje que se va a enviar a la cola
-    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+    String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
     //Se manda el mensaje a la cola
     miProductoController.producirMensaje(mensajeProductor);
 }

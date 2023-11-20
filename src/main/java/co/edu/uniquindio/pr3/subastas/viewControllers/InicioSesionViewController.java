@@ -191,9 +191,10 @@ public class  InicioSesionViewController implements Initializable {
             throw new RuntimeException(e);
         }
         //Se obtiene el mensaje que se va a enviar a la cola
-        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+        String mensajeProductor =  String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         inicioSesionController.producirMensaje(mensajeProductor);
+        inicioSesionController.mfm.consumirMensajes();
     }
 
 
@@ -221,13 +222,13 @@ public class  InicioSesionViewController implements Initializable {
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
                 //txtInicioPassword.clear();
                 //txtInicioNombre.clear();
+                this.stage.close();
                 manejoMultiAplicacion();
 
             }else {
                 if (verificarAnunciante(nombre, password)) {
                     System.out.println("SI llegas");
                     Anunciante anuncianteAux= inicioSesionController.mfm.obtenerAnunciante(nombre,password);
-                    inicioSesionController.mfm.setMiAnunciante(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(App.class.getResource("AnuncianteView.fxml"));
                     AnchorPane anchorPane = loader.load();
@@ -240,6 +241,7 @@ public class  InicioSesionViewController implements Initializable {
                     stage.show();
                     inicioSesionController.mfm.setMiAnunciante(anuncianteAux);
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
+                    this.stage.close();
                     manejoMultiAplicacion();
                     //txtInicioPassword.clear();
                     //txtInicioNombre.clear();

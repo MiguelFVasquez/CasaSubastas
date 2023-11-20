@@ -127,6 +127,7 @@ public class MiCuentaViewController implements Initializable {
         miCuentaController.mfm.setMiComprador(null);
         // Cerrar la ventana
         stage.close();
+
     }
 
     @FXML
@@ -452,7 +453,7 @@ public class MiCuentaViewController implements Initializable {
             throw new RuntimeException(e);
         }
         //Se obtiene el mensaje que se va a enviar a la cola
-        String mensajeProductor = ArchivoUtil.cargarRecursoSerializadoXML("src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml" ).toString();
+        String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         miCuentaController.producirMensaje(mensajeProductor);
     }

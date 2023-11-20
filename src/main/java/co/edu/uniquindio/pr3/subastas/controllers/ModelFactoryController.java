@@ -553,7 +553,8 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
 
                 //Se carga la informacion XML en el archivo SubastasUQ.xml
                 //Se escribe la informacion obtenida desde rabbitmq en el archivo (.xml)
-                Persistencia.escribirArchivoXML(message, "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+                //Persistencia.escribirArchivoXML(message, "src/main/resources/co/edu/uniquindio/pr3/subastas/persistencia/model.xml");
+                Persistencia.guardarRecursoCasaSubastaXML(miCasa);
                 //Se carga la informacion del nuevo archivo SubastasUQ.xml
                 HiloCargarXML cargarXMLThread = new HiloCargarXML();
                 cargarXMLThread.start();
@@ -570,7 +571,7 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
                 this.subastaViewController.setListaAnuncios(listaSubastas);
 
                 //Caso Anunciante autenticado: Se carga la informacion del anunciante
-                if(this.anunciante!=null){
+                if(this.getMiAnunciante()!=null){
                     //se añaden los productos segun el anunciante
                     ObservableList<Producto> listaProductos = FXCollections.observableArrayList();
                     listaProductos.addAll(miCasa.getListaProductos());
@@ -586,7 +587,7 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
                     //this.misAnunciosViewController.setListaPujasDTO(FXCollections.observableArrayList());
                 }
                 //Caso Comprador autenticado: Se carga la informacion del comprador
-                if(this.comprador!=null){
+                if(this.getMiComprador()!=null){
                     //se setean las Pujas en misPujasViewController
                     ObservableList<Puja> listaPujasDTO = FXCollections.observableArrayList();
                     listaPujasDTO.addAll(comprador.getListaPujas());
