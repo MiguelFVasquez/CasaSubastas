@@ -336,8 +336,6 @@ public class CasaSubasta implements  ISubasta,Serializable {
             throw new CompradorException("El comprador no se encuentra registrado");
         }
         if (compradorAux.crearPuja(newPuja)) {
-            System.out.println("Anuncio seleccionado: "+ newPuja.getAnuncio().toString());
-            System.out.println("Lista de pujas desde mi subasta"+newPuja.getAnuncio().getListaPujas().toString());
             creado = true;
         }else {
             throw new PujaException("La puja no se ha podido realizar");

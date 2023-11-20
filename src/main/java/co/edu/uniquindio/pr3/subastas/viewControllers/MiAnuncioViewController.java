@@ -120,6 +120,7 @@ public class MiAnuncioViewController implements Initializable {
     private ObservableList<Anuncio> getListaAnuncios(){
         String nombreUsuario= miAnuncioController.mfm.getNombreUsuario();
         String password= miAnuncioController.mfm.getPassword();
+
         Anunciante anunciante= miAnuncioController.mfm.obtenerAnunciante(nombreUsuario,password);
         listaAnuncios.addAll(anunciante.getListaAnuncios());
         return listaAnuncios;
@@ -373,6 +374,7 @@ public class MiAnuncioViewController implements Initializable {
         String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         miAnuncioController.producirMensaje(mensajeProductor);
+        miAnuncioController.mfm.consumirMensajes();
     }
 
     //--------------------Evento de los botones------------------------
@@ -468,6 +470,7 @@ public class MiAnuncioViewController implements Initializable {
                         mostrarMensaje("Elimininación de anuncio", "Anuncio eliminado", "El anuncio ha sido eliminado con exito",Alert.AlertType.INFORMATION);
                         miAnuncioController.mfm.guardarResourceXML();
                         anuncioSeleccionado.getProducto().setEstaAnunciado(false);
+                        tableViewPujas.getItems().clear();
                         manejoMultiAplicacion();
                         Persistencia.guardaRegistroLog("Eliminación de anuncio", 1, "Se ha eliminado un anuncio");
                     }
@@ -500,6 +503,7 @@ public class MiAnuncioViewController implements Initializable {
                     if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioAceptado) && miAnuncioController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
                         listaAnuncios.remove(anuncioAceptado);
                         miAnuncioController.mfm.getListaProductos().remove(productoSeleccionado);
+                        miAnuncioController.mfm.getTablaProductos().refresh();
                         tableViewPujas.getItems().clear();
                         miAnuncioController.mfm.guardarResourceXML();
                         mostrarMensaje("Producto vendido","Puja aceptada", "La puja por anuncio ha sido aceptada, contacte con el comprador y termine el proceso de compra.", Alert.AlertType.INFORMATION);
@@ -521,8 +525,8 @@ public class MiAnuncioViewController implements Initializable {
     }
 
     @FXML
-    void aceptarPujaTecla(ActionEvent event) {
-
+    void aceptarPujaTecla(ActionEvent event) throws AnuncioException, AnuncianteException {
+        aceptarPuja(event);
     }
 
 

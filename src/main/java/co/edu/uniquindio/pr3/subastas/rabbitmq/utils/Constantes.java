@@ -3,8 +3,8 @@ package co.edu.uniquindio.pr3.subastas.rabbitmq.utils;
 public class Constantes {
 
     //Cola de productor
-    public static final String QUEUE_PRODUCTOR = "queque_uno";
+    public static final String QUEUE_PRODUCTOR = "queue_uno";
     //Cola de consumidor
-    public static final String QUEUE_CONSUMIDOR = "queque_dos";
+    public static final String QUEUE_CONSUMIDOR = "queue_dos";
 
 }

@@ -323,6 +323,7 @@ public void manejoMultiAplicacion() throws IOException {
     String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
     //Se manda el mensaje a la cola
     miProductoController.producirMensaje(mensajeProductor);
+
 }
 
 //---------ACCIONES DE LOS BOTONES(EVENT)-----------------------------------

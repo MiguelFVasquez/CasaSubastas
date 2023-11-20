@@ -96,6 +96,7 @@ public class MiPujaViewController implements Initializable {
     private ObservableList<Puja> getListaPujas(){
         String nombreUsuario= miPujaController.mfm.getNombreUsuario();
         String password= miPujaController.mfm.getPassword();
+
         Comprador comprador= miPujaController.mfm.obtenerComprador(nombreUsuario,password);
         listaPujas.addAll(comprador.getListaPujas());
         return listaPujas;
@@ -104,12 +105,6 @@ public class MiPujaViewController implements Initializable {
         this.listaPujas = listaPujas;
         this.tableViewPuja.setItems(this.listaPujas);
     }
-
-    private String extraerValor(String linea, String prefijo) {
-        // Eliminar el prefijo y las comillas
-        return linea.substring(prefijo.length(), linea.length() - 1);
-    }
-
     private void configurarEventos() {
 
         //Animacion del boton de añadir
@@ -222,6 +217,7 @@ public class MiPujaViewController implements Initializable {
         String mensajeProductor =  String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         miPujaController.producirMensaje(mensajeProductor);
+        miPujaController.mfm.consumirMensajes();
     }
 
     //.............EVENTOS DE LOS BOTONES.......................
@@ -233,6 +229,7 @@ public class MiPujaViewController implements Initializable {
         LocalDate fecha= datePickerFecha.getValue();
         Double valor= Double.parseDouble(txtValor.getText());
         Anuncio anuncioAux= miPujaController.mfm.getAnuncioPujar();
+
         if (validarDatos(codigo,fecha, anuncioAux,valor)){
             crearPuja(nombreUsuario,password,codigo,fecha,anuncioAux,valor);
             limpiarCampos();
@@ -330,5 +327,10 @@ public class MiPujaViewController implements Initializable {
         tableViewPuja.setItems(getListaPujas());
         asociarProductosBotones();
         configurarEventos();
+        try {
+            manejoMultiAplicacion();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

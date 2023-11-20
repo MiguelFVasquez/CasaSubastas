@@ -222,7 +222,7 @@ public class  InicioSesionViewController implements Initializable {
                 controller.setInfoCuentaComprador(inicioSesionController.mfm.obtenerComprador(nombre,password));
                 //txtInicioPassword.clear();
                 //txtInicioNombre.clear();
-                this.stage.close();
+                //this.stage.close();
                 manejoMultiAplicacion();
 
             }else {
@@ -241,7 +241,7 @@ public class  InicioSesionViewController implements Initializable {
                     stage.show();
                     inicioSesionController.mfm.setMiAnunciante(anuncianteAux);
                     controller.setInfoCuenta(inicioSesionController.mfm.obtenerAnunciante(nombre, password));
-                    this.stage.close();
+                    //this.stage.close();
                     manejoMultiAplicacion();
                     //txtInicioPassword.clear();
                     //txtInicioNombre.clear();

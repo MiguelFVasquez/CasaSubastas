@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
@@ -372,7 +373,9 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
     public ObservableList<Producto> getListaProductos(){
         return miProductoViewController.listaProductos;
     }
-
+    public TableView<Producto> getTablaProductos(){
+        return miProductoViewController.tableViewProductos;
+    }
     //----------------------------------------------ANUNCIO VIEW---------------------------------------------------
 
     public Producto obtenerProductoTexto(String productoTexto){
@@ -425,6 +428,7 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
     public boolean crearPuja(String nombreUsuario, String password, Anuncio anuncio, Double valor, LocalDate fecha, String codigo) throws PujaException, AnuncioException, CompradorException {
         Comprador compradoAux= miCasa.obtenerComprador(nombreUsuario,password);
         Puja newPuja= new Puja(anuncio,compradoAux,valor,fecha,codigo);
+
         return miCasa.crearPuja(compradoAux, newPuja);
     }
     public boolean eliminarPuja(String nombreUsuario, String password, Puja pujaElimnar) throws PujaException, CompradorException {
@@ -592,8 +596,9 @@ public class ModelFactoryController implements IModelFactoryController,Runnable 
                     ObservableList<Puja> listaPujasDTO = FXCollections.observableArrayList();
                     listaPujasDTO.addAll(comprador.getListaPujas());
                     this.miPujaViewController.setListaPujas(listaPujasDTO);
+                    //Anuncios disponibles para el comprador
                     ObservableList<Anuncio> listaSubastasC = FXCollections.observableArrayList();
-                    listaSubastas.addAll(miCasa.getListaAnuncios());
+                    listaSubastasC.addAll(miCasa.getListaAnuncios());
                     this.subastaViewController.setListaAnuncios(listaSubastasC);
                     this.subastaViewController.tableViewAnuncios.refresh();
                 }

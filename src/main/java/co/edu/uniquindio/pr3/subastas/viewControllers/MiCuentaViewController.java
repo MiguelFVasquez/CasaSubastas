@@ -456,6 +456,7 @@ public class MiCuentaViewController implements Initializable {
         String mensajeProductor = String.valueOf(Persistencia.cargarRecursoCasaSubastaXML());
         //Se manda el mensaje a la cola
         miCuentaController.producirMensaje(mensajeProductor);
+        miCuentaController.mfm.consumirMensajes();
     }
 
 }

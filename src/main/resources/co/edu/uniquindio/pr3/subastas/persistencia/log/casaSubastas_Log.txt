@@ -922,3 +922,63 @@ nov. 20, 2023 10:36:12 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil g
 INFO: Se ha creado un producto nuevo,Creación de producto,2023-11-20
 nov. 20, 2023 10:36:31 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
 INFO: Se ha anunciado un producto,Creación de anuncio,2023-11-20
+nov. 20, 2023 11:12:47 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:15:01 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:19:19 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:19:44 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:20:14 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-11-20
+nov. 20, 2023 11:29:42 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:30:00 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un producto,Eliminación de producto,2023-11-20
+nov. 20, 2023 11:30:09 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-11-20
+nov. 20, 2023 11:30:20 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-11-20
+nov. 20, 2023 11:30:39 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha generado la puja de un producto,Creación de puja,2023-11-20
+nov. 20, 2023 11:31:30 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-11-20
+nov. 20, 2023 11:37:47 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:38:13 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un producto,Eliminación de producto,2023-11-20
+nov. 20, 2023 11:38:32 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-11-20
+nov. 20, 2023 11:38:46 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-11-20
+nov. 20, 2023 11:39:33 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha generado la puja de un producto,Creación de puja,2023-11-20
+nov. 20, 2023 11:40:01 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado una puja,Eliminación de puja,2023-11-20
+nov. 20, 2023 11:40:29 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: La puja ha sido aceptada y el producto ha sido vendido,Puja aceptada,2023-11-20
+nov. 20, 2023 11:43:03 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: inicioSesión,Inicio de sesión,2023-11-20
+nov. 20, 2023 11:43:27 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-11-20
+nov. 20, 2023 11:43:38 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-11-20
+nov. 20, 2023 11:43:54 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha generado la puja de un producto,Creación de puja,2023-11-20
+nov. 20, 2023 11:44:03 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado una puja,Eliminación de puja,2023-11-20
+nov. 20, 2023 11:44:25 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un anuncio,Eliminación de anuncio,2023-11-20
+nov. 20, 2023 11:44:35 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado una puja,Eliminación de puja,2023-11-20
+nov. 20, 2023 11:45:10 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha eliminado un producto,Eliminación de producto,2023-11-20
+nov. 20, 2023 11:45:16 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha creado un producto nuevo,Creación de producto,2023-11-20
+nov. 20, 2023 11:45:23 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha anunciado un producto,Creación de anuncio,2023-11-20
+nov. 20, 2023 11:45:52 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: Se ha generado la puja de un producto,Creación de puja,2023-11-20
+nov. 20, 2023 11:46:21 A. M. co.edu.uniquindio.pr3.subastas.utils.ArchivoUtil guardarRegistroLog
+INFO: La puja ha sido aceptada y el producto ha sido vendido,Puja aceptada,2023-11-20
