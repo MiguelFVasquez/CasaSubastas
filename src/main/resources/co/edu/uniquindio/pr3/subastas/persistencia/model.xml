@@ -19,6 +19,33 @@
      <void property="identificacion">
       <string>01</string>
      </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.pr3.subastas.model.Producto">
+        <void property="codigo">
+         <string>009</string>
+        </void>
+        <void property="descripcion">
+         <string>Telefono movil de ultima generacion</string>
+        </void>
+        <void property="estaAnunciado">
+         <boolean>false</boolean>
+        </void>
+        <void property="nombre">
+         <string>Celular</string>
+        </void>
+        <void property="tipoProducto">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>co.edu.uniquindio.pr3.subastas.model.TipoProducto</class>
+          <string>TECNOLOGICO</string>
+         </object>
+        </void>
+        <void property="valorInicial">
+         <string>900000</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="nombre">
       <string>Santiago</string>
      </void>
@@ -31,7 +58,6 @@
        <string>ANUNCIANTE</string>
       </object>
      </void>
-     <void id="Boolean0" method="isAutenticado"/>
     </object>
    </void>
    <void method="add">
@@ -77,67 +103,6 @@
      </void>
      <void property="identificacion">
       <string>2323</string>
-     </void>
-     <void property="listaPujas">
-      <void method="add">
-       <object class="co.edu.uniquindio.pr3.subastas.model.Puja" id="Puja0">
-        <void property="anuncio">
-         <object class="co.edu.uniquindio.pr3.subastas.model.Anuncio" id="Anuncio0">
-          <void property="codigo">
-           <string>da21s3</string>
-          </void>
-          <void property="fechaFinal">
-           <string>2023-11-22</string>
-          </void>
-          <void property="fechaInicio">
-           <string>2023-11-22</string>
-          </void>
-          <void property="listaPujas">
-           <void method="add">
-            <object idref="Puja0"/>
-           </void>
-          </void>
-          <void property="nombreAnunciante">
-           <string>sa</string>
-          </void>
-          <void property="producto">
-           <object class="co.edu.uniquindio.pr3.subastas.model.Producto">
-            <void property="codigo">
-             <string>312</string>
-            </void>
-            <void property="descripcion">
-             <string>wqdas</string>
-            </void>
-            <void property="estaAnunciado">
-             <object idref="Boolean0"/>
-            </void>
-            <void property="nombre">
-             <string>dsa</string>
-            </void>
-            <void property="tipoProducto">
-             <object class="java.lang.Enum" method="valueOf">
-              <class>co.edu.uniquindio.pr3.subastas.model.TipoProducto</class>
-              <string>HOGAR</string>
-             </object>
-            </void>
-            <void property="valorInicial">
-             <string>12</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="codigo">
-         <string>32as1dsa</string>
-        </void>
-        <void property="comprador">
-         <object idref="Comprador0"/>
-        </void>
-        <void property="valor">
-         <double>312.0</double>
-        </void>
-       </object>
-      </void>
      </void>
      <void property="nombre">
       <string>Santiago</string>

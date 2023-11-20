@@ -503,6 +503,7 @@ public class MiAnuncioViewController implements Initializable {
                     if (miAnuncioController.mfm.eliminarAnuncio(nombreUsuario,password,anuncioAceptado) && miAnuncioController.mfm.eliminarProducto(nombreUsuario,password,productoSeleccionado)){
                         listaAnuncios.remove(anuncioAceptado);
                         miAnuncioController.mfm.getListaProductos().remove(productoSeleccionado);
+
                         miAnuncioController.mfm.getTablaProductos().refresh();
                         tableViewPujas.getItems().clear();
                         miAnuncioController.mfm.guardarResourceXML();

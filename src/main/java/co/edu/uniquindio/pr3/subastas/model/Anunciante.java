@@ -176,6 +176,7 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
         }else {
             eliminado=true;
             anuncioEliminar.getProducto().setEstaAnunciado(false);
+            anuncioEliminar.getListaPujas().clear();
             listaAnuncios.remove(anuncioAux);
         }
         return eliminado;
